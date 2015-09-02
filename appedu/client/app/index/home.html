@@ -1,0 +1,86 @@
+<template name="home">
+<header id="header"><span class="category_h_title">幼儿园</span><span class="category_h_nav" data="1"><img src="images/shx.png"></span> </header>
+<section class="category_two_nav">
+  <div style="width:100%;"> <a href="index.html"><span><img src="images/nav_l1.png">首页</span></a> <a href="jzq.html"><span><img src="images/nav_l2.png">家长圈</span></a> <a href="jzx.html"><span><img src="images/nav_l3.png">家长信</span></a>
+  <a href="hmc.html"><span><img src="images/nav_l4.png">花名册</span></a><a href="hhb.html"><span><img src="images/nav_l5.png">红花榜</span></a><a href="rxlx.html"><span><img src="images/nav_l6.png">入校离校</span></a><a href="jxjh.html"><span><img src="images/nav_l7.png">教学计划</span></a><a href="wjdc.html"><span><img src="images/nav_l8.png">问卷调查</span></a><a href="hdgl.html"><span><img src="images/nav_l9.png">活动管理</span></a><a href="login.html"><span><img src="images/nav_l10.png">个人中心</span></a><a href="#"><span><img src="images/nav_l11.png">退出</span></a>
+  </div>
+</section>
+<section class="over_layer"></section>
+<section class="content pad padb">
+  <div class="main_4">
+    <div style="-webkit-transform:translate3d(0,0,0);">
+      <div style="visibility: visible;" id="banner_box" class="box_swipe">
+        <ul style="list-style: none outside none; width: 3200px; transition-duration: 500ms; transform: translate3d(-1280px, 0px, 0px);">
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a onclick="return false;"> <img src="images/banner1.png" alt="常州幼儿教育" style="width:100%;"> </a> </li>
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="images/banner1.png" alt="常州幼儿教育" style="width:100%;"> </a> </li>
+          <li style="width: 640px; display: table-cell; vertical-align: top;"> <a href="#"> <img src="images/banner1.png" alt="常州幼儿教育" style="width:100%;"> </a> </li>
+        </ul>
+        <ol>
+          <li class="on"></li>
+          <li class=""></li>
+          <li class=""></li>
+        </ol>
+      </div>
+    </div>
+    <script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script> 
+    <div class="news">
+    <span><a href="news.html">今日话题：标题标题标题标题标题标题</a></span>
+    </div>
+  </div>
+  <div class="warper">
+<div id="caseBlanche">
+<a href="jzq.html">
+  <div id="load">
+    <img src="images/index1.png">
+  </div>
+  </a>
+</div>
+<div id="caseBlanche3">
+<a href="hhb.html">
+  <div id="load">
+    <img src="images/index6.png">
+  </div>
+  </a>
+</div>
+<div id="caseBlanche4">
+<a href="hmc.html">
+  <div id="load">
+    <img src="images/index3.png">
+  </div>
+  </a>
+</div>
+<div id="caseBlanche5">
+<a href="jxjh.html">
+  <div id="load">
+   <img src="images/index4.png">
+  </div>
+  </a>
+</div>
+<div id="caseBlanche6">
+<a href="rxlx.html">
+  <div id="load">
+    <img src="images/index5.png">
+  </div>
+  </a>
+</div>
+<div id="caseBlanche7">
+<a href="jzx.html">
+  <div id="load">
+    <img src="images/index2.png">
+  </div>
+  </a>
+</div>
+</div>
+</section>
+</template>
