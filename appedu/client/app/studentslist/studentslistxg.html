@@ -1,0 +1,202 @@
+<template name="studentslistxg">
+
+<header id="header">
+	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">新增/编辑花名册</span><span class="category_h_nav back1">完成</span>
+   </header>
+<section class="pad padb pad10">
+    <form action="#" id="edit" name="edit" method="post">
+        <table width="100%" class="pwd myinfo my_information">
+            <tbody><tr>
+                <td height="20" colspan="2" class="td2">
+                                    </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    孩子姓名:
+                </td>
+                <td><input type="text" name="telephone" disabled="true" class="pwd_t" value="王丹妮"></td>
+            </tr>
+            <tr>
+                <td height="20" colspan="2" class="td2">
+                                    </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    性别:
+                </td>
+                <td>
+                                &nbsp;&nbsp;<input type="radio" name="sex" value="31">
+                &nbsp;&nbsp;<label>男</label>
+                                &nbsp;&nbsp;<input type="radio" name="sex" value="32">
+                &nbsp;&nbsp;<label>女</label>
+                                </td>
+            </tr>
+            <tr>
+                <td height="20" colspan="2" class="td2"></td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    出生日期:
+                </td>
+                <td>
+                    <div class="card">
+                        <select class="txt_80" name="year">
+                                                        <option value="2010">
+                                2010                            </option>
+                                                        <option value="2011">
+                                2011                            </option>
+                                                        <option value="2012">
+                                2012                            </option>
+                                                        <option value="2013">
+                                2013                            </option>
+                                                        <option value="2014">
+                                2014                            </option>
+                                                    </select>
+                        <select class="txt_80" name="month">
+                                                        <option value="01">
+                                01                            </option>
+                                                        <option value="02">
+                                02                            </option>
+                                                        <option value="03">
+                                03                            </option>
+                                                        <option value="04">
+                                04                            </option>
+                                                        <option value="05">
+                                05                            </option>
+                                                        <option value="06">
+                                06                            </option>
+                                                        <option value="07">
+                                07                            </option>
+                                                        <option value="08">
+                                08                            </option>
+                                                        <option value="09">
+                                09                            </option>
+                                                        <option value="10">
+                                10                            </option>
+                                                        <option value="11">
+                                11                            </option>
+                                                        <option value="12">
+                                12                            </option>
+                                                    </select>
+                        <select class="txt_80" name="day">
+                                                        <option value="01">
+                                01                            </option>
+                                                        <option value="02">
+                                02                            </option>
+                                                        <option value="03">
+                                03                            </option>
+                                                        <option value="04">
+                                04                            </option>
+                                                        <option value="05">
+                                05                            </option>
+                                                        <option value="06">
+                                06                            </option>
+                                                        <option value="07">
+                                07                            </option>
+                                                        <option value="08">
+                                08                            </option>
+                                                        <option value="09">
+                                09                            </option>
+                                                        <option value="10">
+                                10                            </option>
+                                                        <option value="11">
+                                11                            </option>
+                                                        <option value="12">
+                                12                            </option>
+                                                        <option value="13">
+                                13                            </option>
+                                                        <option value="14">
+                                14                            </option>
+                                                        <option value="15">
+                                15                            </option>
+                                                        <option value="16">
+                                16                            </option>
+                                                        <option value="17">
+                                17                            </option>
+                                                        <option value="18">
+                                18                            </option>
+                                                        <option value="19">
+                                19                            </option>
+                                                        <option value="20">
+                                20                            </option>
+                                                        <option value="21">
+                                21                            </option>
+                                                        <option value="22">
+                                22                            </option>
+                                                        <option value="23">
+                                23                            </option>
+                                                        <option value="24">
+                                24                            </option>
+                                                        <option value="25">
+                                25                            </option>
+                                                        <option value="26">
+                                26                            </option>
+                                                        <option value="27">
+                                27                            </option>
+                                                        <option value="28">
+                                28                            </option>
+                                                        <option value="29">
+                                29                            </option>
+                                                        <option value="30">
+                                30                            </option>
+                                                        <option value="31">
+                                31                            </option>
+                                                    </select>
+                    </div>
+                </td>
+            </tr>
+             <tr>
+                <td height="20" colspan="2" class="td2">
+                                    </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    与其关系:
+                </td>
+                <td><select class="txt_200" name="year">
+                                                        <option value="父亲">
+                                父亲                            </option>
+                                                        <option value="母亲">
+                                母亲                            </option>
+                                                        <option value="爷爷">
+                                爷爷                            </option>
+                                                        <option value="奶奶">
+                                奶奶                            </option>
+                                                    </select>
+                                </td>
+            </tr>
+            <tr>
+                <td height="20" colspan="2" class="td2"></td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    联系电话:
+                </td>
+                <td><input type="text" name="telephone" disabled="true" class="pwd_t" value="15105121241"></td>
+            </tr>
+        </tbody></table>
+        <section class="gift_btn"><a href="javascript:;" onclick="javascript:document.getElementById(&#39;edit&#39;).submit();">保存</a></section>
+    </form>
+</section>
+
+<nav id="nav" class="navbg">
+  <ul>
+    <li class="on"> <a href="/">
+      <div class="home_nav"></div>
+      <p>首页</p>
+      </a> </li>
+    <li class=""> <a href="qa">
+      <div class="classify_nav"></div>
+      <p>问答</p>
+      </a> </li>
+    <li class=""> <a href="evaluation">
+      <div class="nav3sty  cart_nav"></div>
+      <p>测评</p>
+      </a> </li>
+    <li class=""> <a href="profile">
+      <div class="user_nav"></div>
+      <p>我的</p>
+      </a> </li>
+  </ul>
+</nav>
+</template>
