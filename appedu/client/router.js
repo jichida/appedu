@@ -34,7 +34,7 @@ Router.route('/mischief');
 Router.route('/mischiefxq');
 Router.route('/retrievepassword');
 Router.route('/classxz');
-Router.route('/mischiefxz');
+//Router.route('/mischiefxz');
 Router.route('/changepassword');
 Router.route('/redflowerslistxz');
 Router.route('/questionnaire');
