@@ -31,7 +31,7 @@ if(Meteor.isServer){
     var users =
       [
         {
-          username:'partenttest',
+          username:'parenttest',
           password:'123456',
           roles:['partent'],
         },
@@ -106,7 +106,7 @@ if(Meteor.isServer){
 
       if(dbChildren.find().count() == 0){
         //家长新建孩子
-        var usrparent = Meteor.users.findOne({username:'partenttest'});
+        var usrparent = Meteor.users.findOne({username:'parenttest'});
         var childDoc = {
           truename:'张倩',
           sex:'female',

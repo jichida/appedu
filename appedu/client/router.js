@@ -5,6 +5,24 @@ Router.route('/', function () {
   this.render('home', {to: 'content'});
 });
 
+Router.route('/login',function(){
+  console.log("login html");
+  this.layout('mainlayout');
+  this.render('navbar', {to: 'navbar'});
+  this.render('login', {to: 'content'});
+});
+
+Router.route('/profile', function () {
+    if (Meteor.user()) {
+      this.layout('mainlayout');
+      this.render('navbar', {to: 'navbar'});
+      this.render('profile', {to: 'content'});
+    }
+    else{
+      this.redirect("/login");
+    }
+});
+
 Router.route('/studentslist');
 Router.route('/teachplan');
 Router.route('/redflowerslist');
@@ -17,7 +35,7 @@ Router.route('/checkinout');
 Router.route('/activities');
 Router.route('/classmanagement');
 Router.route('/cxw');
-Router.route('/memberindex');
+//Router.route('/memberindex');
 Router.route('/register');
 Router.route('/question');
 Router.route('/qaxq');
