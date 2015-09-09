@@ -54,6 +54,9 @@ if(Meteor.isServer){
       ];
       for(var i = 0;i < users.length; i++){
          var userid =  Accounts.createUser(users[i]);
+         if (users[i].roles.length > 0) {
+           Roles.addUsersToRoles(userid, users[i].roles);
+         }
          console.log("create user ok:" + userid);
       }
     };

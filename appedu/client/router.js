@@ -14,6 +14,20 @@ Router.route('/login',function(){
 
 Router.route('/profile', function () {
     if (Meteor.user()) {
+      console.log("判断角色登录 login");
+      if (Roles.userIsInRole(Meteor.user(), ['partent'])) {
+        console.log("partent(家长) login");
+      }
+      if (Roles.userIsInRole(Meteor.user(), ['schoolmaster'])) {
+        console.log("schoolmaster(园长) login");
+      }
+      if (Roles.userIsInRole(Meteor.user(), ['teacher'])) {
+        console.log("teacher(老师) login");
+      }
+      if (Roles.userIsInRole(Meteor.user(), ['headerteacher'])) {
+        console.log("headerteacher(班主任) login");
+      }
+
       var data = {
         username:Meteor.user().username,
       };

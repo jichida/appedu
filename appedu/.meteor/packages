@@ -8,3 +8,4 @@ meteor-platform
 iron:router
 accounts-password
 autopublish
+alanning:roles
