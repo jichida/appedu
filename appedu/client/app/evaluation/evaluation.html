@@ -1,4 +1,4 @@
-<template name="evaluation">
+﻿<template name="evaluation">
 <div style="overflow: hidden; height: 100%;" class="cpbg">
 <nav id="nav_1" class="navbg">
   <ul>
@@ -169,5 +169,33 @@
       </div>
   </div>
 </div>
+<script type="text/javascript">
+
+function actions(i){
+	
+}
+
+$(document).ready(function () {
+	$('#fullpage').fullpage({
+		//anchors: ['firstPage', 'secondPage', '3rdPage'],
+		scrollingSpeed:500,
+		easing:'',
+		sectionsColor: ['', '', ''],
+		navigation:0,
+		slidesNavigation: true,
+		loopHorizontal:0,
+		afterRender: function (anchorLink, index, slideAnchor, slideIndex) {
+			//load
+		},
+		afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
+			//slide
+		},
+		afterLoad: function (anchorLink, index) {
+			//page
+		}
+	});
+	
+});
+</script>
 </div>
 </template>

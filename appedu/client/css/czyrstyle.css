@@ -805,8 +805,8 @@ word-break: break-all; margin:2% 2% 0px 0px; float:left; width:32%}
 
 
 /*登录-注册*/
-.lo_bg{background: url(dlbg.jpg) no-repeat top center;
-background-size: cover;}
+.lo_bg{background: url(images/dlbg.jpg) no-repeat top center;
+background-size: 100%;}
 
 
 .inputcontent {
@@ -1579,7 +1579,7 @@ select.txt_200{ width:100%;}
 .pt100{ padding-top:100px}
 .cpbg{background-color:#f05150;}
 
-.p1{background:url(images/animate_bg.jpg) center 40px no-repeat;background-size:cover;}
+.p1{background:url(images/animate_bg.jpg) center 40px no-repeat;background-size:100%;}
 .p1 .logo{height:auto;position:absolute;top:14%;width: 80%;
 height: auto;
 margin-left: 10%;}
