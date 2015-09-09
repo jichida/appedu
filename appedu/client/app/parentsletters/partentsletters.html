@@ -1,4 +1,4 @@
-<template name="partentsletters">
+<template name="parentsletters">
 
 <header id="header">
 	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">家长信</span><span class="category_h_nav  back1"><a href="/sendletter">发表</a></span>
@@ -22,7 +22,7 @@
 <span><a href="partentslettersxq">
 {{title}}
 </a></span>
-<div class="jzq_fl">{{createtime}}<span><a href="/partentslettersinfo/recv/{{_id}}">查看详情</a></span><div class="jzq_fr"><span class="jzq_ly"></span></div></div>
+<div class="jzq_fl">{{createtime}}<span><a href="/parentslettersrecvinfo/{{_id}}">查看详情</a></span><div class="jzq_fr"><span class="jzq_ly"></span></div></div>
 </dd></dl>
 {{/each}}
 </div>
@@ -33,7 +33,7 @@
 <span><a href="partentslettersxq">
 {{title}}
 </a></span>
-<div class="jzq_fl">{{createtime}}<div class="jzq_fr"><span><a href="/partentslettersinfo/send/{{_id}}">查看详情</a></span></div></div>
+<div class="jzq_fl">{{createtime}}<div class="jzq_fr"><span><a href="/parentsletterssendinfo/{{_id}}">查看详情</a></span></div></div>
 </dd></dl>
 
 {{/each}}

@@ -15,11 +15,11 @@ Template.sendletter.events({
 
 	   var title= $('#title').val();
 	   var content= $('#content').val();
-     var createuserid = Meteor.user()._id;
-     var createusername = Meteor.user().username;
+     var createuserid = Meteor.userId();
+     var createusername = "user"; //Meteor.user().username;
      //to users:todo
      var recvid = this._recvid;
-     var classtermid = this._classterid;
+     var classtermid = this._classtermid;
 
 
      var letterDoc ={
@@ -33,7 +33,7 @@ Template.sendletter.events({
      Meteor.call('insertLetter', letterDoc);
 
      console.log("insertLetter doc:"+EJSON.stringify(letterDoc));
-     Router.go("/partentsletters");
+     Router.go("/parentsletters");
   },
 
 });

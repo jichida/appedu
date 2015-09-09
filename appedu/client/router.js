@@ -58,13 +58,13 @@ Router.route('/parentsletters',function(){
   var parentslettersrecv = [];
   var parentsletterssend = [];
 
-  var dbparentslettersrecv = dbparentslettersrecv.find();
-  dbparentslettersrecv.forEach(function(dbrv){
+  var lrecvlst = dbparentslettersrecv.find();
+  lrecvlst.forEach(function(dbrv){
         parentslettersrecv.push(dbrv);
   });
 
-  var dbparentsletterssend = dbparentsletterssend.find();
-  parentsletterssend.forEach(function(dbsd){
+  var lsendlst = dbparentsletterssend.find();
+  lsendlst.forEach(function(dbsd){
         parentsletterssend.push(dbsd);
   });
 
@@ -78,7 +78,7 @@ Router.route('/parentsletters',function(){
 
 Router.route('/sendletter',function(){
   var data = {
-    classtermid : parent('classtermid'),
+    classtermid : Session.get('classtermid'),
   };
   this.render('sendletter', {data: data});
 });
@@ -87,18 +87,21 @@ Router.route('/sendletter/:id',function(){
   //新建家长信
   var data = {
       recvid : this.params.id,
-      classtermid : parent('classtermid'),
+      classtermid : Session.get('classtermid'),
   };
   this.render('sendletter', {data: data});
 });
 
-Router.route('/parentslettersinfo/:id',function(){
+Router.route('/parentsletterssendinfo/:id',function(){
   //新建家长信
-  var data = {
-      recvid : this.params.id,
-      classtermid : parent('classtermid'),
-  };
-  this.render('sendletter', {data: data});
+  var data = dbparentsletterssend.findOne({_id:this.params.id});
+  this.render('parentsletterssendinfo', {data: data});
+});
+
+Router.route('/parentslettersrecvinfo/:id',function(){
+  //新建家长信
+  var data = dbparentslettersrecv.findOne({_id:this.params.id});
+  this.render('parentslettersrecvinfo', {data: data});
 });
 
 Router.route('/studentslist');

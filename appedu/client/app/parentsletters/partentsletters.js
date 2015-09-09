@@ -1,4 +1,4 @@
-Template.partentsletters.events({
+Template.parentsletters.events({
   'click #tabone1':function(event,template){
     event.preventDefault();
     template.$('#tabone2').removeClass('hover');
