@@ -7,7 +7,7 @@
 // 家长让孩子加入到该班级
 
 // 家长：
-// 用户名：partenttest
+// 用户名：parenttest
 // 密码：123456
 //
 // 园长：
@@ -21,7 +21,60 @@
 //班主任：
 //用户名：headerteachertest
 //密码：123456
-if(Meteor.isServer){
+
+
+Meteor.startup(function(){
+  //===================================================================
+  //发布数据库
+  Meteor.publish("schools",function(){
+      return dbSchools.find();
+  });
+  Meteor.publish("classterms",function(){
+      return dbClassterms.find();
+  });
+  Meteor.publish("childrelationships",function(){
+      return dbChildrelationships.find();
+  });
+  Meteor.publish("children",function(){
+      return dbChildren.find();
+  });
+  Meteor.publish("childrenarchives",function(){
+      return dbChildrenarchives.find();
+  });
+  Meteor.publish("images",function(){
+      return dbImages.find();
+  });
+  Meteor.publish("activities",function(){
+      return dbActivities.find();
+  });
+  Meteor.publish("checkinouts",function(){
+      return dbCheckinouts.find();
+  });
+  Meteor.publish("parentscommunity",function(){
+      return dbparentscommunity.find();
+  });
+  Meteor.publish("parentsletterssend",function(){
+      return dbparentsletterssend.find();
+  });
+  Meteor.publish("parentslettersrecv",function(){
+      return dbparentslettersrecv.find();
+  });
+  Meteor.publish("redflowerslist",function(){
+      return dbRedflowerslist.find();
+  });
+  Meteor.publish("qa",function(){
+      return dbQa.find();
+  });
+  Meteor.publish("evaluations",function(){
+      return dbEvaluations.find();
+  });
+  Meteor.publish("questionbank",function(){
+      return dbQuestionbank.find();
+  });
+  Meteor.publish("teachplans",function(){
+      return dbTeachplans.find();
+  });
+  //===================================================================
 
 //var prerun = function(){
   //如果已经存在数据，想从头开始初始化，可以进入工程目录执行：meteor reset(清空数据库)
@@ -33,7 +86,7 @@ if(Meteor.isServer){
         {
           username:'parenttest',
           password:'123456',
-          roles:['partent'],
+          roles:['parent'],
         },
         {
           username:'schoolmastertest',
@@ -120,7 +173,19 @@ if(Meteor.isServer){
           createusername:usrparent.username
         }
         Meteor.call('insertChild', childDoc);
+
+        // var children = [];
+        // var user = usrparent
+        // if(Meteor.user().children){
+        //   children = Meteor.user().children;
+        // }
+        // var child = {
+        //   childid:childid,
+        //   childname:childname.truename,
+        // };
+        // children.push(child);
+        // Meteor.users.update(Meteor.userId(), {$set: {children: children}});
     }
-//};
-//prerun();
-};
+
+
+});

@@ -15,8 +15,18 @@ Router.route('/login',function(){
 Router.route('/profile', function () {
     if (Meteor.user()) {
       console.log("判断角色登录 login");
-      if (Roles.userIsInRole(Meteor.user(), ['partent'])) {
-        console.log("partent(家长) login");
+      if (Roles.userIsInRole(Meteor.user(), ['parent'])) {
+        if(Meteor.user().children){
+          console.log("parent(家长) children:" + EJSON.stringify(Meteor.user().children));
+          if(Meteor.user().children.length){
+            var childid = Meteor.user().children[0]._id;
+            console.log("child:" + childid);
+            var child = dbChildren.find({_id:childid});
+            if(child){
+              Session.set('classtermid',child.curclasstermid);
+            }
+          }
+        }
       }
       if (Roles.userIsInRole(Meteor.user(), ['schoolmaster'])) {
         console.log("schoolmaster(园长) login");
@@ -40,17 +50,35 @@ Router.route('/profile', function () {
     }
 });
 
-Router.route('/partentsletters',function(){
+Router.route('/parentsletters',function(){
   //家长信首页
-  console.log("partentsletters html");
+  console.log("parentsletters html");
   this.layout('mainlayout');
   this.render('navbar', {to: 'navbar'});
-  this.render('partentsletters', {to: 'content'});
+  var parentslettersrecv = [];
+  var parentsletterssend = [];
+
+  var dbparentslettersrecv = dbparentslettersrecv.find();
+  dbparentslettersrecv.forEach(function(dbrv){
+        parentslettersrecv.push(dbrv);
+  });
+
+  var dbparentsletterssend = dbparentsletterssend.find();
+  parentsletterssend.forEach(function(dbsd){
+        parentsletterssend.push(dbsd);
+  });
+
+  var data ={
+    parentslettersrecv:parentslettersrecv,
+    parentsletterssend:parentsletterssend
+  }
+  console.log("parentsletters:"+EJSON.stringify(data));
+  this.render('parentsletters', {to: 'content',data:data});
 });
 
 Router.route('/sendletter',function(){
   var data = {
-    classtermid : Session.get('classtermid'),
+    classtermid : parent('classtermid'),
   };
   this.render('sendletter', {data: data});
 });
@@ -59,16 +87,16 @@ Router.route('/sendletter/:id',function(){
   //新建家长信
   var data = {
       recvid : this.params.id,
-      classtermid : Session.get('classtermid'),
+      classtermid : parent('classtermid'),
   };
   this.render('sendletter', {data: data});
 });
 
-Router.route('/partentslettersinfo/:id',function(){
+Router.route('/parentslettersinfo/:id',function(){
   //新建家长信
   var data = {
       recvid : this.params.id,
-      classtermid : Session.get('classtermid'),
+      classtermid : parent('classtermid'),
   };
   this.render('sendletter', {data: data});
 });
@@ -78,8 +106,8 @@ Router.route('/teachplan');
 Router.route('/redflowerslist');
 Router.route('/qa');
 //Router.route('/profile');
-//Router.route('/partentsletters');
-Router.route('/partentscommunity');
+//Router.route('/parentsletters');
+Router.route('/parentscommunity');
 Router.route('/evaluation');
 Router.route('/checkinout');
 Router.route('/activities');
@@ -95,7 +123,7 @@ Router.route('/studentslistxq');
 Router.route('/studentslistxg');
 
 Router.route('/personal');
-Router.route('/sendletter');
+//Router.route('/sendletter');
 Router.route('/publish');
 Router.route('/activitiesfb');
 Router.route('/mischief');

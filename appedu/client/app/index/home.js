@@ -23,7 +23,7 @@ Template.home.events({
       $(".product-category .content.pad").css({"position":"relative"});
       $(".product-category .content.pad").stop();
       $(".product-category .content.pad").animate({"left":"0"},500);
-      $(".category_two_nav").stop();        
+      $(".category_two_nav").stop();
       $(".category_two_nav").animate({right:"-40%"}, 500);
       //$(".category_two_nav").hide();
       $(".over_layer").hide();
