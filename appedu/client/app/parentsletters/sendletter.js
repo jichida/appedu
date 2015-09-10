@@ -1,3 +1,23 @@
+Template.sendletter.helpers({
+  'isparent':function(){
+    return  Roles.userIsInRole(Meteor.user(), ['parent']);
+  },
+  'isheaderteacher':function(){
+    return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
+  },
+  'sendusers':function(){
+    if(Roles.userIsInRole(Meteor.user(), ['parent'])){
+      return [{
+        userid:Session.get('curclassterm').headerteacherid,
+        username:Session.get('curclassterm').headerteachername,
+      }];
+    }
+    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+      return Session.get('curclassterm').parentlist;
+    }
+    return [];
+  }
+});
 Template.sendletter.events({
   'click #btnsendletter': function(event) {
      event.preventDefault();

@@ -141,7 +141,6 @@ Meteor.publish("userData", function () {
           termend:'2015-06-30',
           headerteacherid:usrheaderteacher._id,
           headerteachername:usrheaderteacher.username,
-          childrencount:0,
           schoolid:schoolId,
           schoolname:schoolDoc.name,
           createuserid:usrheaderteacher._id,
@@ -165,6 +164,8 @@ Meteor.publish("userData", function () {
           createusername:usrparent.username
         }
         Meteor.call('insertChild',usrparent, childDoc);
+
+
     }
 
 

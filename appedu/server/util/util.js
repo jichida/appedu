@@ -8,7 +8,8 @@ Meteor.startup(function(){
       var children = [];
       var headerteacherid = '';
       var headerteachername = '';
-      var teachers = [];
+      var teacherlist = [];
+      var parentlist = [];
 
       var curuser = {};
       if(this.userId) {
@@ -55,6 +56,18 @@ Meteor.startup(function(){
           if(classterm.teacherlist){
             teacherlist = classterm.teacherlist;
           }
+
+          if(classterm.studentslist){
+            for(var i = 0;i < classterm.studentslist.length;i++){
+              var student = classterm.studentslist[i];
+              if(student.parentlist){
+                for(var j = 0;j < student.parentlist.length;j++){
+                  parentlist.push(student.parentlist[j]);
+                }
+              }              
+            }
+          }
+
       }
       //当前班级信息
       var resultinfo = {
@@ -65,7 +78,8 @@ Meteor.startup(function(){
          children :children,
          headerteacherid :headerteacherid,
          headerteachername :headerteachername,
-         teachers:teachers,
+         teacherlist:teacherlist,
+         parentlist:parentlist,
       };
       console.log("publish curclassterm:" + EJSON.stringify(resultinfo));
       this.added('curclassterm',classtermid,resultinfo);

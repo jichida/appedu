@@ -14,7 +14,39 @@ Meteor.methods({
          };
          children.push(child);
          Meteor.users.update(user._id, {$set: {children: children}});
+
+         if(childDoc.curclasstermid){
+            Meteor.call('addChildtoclassterm',childDoc.curclasstermid,user,childid);
+         }
+
        }
 
      },
+     'addChildtoclassterm':function(classtermid,parentuser,childid){
+       if (Roles.userIsInRole(parentuser, ['parent'])) {
+          //把学生和自己放入班级中
+          var child = dbChildren.findOne(childid);
+          var classterm = dbClassterms.findOne(classtermid);
+          if(classterm && child){
+            var studentslist = [];
+            if(classterm.studentslist){
+              studentslist = classterm.studentslist;
+            }
+            var student = {
+              childid:childid,
+              childname :child.truename,
+              parentlist:[
+                {
+                  parentid : parentuser._id,
+                  username : parentuser.username,
+                }
+              ]
+            };
+            studentslist.push(student);
+            dbClassterms.update(classtermid, {$set: {studentslist: studentslist}});
+
+            console.log("addChildtoclassterm:" + EJSON.stringify(dbClassterms.findOne(classtermid)));
+          }
+       }
+     }
 	});

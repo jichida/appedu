@@ -7,9 +7,17 @@
 <div class="feed_back">
     <div class="jzx"><span>发送给：</span><div class="sxtj"><div style="float:right">
                     <select class="select" id="home_address-scity" data-tmp="">
-                      <option value="0">全部家长</option>
-                      <option value="100000">4年级1班</option>
-                      <option value="100073">5年级2班</option>
+											{{#if isparent}}
+												{{#each sendusers}}
+													<option value="{{userid}}">{{username}}</option>
+												{{/each}}
+											{{/if}}
+											{{#if isheaderteacher}}
+	                      <option value="0">全部家长</option>
+												{{#each sendusers}}
+													<option value="{{parentid}}">{{username}}</option>
+												{{/each}}
+											{{/if}}
                     </select>
                   </div></div></div>
     <input name="" type="text" class="input_200" id="title" placeholder="家长信标题">
@@ -25,24 +33,4 @@
 </div>
 </section>
 
-<nav id="nav" class="navbg">
-  <ul>
-    <li class="on"> <a href="/">
-      <div class="home_nav"></div>
-      <p>首页</p>
-      </a> </li>
-    <li class=""> <a href="qa">
-      <div class="classify_nav"></div>
-      <p>问答</p>
-      </a> </li>
-    <li class=""> <a href="evaluation">
-      <div class="nav3sty  cart_nav"></div>
-      <p>测评</p>
-      </a> </li>
-    <li class=""> <a href="profile">
-      <div class="user_nav"></div>
-      <p>我的</p>
-      </a> </li>
-  </ul>
-</nav>
 </template>
