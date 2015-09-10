@@ -19,10 +19,11 @@
 <div class="jzq hover" id="con_one_1">
 	{{#each parentslettersrecv}}
 <dl><dt><img src="images/jzq.jpg"></dt><dd><h2>{{fromusername}}</h2>
-<span><a href="partentslettersxq">
+<span>
 {{title}}
-</a></span>
-<div class="jzq_fl">{{createtime}}<span><a href="/parentslettersrecvinfo/{{_id}}">查看详情</a></span><div class="jzq_fr"><span class="jzq_ly"></span></div></div>
+</span>
+<div class="jzq_fl">{{createtime}}<span><a href="/parentslettersrecvinfo/{{_id}}">查看详情</a></span>
+	<div class="jzq_fr"><a href="/sendletter/{{_id}}"><span class="jzq_ly"></span></a></div></div>
 </dd></dl>
 {{/each}}
 </div>
@@ -30,9 +31,9 @@
 <div class="jzq" id="con_one_2" style="display:none">
 	{{#each parentsletterssend}}
 <dl><dt><img src="images/jzq.jpg"></dt><dd><h2>{{tousername}}</h2>
-<span><a href="partentslettersxq">
+<span>
 {{title}}
-</a></span>
+</span>
 <div class="jzq_fl">{{createtime}}<div class="jzq_fr"><span><a href="/parentsletterssendinfo/{{_id}}">查看详情</a></span></div></div>
 </dd></dl>
 

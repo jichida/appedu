@@ -80,17 +80,13 @@ Router.route('/parentsletters',function(){
 });
 
 Router.route('/sendletter',function(){
-  var data = {
-    classtermid : Session.get('classtermid'),
-  };
-  this.render('sendletter', {data: data});
+  this.render('sendletter');
 });
 
 Router.route('/sendletter/:id',function(){
   //新建家长信
   var data = {
       recvid : this.params.id,
-      classtermid : Session.get('classtermid'),
   };
   this.render('sendletter', {data: data});
 });

@@ -40,7 +40,7 @@ Template.sendletter.events({
      //to users:todo
      var touserid =  $("#specialrecvuser").val();
      var tousername =  $("#specialrecvuser").find("option:selected").text();
-
+     var recvid = this.recvid;
      var classtermid = Session.get('curclassterm').classtermid;
 
      var images = [];
@@ -55,6 +55,7 @@ Template.sendletter.events({
        touserid:touserid,
        tousername:tousername,
        classtermid:classtermid,
+       recvid:recvid,
      }
      Meteor.call('insertLetter', letterDoc);
 
