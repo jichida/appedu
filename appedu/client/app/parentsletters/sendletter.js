@@ -36,19 +36,25 @@ Template.sendletter.events({
 	   var title= $('#title').val();
 	   var content= $('#content').val();
      var createuserid = Meteor.userId();
-     var createusername = "user"; //Meteor.user().username;
+     var createusername = Meteor.user().username;
      //to users:todo
-     var recvid = this._recvid;
-     var classtermid = this._classtermid;
+     var touserid =  $("#specialrecvuser").val();
+     var tousername =  $("#specialrecvuser").find("option:selected").text();
 
+     var classtermid = Session.get('curclassterm').classtermid;
+
+     var images = [];
 
      var letterDoc ={
        title:title,
        content:content,
        createuserid:createuserid,
        createusername:createusername,
-       recvid:recvid,
-       classtermid:classtermid
+       tousers:[],
+       images:images,
+       touserid:touserid,
+       tousername:tousername,
+       classtermid:classtermid,
      }
      Meteor.call('insertLetter', letterDoc);
 

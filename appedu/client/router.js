@@ -61,12 +61,12 @@ Router.route('/parentsletters',function(){
   var parentslettersrecv = [];
   var parentsletterssend = [];
 
-  var lrecvlst = dbparentslettersrecv.find();
+  var lrecvlst = dbparentslettersrecv.find({recvuserid:Meteor.userId()});
   lrecvlst.forEach(function(dbrv){
         parentslettersrecv.push(dbrv);
   });
 
-  var lsendlst = dbparentsletterssend.find();
+  var lsendlst = dbparentsletterssend.find({createuserid:Meteor.userId()});
   lsendlst.forEach(function(dbsd){
         parentsletterssend.push(dbsd);
   });
