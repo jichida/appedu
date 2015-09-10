@@ -19,12 +19,11 @@ Router.route('/profile', function () {
         if(Meteor.user().children){
           console.log("parent(家长) children:" + EJSON.stringify(Meteor.user().children));
           if(Meteor.user().children.length){
-            var childid = Meteor.user().children[0]._id;
-            console.log("child:" + childid);
-            var child = dbChildren.find({_id:childid});
-            if(child){
-              Session.set('classtermid',child.curclasstermid);
-            }
+            var childid = Meteor.user().children[0].childid;
+            Meteor.subscribe("curclassterm",childid,function(){
+                Session.set('curclassterm',dbClientClassterm.findOne());
+                console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
+            });
           }
         }
       }
@@ -36,6 +35,10 @@ Router.route('/profile', function () {
       }
       if (Roles.userIsInRole(Meteor.user(), ['headerteacher'])) {
         console.log("headerteacher(班主任) login");
+        Meteor.subscribe("curclassterm","",function(){
+          Session.set('curclassterm',dbClientClassterm.findOne());
+          console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
+        });
       }
 
       var data = {

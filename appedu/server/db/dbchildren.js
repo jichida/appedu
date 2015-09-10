@@ -1,19 +1,19 @@
 Meteor.methods({
-    'insertChild': function(childDoc){
+    'insertChild': function(user,childDoc){
        console.log("insertchildDoc:" + EJSON.stringify(childDoc));
        var childid = dbChildren.insert(childDoc);
        //把孩子放入自己信息中
-       if (Roles.userIsInRole(Meteor.user(), ['parent'])) {
+       if (Roles.userIsInRole(user, ['parent'])) {
          var children = [];
-         if(Meteor.user().children){
-           children = Meteor.user().children;
+         if(user.children){
+           children = user.children;
          }
          var child = {
            childid:childid,
-           childname:childname.truename,
+           childname:childDoc.truename,
          };
          children.push(child);
-         Meteor.users.update(Meteor.userId(), {$set: {children: children}});
+         Meteor.users.update(user._id, {$set: {children: children}});
        }
 
      },

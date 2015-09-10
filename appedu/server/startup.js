@@ -14,18 +14,24 @@
 // 用户名：schoolmastertest
 // 密码：123456
 //
-// 老师：
-// 用户名：teachertest
-// 密码：123456
 //
 //班主任：
 //用户名：headerteachertest
 //密码：123456
 
-
+//注：为简单期间，本版本只考虑班主任，不考虑任课老师
 Meteor.startup(function(){
   //===================================================================
   //发布数据库
+  //发布用户数据
+Meteor.publish("userData", function () {
+    if (this.userId) {
+        return Meteor.users.find({_id: this.userId});
+    } else {
+        this.ready();
+    }
+ });
+
   Meteor.publish("schools",function(){
       return dbSchools.find();
   });
@@ -74,6 +80,8 @@ Meteor.startup(function(){
   Meteor.publish("teachplans",function(){
       return dbTeachplans.find();
   });
+
+
   //===================================================================
 
 //var prerun = function(){
@@ -92,11 +100,6 @@ Meteor.startup(function(){
           username:'schoolmastertest',
           password:'123456',
           roles:['schoolmaster'],
-        },
-        {
-          username:'teachertest',
-          password:'123456',
-          roles:['teacher'],
         },
         {
           username:'headerteachertest',
@@ -143,25 +146,14 @@ Meteor.startup(function(){
           schoolname:schoolDoc.name,
           createuserid:usrheaderteacher._id,
         };
-        Meteor.call('insertClassterm', classtermDoc);
-        //老师。班主任加入班级
-        var curclasstermid = dbClassterms.findOne()._id;
-        var workroom = [
-          {
-            schoolid:workroom,
-            classterms:
-              [
-                { classtermsid:curclasstermid }
-              ]
+        Meteor.call('insertClassterm', usrheaderteacher,classtermDoc);
+        //班主任加入班级
 
-
-          }
-        ];
-        //todo
       }
 
       if(dbChildren.find().count() == 0){
         //家长新建孩子
+        var curclasstermid = dbClassterms.findOne()._id;
         var usrparent = Meteor.users.findOne({username:'parenttest'});
         var childDoc = {
           truename:'张倩',
@@ -172,19 +164,7 @@ Meteor.startup(function(){
           createuserid:usrparent._id,
           createusername:usrparent.username
         }
-        Meteor.call('insertChild', childDoc);
-
-        // var children = [];
-        // var user = usrparent
-        // if(Meteor.user().children){
-        //   children = Meteor.user().children;
-        // }
-        // var child = {
-        //   childid:childid,
-        //   childname:childname.truename,
-        // };
-        // children.push(child);
-        // Meteor.users.update(Meteor.userId(), {$set: {children: children}});
+        Meteor.call('insertChild',usrparent, childDoc);
     }
 
 
