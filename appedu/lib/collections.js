@@ -15,3 +15,5 @@ dbQa = new Mongo.Collection('qa');//问答
 dbEvaluations = new Mongo.Collection('evaluations');//测评
 dbQuestionbank = new Mongo.Collection('questionbank');//题库
 dbTeachplans = new Mongo.Collection('teachplans');//教学计划
+
+dbConstaddress = new Mongo.Collection('constaddress');

@@ -118,7 +118,7 @@ Router.route('/childlist',function(){
 //新增孩子
 Router.route('/newchild',function(){
   var schools = [];
-  
+
   this.render('newchild');
 });
 
