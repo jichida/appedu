@@ -104,6 +104,7 @@ Router.route('/parentslettersrecvinfo/:id',function(){
 });
 
 Router.route('/register');//注册
+Router.route('/changepassword');//修改密码
 
 
 Router.route('/studentslist');
@@ -136,7 +137,7 @@ Router.route('/mischiefxq');
 Router.route('/retrievepassword');
 Router.route('/classxz');
 //Router.route('/mischiefxz');
-Router.route('/changepassword');
+//Router.route('/changepassword');
 Router.route('/redflowerslistxz');
 Router.route('/questionnaire');
 Router.route('/news');

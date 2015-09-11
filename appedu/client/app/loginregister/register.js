@@ -44,9 +44,8 @@ Template.register.events({
         truename:truename,
       };
       Accounts.createUser(newuser,function(){
-        var userid = Meteor.
-        console.log("create user ok:" + userid);
         Roles.addUsersToRoles(Meteor.users.find({username: 'phonenumber'}).fetch(), ['parent']);
+        Router.go('/profile');//登录成功
      });
     },
     "click #btnregisterheadteacher": function () {
@@ -79,9 +78,11 @@ Template.register.events({
       };
 
       Accounts.createUser(newuser,function(){
-        console.log("create user ok:" + userid);
         Roles.addUsersToRoles(Meteor.users.find({username: 'phonenumber'}).fetch(), ['headerteacher']);
+        Router.go('/profile');//登录成功
      });
+
+
 
 
     },
