@@ -5,3 +5,12 @@ Template.profile.events({
 
       },
   });
+
+  Template.profile.helpers({
+    'isparent':function(){
+      return  Roles.userIsInRole(Meteor.user(), ['parent']);
+    },
+    'isheaderteacher':function(){
+      return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
+    }
+  });

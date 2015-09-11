@@ -34,12 +34,22 @@
                         </h1>
                         <span class="arrow"></span>
                     </div>
+                    {{#if isparent}}
                     <div class="bg_gray_d">
                         <span class="c_list_header fl c_l_hongbao"></span>
-                        <h1 class="divblock"><a href="bjzl.html" data-track="wd_lf">班级资料</a>
+                        <h1 class="divblock"><a href="/childlist" data-track="wd_lf">我的孩子</a>
                         </h1>
                         <span class="arrow"></span>
                     </div>
+                    {{/if}}
+                    {{#if isheaderteacher}}
+                    <div class="bg_gray_d">
+                        <span class="c_list_header fl c_l_hongbao"></span>
+                        <h1 class="divblock"><a href="/classtermlist" data-track="wd_lf">我的班级</a>
+                        </h1>
+                        <span class="arrow"></span>
+                    </div>
+                    {{/if}}
                     <div class="bg_gray_d bd_bottom_line">
                         <span class="c_list_header fl c_l_myshoucang"></span>
                         <h1 class="divblock"><a href="#" data-track="wd_sc">我的关注</a>

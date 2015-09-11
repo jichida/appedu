@@ -106,8 +106,22 @@ Router.route('/parentslettersrecvinfo/:id',function(){
 Router.route('/register');//注册
 Router.route('/changepassword');//修改密码
 
-Router.route('/childlist');
-Router.route('/newchild');
+//我的孩子列表
+Router.route('/childlist',function(){
+    var children = [];
+    if(Meteor.user().children){
+      children = Meteor.user().children;
+    }
+    this.render('childlist', {data: children});
+});
+
+//新增孩子
+Router.route('/newchild',function(){
+  var schools = [];
+  
+  this.render('newchild');
+});
+
 Router.route('/classtermlist');
 Router.route('/createclassterm');
 Router.route('/schoollist');
