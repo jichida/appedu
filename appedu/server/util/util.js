@@ -64,7 +64,7 @@ Meteor.startup(function(){
                 for(var j = 0;j < student.parentlist.length;j++){
                   parentlist.push(student.parentlist[j]);
                 }
-              }              
+              }
             }
           }
 

@@ -103,6 +103,9 @@ Router.route('/parentslettersrecvinfo/:id',function(){
   this.render('parentslettersrecvinfo', {data: data});
 });
 
+Router.route('/register');//注册
+
+
 Router.route('/studentslist');
 Router.route('/teachplan');
 Router.route('/redflowerslist');
@@ -116,7 +119,7 @@ Router.route('/activities');
 Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');
-Router.route('/register');
+//Router.route('/register');
 Router.route('/question');
 Router.route('/qaxq');
 Router.route('/growth');
