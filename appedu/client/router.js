@@ -106,6 +106,11 @@ Router.route('/parentslettersrecvinfo/:id',function(){
 Router.route('/register');//注册
 Router.route('/changepassword');//修改密码
 
+Router.route('/childlist');
+Router.route('/newchild');
+Router.route('/classtermlist');
+Router.route('/createclassterm');
+Router.route('/schoollist');
 
 Router.route('/studentslist');
 Router.route('/teachplan');
