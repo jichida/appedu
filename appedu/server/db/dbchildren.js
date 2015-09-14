@@ -16,7 +16,14 @@ Meteor.methods({
          Meteor.users.update(user._id, {$set: {children: children}});
 
          if(childDoc.curclasstermid){
-            Meteor.call('addChildtoclassterm',childDoc.curclasstermid,user,childid);
+             Meteor.call('addChildtoclassterm',childDoc.curclasstermid,user,childid);
+             Meteor.call('insertFlowerslist',{
+                 'classtermid':childDoc.curclasstermid,
+                 'childid':childid,
+                 'childname':childDoc.truename,
+                 'redflowerlist':[],
+                 'blackflowerlist':[]
+             });
          }
 
        }

@@ -1,48 +1,19 @@
 <template name="redflowerslistxq">
-<header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">红花榜详情</span><span class="category_h_nav back1"><a href="redflowerslistxz">新增</a></span>
-   </header>
-<section class="content pad padb pad10">
-<div class="hhb_1"><img src="images/user.jpg"><span>王丽丽<em>(25)</em></span></div>
-<div class="hhb">
-<ul><li>
-<span class="fl time"><i></i>2015-08-22&nbsp;15:30</span><span class="fr laoshi"><i></i>王老师</span>
-<div class="neirong"><i></i><span>帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水</span></div>
-</li>
-<li>
-<span class="fl time"><i></i>2015-08-22&nbsp;15:30</span><span class="fr laoshi"><i></i>王老师</span>
-<div class="neirong"><i></i><span>帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水</span></div>
-</li>
-<li>
-<span class="fl time"><i></i>2015-08-22&nbsp;15:30</span><span class="fr laoshi"><i></i>王老师</span>
-<div class="neirong"><i></i><span>帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水</span></div>
-</li>
-<li>
-<span class="fl time"><i></i>2015-08-22&nbsp;15:30</span><span class="fr laoshi"><i></i>王老师</span>
-<div class="neirong"><i></i><span>帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水帮助小朋友倒水</span></div>
-</li>
-</ul>
-</div>
-</section>
+    <header id="header">
+	    <a href="javascript:history.go(-1);" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">红花榜详情</span><span class="category_h_nav back1">{{#if isheaderteacher}}<a href="/redflowerslistxz/{{flowerlistid}}">新增</a>{{/if}}</span>
+    </header>
+    <section class="content pad padb pad10">
+        <div class="hhb_1"><img src="/images/user.jpg"><span>{{childname}}<em>({{flowerscount}})</em></span></div>
+        <div class="hhb">
+            <ul>
+                {{#each redflowerslist }}
+                    <li>
+                        <span class="fl time"><i></i>{{happentime}}</span><span class="fr laoshi"><i></i>{{teachername}}</span>
+                        <div class="neirong"><i></i><span>{{content}}</span></div>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
 
-<nav id="nav" class="navbg">
-  <ul>
-    <li class="on"> <a href="/">
-      <div class="home_nav"></div>
-      <p>首页</p>
-      </a> </li>
-    <li class=""> <a href="qa">
-      <div class="classify_nav"></div>
-      <p>问答</p>
-      </a> </li>
-    <li class=""> <a href="evaluation">
-      <div class="nav3sty  cart_nav"></div>
-      <p>测评</p>
-      </a> </li>
-    <li class=""> <a href="profile">
-      <div class="user_nav"></div>
-      <p>我的</p>
-      </a> </li>
-  </ul>
-</nav>
 </template>

@@ -218,5 +218,4 @@ Meteor.publish("userData", function () {
 
     }
 
-
 });

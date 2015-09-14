@@ -164,7 +164,6 @@ Router.route('/schoollist');
 
 Router.route('/studentslist');
 Router.route('/teachplan');
-Router.route('/redflowerslist');
 Router.route('/qa');
 //Router.route('/profile');
 //Router.route('/parentsletters');
@@ -179,7 +178,6 @@ Router.route('/cxw');
 Router.route('/question');
 Router.route('/qaxq');
 Router.route('/growth');
-Router.route('/redflowerslistxq');
 Router.route('/studentslistxq');
 Router.route('/studentslistxg');
 
@@ -187,13 +185,73 @@ Router.route('/personal');
 //Router.route('/sendletter');
 Router.route('/publish');
 Router.route('/activitiesfb');
-Router.route('/mischief');
-Router.route('/mischiefxq');
 Router.route('/retrievepassword');
 Router.route('/classxz');
-//Router.route('/mischiefxz');
 //Router.route('/changepassword');
-Router.route('/redflowerslistxz');
 Router.route('/questionnaire');
 Router.route('/news');
 Router.route('/mischiefxz');
+
+Router.route('/redflowerslist',function(){
+    console.log("redflowerslist.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('redflowerslist', {to: 'content'});
+});
+
+Router.route('/redflowerslistxq/:id',function(){
+    console.log("redflowerslist.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    var flowerslist = dbRedflowerslist.findOne({'_id':this.params.id});
+    var data = {
+        'flowerlistid':this.params.id,
+        'childname':flowerslist.childname,
+        'flowerscount':flowerslist.redflowerlist.length,
+        'redflowerslist':flowerslist.redflowerlist
+    };
+    this.render('redflowerslistxq', {to: 'content', data : data});
+});
+
+Router.route('/redflowerslistxz/:id',function(){
+    console.log("redflowerslist.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    var data = {
+        'flowerlistid':this.params.id,
+        'happendtime':'2015-09-15 20:30:00'
+    };
+    this.render('redflowerslistxz', {to: 'content',data : data});
+});
+
+Router.route('/mischief',function(){
+    console.log("mischief.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('mischief', {to: 'content'});
+});
+
+Router.route('/mischiefxq/:id',function(){
+    console.log("mischiefxq.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    var flowerslist = dbRedflowerslist.findOne({'_id':this.params.id});
+    var data = {
+        'flowerlistid':this.params.id,
+        'childname':flowerslist.childname,
+        'flowerscount':flowerslist.blackflowerlist.length,
+        'blackflowerslist':flowerslist.blackflowerlist
+    };
+    this.render('mischiefxq', {to: 'content', data : data});
+});
+
+Router.route('/mischiefxz/:id',function(){
+    console.log("mischiefxz.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    var data = {
+        'flowerlistid':this.params.id,
+        'happendtime':'2015-09-15 20:30:00'
+    };
+    this.render('mischiefxz', {to: 'content',data : data});
+});
