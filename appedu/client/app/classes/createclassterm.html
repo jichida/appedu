@@ -141,43 +141,19 @@
                 <div class="form_mod form_select">
                   <div>
                   <label for="">幼儿园</label>
-                    <select class="select" id="home_address-sarea" data-tmp="">
-                      <option value="0">请选择</option>
-                      <option value="100000">红山幼儿园</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form_mod form_select">
-                  <div>
-                  <label for="">班级</label>
-                    <select class="select" id="home_address-sarea" data-tmp="">
-                      <option value="0">请选择</option>
-                      <option value="100000">班级名称</option>
-                    </select>
+										<select class="select" id="selschool" data-tmp="">
+											{{#each schools}}
+												<option value="{{_id}}">{{name}}</option>
+											{{/each}}
+										</select>
                   </div>
                 </div>
                 <section class="lcon pass_input">
-                    <input class="admin" name="password" value="" maxlength="20" placeholder="孩子的姓名：">
+                    <input class="admin" id="classtermname" value="" maxlength="20" placeholder="班级名">
                 </section>
-                <div class="form_mod form_select">
-                  <div>
-                  <label for="">家长</label>
-                    <select class="select" id="home_address-sarea" data-tmp="">
-                      <option value="0">请选择</option>
-                      <option value="100000">父亲</option>
-                      <option value="100073">母亲</option>
-                    </select>
-                  </div>
+								<div class="gift_btn" style="margin-left:20px; margin-right:20px">
+                      <a href="#" id="btnaddclass" title="会员登录">加入班级</a>
                 </div>
-                  <section class="lcon pass_input">
-                    <input class="admin" name="password" value="" maxlength="20" placeholder="家长的姓名：">
-                </section>
-                <section class="lcon pass_input">
-                    <input class="admin" name="password" value="" maxlength="20" placeholder="联系方式：">
-                </section>
-                <section class="lcon login_btn">
-                    <input type="submit" value="加入班级">
-                </section>
             </section>
 
 

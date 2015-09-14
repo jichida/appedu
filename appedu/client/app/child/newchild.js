@@ -14,7 +14,7 @@ Template.newchild.events({
         truename:truename,
         sex:'female',
         birthday:'2015-06-23',
-        curclasstermid:selclasstypestring,
+        curclasstermid:selclasstypevalue,
         archiveclassterms:[],
         createuserid:Meteor.userId(),
         createusername:Meteor.user().username

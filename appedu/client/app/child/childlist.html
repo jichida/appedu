@@ -18,13 +18,11 @@
   <tr>
     <th>孩子姓名</th>
     <th>所在幼儿园</th>
-    <th>状态</th>
   </tr>
-	{{#each children}}
+	{{#each childreninfo}}
   <tr>
-    <td>{{truename}}</td>
-    <td>常州武进安家幼儿园</td>
-    <td>待审核</td>
+    <td>{{childname}}</td>
+    <td>{{schoolname}}</td>
   </tr>
 	{{/each}}
 </table>

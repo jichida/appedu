@@ -43,10 +43,12 @@ Template.register.events({
         password:password,
         truename:truename,
       };
-      Accounts.createUser(newuser,function(){
-        Roles.addUsersToRoles(Meteor.users.find({username: 'phonenumber'}).fetch(), ['parent']);
-        Router.go('/profile');//登录成功
-     });
+      Meteor.call('createuser',newuser,['parent'], function(error,result){
+        if(!error){
+          Router.go('/profile');//登录成功
+        }
+      });
+
     },
     "click #btnregisterheadteacher": function () {
       console.log("click btn sign");
@@ -77,13 +79,11 @@ Template.register.events({
         truename:truename,
       };
 
-      Accounts.createUser(newuser,function(){
-        Roles.addUsersToRoles(Meteor.users.find({username: 'phonenumber'}).fetch(), ['headerteacher']);
-        Router.go('/profile');//登录成功
-     });
-
-
-
+      Meteor.call('createuser',newuser,['headerteacher'], function(error,result){
+        if(!error){
+          Router.go('/profile');//登录成功
+        }
+      });
 
     },
   });

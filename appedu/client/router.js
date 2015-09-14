@@ -108,21 +108,57 @@ Router.route('/changepassword');//修改密码
 
 //我的孩子列表
 Router.route('/childlist',function(){
-    var children = [];
+    var childreninfo = [];
     if(Meteor.user().children){
-      children = Meteor.user().children;
+      var  children = Meteor.user().children;
+      for (var i =0 ;i < children.length; i++){
+        var childinfo = {
+          childname:children[i].childname,
+          schoolname:'',
+        }
+        childreninfo.push(childinfo);
+      }
     }
-    this.render('childlist', {data: children});
+    var data = {
+      childreninfo:childreninfo,
+    }
+    console.log("children:" + EJSON.stringify(data));
+    this.render('childlist', {data: data});
 });
 
 //新增孩子
 Router.route('/newchild',function(){
   var schools = [];
+  var classterms = [];
+  var dbschools = dbSchools.find();
+  dbschools.forEach(function(sc){
+    schools.push(sc);
+  });
+  dbclassterms = dbClassterms.find();
+  dbclassterms.forEach(function(cls){
+    classterms.push(cls);
+  });
 
-  this.render('newchild');
+  var data = {
+    schools:schools,
+    classterms:classterms,
+  };
+
+  console.log("new child:" + EJSON.stringify(data));
+  this.render('newchild', {data: data});
 });
 
-Router.route('/classtermlist');
+Router.route('/myclassterm',function(){
+  //<----------------
+  // <td>{{classname}}</td>
+  // <td>{{schoolname}}</td>
+  var data = {
+    classname:Session.get('curclassterm').classtermname,
+    schoolname:Session.get('curclassterm').schoolname,
+  }
+  this.render('myclassterm', {data: data});
+});
+
 Router.route('/createclassterm');
 Router.route('/schoollist');
 
