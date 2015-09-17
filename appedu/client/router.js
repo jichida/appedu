@@ -164,7 +164,6 @@ Router.route('/schoollist');
 
 Router.route('/studentslist');
 Router.route('/teachplan');
-Router.route('/qa');
 //Router.route('/profile');
 //Router.route('/parentsletters');
 Router.route('/parentscommunity');
@@ -175,7 +174,6 @@ Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');
 //Router.route('/register');
-Router.route('/question');
 Router.route('/qaxq');
 Router.route('/growth');
 Router.route('/studentslistxq');
@@ -254,4 +252,28 @@ Router.route('/mischiefxz/:id',function(){
         'happendtime':'2015-09-15 20:30:00'
     };
     this.render('mischiefxz', {to: 'content',data : data});
+});
+
+Router.route('/qa',function(){
+    console.log("qa.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('qa', {to: 'content'});
+});
+
+Router.route('/question',function(){
+    console.log("question.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('question', {to: 'content'});
+});
+
+Router.route('/qaxq/:id',function(){
+    console.log("qa.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    var data = {
+        'qaid':this.params.id
+    };
+    this.render('qaxq', {to: 'content',data : data});
 });
