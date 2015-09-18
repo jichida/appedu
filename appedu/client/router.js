@@ -159,7 +159,20 @@ Router.route('/myclassterm',function(){
   this.render('myclassterm', {data: data});
 });
 
-Router.route('/createclassterm');
+Router.route('/createclassterm',function(){
+  var schools = [];
+  var dbschools = dbSchools.find();
+  dbschools.forEach(function(sc){
+    schools.push(sc);
+  });
+  var data = {
+    schools:schools,
+  };
+
+  console.log("createclassterm:" + EJSON.stringify(data));
+  this.render('createclassterm', {data: data});
+});
+
 Router.route('/schoollist');
 
 Router.route('/studentslist');

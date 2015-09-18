@@ -44,7 +44,10 @@ Template.register.events({
         truename:truename,
       };
       Meteor.call('createuser',newuser,['parent'], function(error,result){
-        if(!error){
+        if(error){
+          alert(error.reason);
+        }
+        else{
           Router.go('/profile');//登录成功
         }
       });
@@ -80,7 +83,10 @@ Template.register.events({
       };
 
       Meteor.call('createuser',newuser,['headerteacher'], function(error,result){
-        if(!error){
+        if(error){
+          alert(error.reason);
+        }
+        else{
           Router.go('/profile');//登录成功
         }
       });

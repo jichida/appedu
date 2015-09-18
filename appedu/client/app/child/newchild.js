@@ -20,6 +20,6 @@ Template.newchild.events({
         createusername:Meteor.user().username
       }
       Meteor.call('insertChild',Meteor.user(), childDoc);
-
+      Router.go('/childlist');
     },
   });
