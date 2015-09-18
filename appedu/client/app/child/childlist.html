@@ -18,11 +18,18 @@
   <tr>
     <th>孩子姓名</th>
     <th>所在幼儿园</th>
+		<th>操作</th>
   </tr>
 	{{#each childreninfo}}
   <tr>
     <td>{{childname}}</td>
     <td>{{schoolname}}</td>
+		<td><a href="#" id="btneditchild">编辑</a>
+			<a href="#" id="btnexitclass">退出班级</a>
+			<a href="#" id="btndeletechild">删除</a>
+
+		</td>
+
   </tr>
 	{{/each}}
 </table>
