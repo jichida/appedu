@@ -12,9 +12,9 @@ Meteor.methods({
           createtime:sendDoc.createtime,
           images:sendDoc.images,
           recvuserid:sendDoc.touserid,
-          recvusername:sendDoc.tousername,
+          recvtruename:sendDoc.totruename,
           fromuserid:sendDoc.createuserid,
-          fromusername:sendDoc.createusername,
+          fromtruename:sendDoc.createtruename,
           classtermid:sendDoc.classtermid
        };
        dbparentslettersrecv.insert(recvDoc);

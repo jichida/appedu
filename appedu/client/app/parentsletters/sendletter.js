@@ -9,7 +9,7 @@ Template.sendletter.helpers({
     if(Roles.userIsInRole(Meteor.user(), ['parent'])){
       return [{
         userid:Session.get('curclassterm').headerteacherid,
-        username:Session.get('curclassterm').headerteachername,
+        truename:Session.get('curclassterm').headerteachername,
       }];
     }
     if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
@@ -37,9 +37,10 @@ Template.sendletter.events({
 	   var content= $('#content').val();
      var createuserid = Meteor.userId();
      var createusername = Meteor.user().username;
+     var createtruename = Meteor.user().profile.truename;
      //to users:todo
      var touserid =  $("#specialrecvuser").val();
-     var tousername =  $("#specialrecvuser").find("option:selected").text();
+     var totruename =  $("#specialrecvuser").find("option:selected").text();
      var recvid = this.recvid;
      var classtermid = Session.get('curclassterm').classtermid;
 
@@ -50,10 +51,11 @@ Template.sendletter.events({
        content:content,
        createuserid:createuserid,
        createusername:createusername,
+       createtruename:createtruename,
        tousers:[],
        images:images,
        touserid:touserid,
-       tousername:tousername,
+       totruename:totruename,
        classtermid:classtermid,
        recvid:recvid,
      }

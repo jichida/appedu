@@ -46,6 +46,7 @@ Meteor.methods({
                 {
                   parentid : parentuser._id,
                   username : parentuser.username,
+                  truename: parentuser.profile.truename,
                 }
               ]
             };

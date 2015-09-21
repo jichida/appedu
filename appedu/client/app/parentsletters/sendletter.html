@@ -9,13 +9,13 @@
                     <select class="select" id="specialrecvuser" data-tmp="">
 											{{#if isparent}}
 												{{#each sendusers}}
-													<option value="{{userid}}">{{username}}</option>
+													<option value="{{userid}}">{{truename}}</option>
 												{{/each}}
 											{{/if}}
 											{{#if isheaderteacher}}
 	                      <option value="0">全部家长</option>
 												{{#each sendusers}}
-													<option value="{{parentid}}">{{username}}</option>
+													<option value="{{parentid}}">{{truename}}</option>
 												{{/each}}
 											{{/if}}
                     </select>

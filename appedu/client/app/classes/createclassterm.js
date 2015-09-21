@@ -13,7 +13,7 @@ Template.createclassterm.events({
         termbegin:'2015-06-07',
         termend:'2015-10-23',
         headerteacherid:Meteor.userId(),
-      //  headerteachername:Meteor.profile.truename,
+        headerteachername:Meteor.user().profile.truename,
         childrencount:0,
         schoolid:selschooltypevalue,
         schoolname:selschooltypestring,

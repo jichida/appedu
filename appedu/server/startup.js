@@ -141,20 +141,21 @@ Meteor.publish("userData", function () {
     //新建用户
     var users =
       [
-        {
-          username:'parenttest',
-          password:'123456',
-          roles:['parent'],
-        },
+        // {
+        //   username:'parenttest',
+        //   password:'123456',
+        //   roles:['parent'],
+        // },
+        // {
+        //   username:'headerteachertest',
+        //   password:'123456',
+        //   roles:['headerteacher'],
+        // },
+
         {
           username:'schoolmastertest',
           password:'123456',
           roles:['schoolmaster'],
-        },
-        {
-          username:'headerteachertest',
-          password:'123456',
-          roles:['headerteacher'],
         },
 
       ];
@@ -181,41 +182,41 @@ Meteor.publish("userData", function () {
       Meteor.call('insertSchool', schoolDoc);
     }
 
-    if(dbClassterms.find().count() == 0){
-       //2>班主任新建学期班级，挂靠在幼儿园
-        var usrheaderteacher = Meteor.users.findOne({username:'headerteachertest'});
-        var schoolId = dbSchools.findOne()._id;
-        var classtermDoc = {
-          name:'小三班上半学期',
-          termbegin:'2015-02-03',
-          termend:'2015-06-30',
-          headerteacherid:usrheaderteacher._id,
-          headerteachername:usrheaderteacher.username,
-          schoolid:schoolId,
-          schoolname:schoolDoc.name,
-          createuserid:usrheaderteacher._id,
-        };
-        Meteor.call('insertClassterm', usrheaderteacher,classtermDoc);
-        //班主任加入班级
-
-      }
-
-      if(dbChildren.find().count() == 0){
-        //家长新建孩子
-        var curclasstermid = dbClassterms.findOne()._id;
-        var usrparent = Meteor.users.findOne({username:'parenttest'});
-        var childDoc = {
-          truename:'张倩',
-          sex:'female',
-          birthday:'2015-06-23',
-          curclasstermid:curclasstermid,
-          archiveclassterms:[],
-          createuserid:usrparent._id,
-          createusername:usrparent.username
-        }
-        Meteor.call('insertChild',usrparent, childDoc);
-
-
-    }
+    // if(dbClassterms.find().count() == 0){
+    //    //2>班主任新建学期班级，挂靠在幼儿园
+    //     var usrheaderteacher = Meteor.users.findOne({username:'headerteachertest'});
+    //     var schoolId = dbSchools.findOne()._id;
+    //     var classtermDoc = {
+    //       name:'小三班上半学期',
+    //       termbegin:'2015-02-03',
+    //       termend:'2015-06-30',
+    //       headerteacherid:usrheaderteacher._id,
+    //       headerteachername:usrheaderteacher.username,
+    //       schoolid:schoolId,
+    //       schoolname:schoolDoc.name,
+    //       createuserid:usrheaderteacher._id,
+    //     };
+    //     Meteor.call('insertClassterm', usrheaderteacher,classtermDoc);
+    //     //班主任加入班级
+    //
+    //   }
+    //
+    //   if(dbChildren.find().count() == 0){
+    //     //家长新建孩子
+    //     var curclasstermid = dbClassterms.findOne()._id;
+    //     var usrparent = Meteor.users.findOne({username:'parenttest'});
+    //     var childDoc = {
+    //       truename:'张倩',
+    //       sex:'female',
+    //       birthday:'2015-06-23',
+    //       curclasstermid:curclasstermid,
+    //       archiveclassterms:[],
+    //       createuserid:usrparent._id,
+    //       createusername:usrparent.username
+    //     }
+    //     Meteor.call('insertChild',usrparent, childDoc);
+    //
+    //
+    // }
 
 });
