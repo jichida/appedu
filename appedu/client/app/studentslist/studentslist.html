@@ -6,9 +6,7 @@
 <div class="padleft mt15">
 <div class="sxtj"><div>
                     <select class="select" id="home_address-scity" data-tmp="">
-                      <option value="0">4年级3班</option>
-                      <option value="100000">4年级1班</option>
-                      <option value="100073">5年级2班</option>
+                      <option value="{{classtermid}}">{{classtermname}}</option>
                     </select>
                   </div></div>
 <div class="search">
@@ -23,26 +21,18 @@
     </div>
 </div>
 <ul class="address_manage">
+      {{#each children}}
         <li class="address_mod ">
           <div class="bd">
-            <div><span class="name"><em>刘青丝</em></span><span class="tel">男</span><span class="shengri">2010-04-10</span></div>
-            <p>妈妈：张三&nbsp;&nbsp;18018114511</p>
+            <div><span class="name"><em>{{childname}}</em></span><span class="tel">男</span><span class="shengri">2010-04-10</span></div>
+            <p>妈妈：{{parentname}}&nbsp;&nbsp;{{parentuser}}</p>
           </div>
           <div class="ft clearfix">
-            <div class="fl"> <a href="studentslistxq"><span class="auto"><b class="icon_auto"></b>查看详情</span></a></div>
-            <div class="fr"> <a href="studentslistxg"><span class="edit"><b class="icon_edit"></b>编辑</span></a></div>
+            <div class="fl"> <a href="/studentinfo/{{childid}}"><span class="auto"><b class="icon_auto"></b>查看详情</span></a></div>
+            <div class="fr"> <a href="/editstudent/{{childid}}"><span class="edit"><b class="icon_edit"></b>编辑</span></a></div>
           </div>
         </li>
-        <li class="address_mod">
-          <div class="bd">
-            <div><span class="name"><em>王四</em></span><span class="tel">男</span><span class="shengri">2010-04-10</span></div>
-            <p>妈妈：张三&nbsp;&nbsp;18018114511</p>
-          </div>
-          <div class="ft clearfix">
-            <div class="fl"> <a href="studentslistxq"><span class="auto default"><b class="icon_auto"></b>查看详情</span></a> </div>
-            <div class="fr"> <a href="studentslistxg"><span class="edit"><b class="icon_edit"></b>编辑</span></a></div>
-          </div>
-        </li>
+        {{/each}}
       </ul>
 </section>
 <nav id="nav" class="navbg">
