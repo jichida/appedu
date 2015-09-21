@@ -24,7 +24,11 @@ Template.createclassterm.events({
           alert(error.reason);
         }
         else{
-          Router.go('/myclassterm');//登录成功
+          Meteor.subscribe("curclassterm","",function(){
+            Session.set('curclassterm',dbClientClassterm.findOne());
+            console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
+            Router.go('/myclassterm');//登录成功
+          });          
         }
       });
     //teacherwithclassterm
