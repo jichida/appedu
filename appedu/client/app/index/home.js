@@ -31,11 +31,3 @@ Template.home.events({
     }
   },
 });
-
-Template.home.events({
-    "click #btnlogout": function(event){
-        event.preventDefault();
-        Meteor.logout();
-
-      },
-  });

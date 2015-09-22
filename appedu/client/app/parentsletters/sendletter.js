@@ -16,7 +16,16 @@ Template.sendletter.helpers({
       return Session.get('curclassterm').parentlist;
     }
     return [];
-  }
+  },
+  fileUploadedCallback: function() {
+    return {
+        finished: function(index, fileInfo, context) {
+
+          Session.set("imagePath","uploads/"+fileInfo.name);
+          console.log(fileInfo + ","+Session.get('imagePath'));
+        }
+    }
+  },
 });
 Template.sendletter.events({
   'click #btnsendletter': function(event) {

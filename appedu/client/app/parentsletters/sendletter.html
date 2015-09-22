@@ -29,6 +29,7 @@
             <input type="tel" class="fb_mobile" placeholder="放入学生档案" readonly>
         </div>
     </div>
+		{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
     <section class="gift_btn"> <a href="#" id="btnsendletter">发送</a> </section>
 </div>
 </section>

@@ -42,7 +42,7 @@ Router.route('/profile', function () {
       }
 
       var data = {
-        truename:Meteor.user().profile.truename,
+        username:Meteor.user().username,
       };
       this.layout('mainlayout');
       this.render('navbar', {to: 'navbar'});
@@ -174,20 +174,6 @@ Router.route('/createclassterm',function(){
 });
 
 Router.route('/studentslist',function(){
-  if(!Session.get('curclassterm')){
-    if (Roles.userIsInRole(Meteor.user(), ['parent'])) {
-      if(Meteor.user().children){
-        console.log("parent(家长) children:" + EJSON.stringify(Meteor.user().children));
-        if(Meteor.user().children.length){
-          var childid = Meteor.user().children[0].childid;
-          Meteor.subscribe("curclassterm",childid,function(){
-              Session.set('curclassterm',dbClientClassterm.findOne());
-              console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
-          });
-        }
-      }
-    }
-  }
   console.log("studentslist:" + EJSON.stringify(Session.get('curclassterm')));
   var classtermname = Session.get('curclassterm').classtermname;
   var classtermid = Session.get('curclassterm').classtermid;
@@ -214,15 +200,6 @@ Router.route('/studentslist',function(){
   console.log("studentslist:" + EJSON.stringify(data));
   this.render('studentslist', {data: data});
 });
-
-Router.route('/basicinfo',function(){
-  var data = {
-    truename:Meteor.user().profile.truename,
-  }
-  this.render('basicinfo', {data: data});
-
-});
-
 Router.route('/teachplan');
 //Router.route('/profile');
 //Router.route('/parentsletters');
