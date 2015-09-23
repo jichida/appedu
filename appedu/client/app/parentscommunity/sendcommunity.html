@@ -1,0 +1,51 @@
+<template name="sendcommunity">
+
+<header id="header">
+	<a href="javascript:history.go(-1);" class="back"><img src="../images/mark1.png"></a><span class="category_h_title">发送家长信</span><span class="category_h_nav  back1">完成</span>
+   </header>
+<section class="pad padb pad10">
+<div class="feed_back">
+    <div class="jzx">
+      <span>可见范围：</span>
+      <div class="sxtj">
+        <div style="float:right;">
+          <select class="select" id="visiblerange" data-tmp="">
+            <option value="school">本幼儿园可见</option>
+            <option value="class">本班可见</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <input name="" type="text" class="input_200" id="title" placeholder="家长信标题">
+    <div class="fb_con">
+        <textarea placeholder="输入您要发送的内容..." class="J_idea" id="content"></textarea>
+        <div class="zp addImg" style="position: relative">
+            <em>+</em><span>添加照片</span>
+            <input type='file' multiple="multiple" id="addImgInput" style="height:47px;width:47px;position: absolute;top:0;left:0;opacity: 0" />
+        </div>
+    </div>
+    <section class="gift_btn"> <a href="javascript:;" id="btnsendcommunity">发送</a> </section>
+</div>
+</section>
+
+    <nav id="nav" class="navbg">
+        <ul>
+            <li class="on"> <a href="/">
+      <div class="home_nav"></div>
+      <p>首页</p>
+      </a> </li>
+    <li class=""> <a href="qa">
+      <div class="classify_nav"></div>
+      <p>问答</p>
+      </a> </li>
+    <li class=""> <a href="evaluation">
+      <div class="nav3sty  cart_nav"></div>
+      <p>测评</p>
+      </a> </li>
+    <li class=""> <a href="profile">
+      <div class="user_nav"></div>
+      <p>我的</p>
+      </a> </li>
+  </ul>
+</nav>
+</template>

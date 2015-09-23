@@ -12,16 +12,29 @@
             <div class="form_mod form_select">
                   <div>
                   <label for="">省份</label>
-                    <select class="J_province borderbox"><option>选择</option>
+                    <select class="J_province borderbox" id='J_province'>
+                        <option>选择</option>
                     </select>
                   </div>
                 </div>
                 <div class="form_mod form_select">
                   <div>
                     <label for="">城市</label>
-                    <select class="J_city borderbox"><option>选择</option></select>
+                    <select class="J_city borderbox">
+                      {{#each address}}
+                        {{#each province}}
+                        <option value='{{province}}'>{{province}}</option>
+                        {{/each}}
+                      {{/each}}
+                    </select>
                     </div>
                 </div>
+                <input type = 'text' name='province2' value = '2'/>
+                <input type = 'text' name='province' value = '{{#each address}}{{province}}{{/each}}'/>
+                <input type = 'text' name='cities' value = '{{#each address}}{{cities}}{{/each}}'/>
+
+                <span id='ddd'></span>
+
                 <div class="form_mod form_select">
                   <div>
                   <label for="">幼儿园</label>
