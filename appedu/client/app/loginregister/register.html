@@ -1,7 +1,7 @@
 <template name="register">
 <div class="lo_bg" style="height:auto; overflow: hidden">
 <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">注册</span>
+	<a href="/login/{{id}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">注册</span>
    </header>
 <section class="login_con padb">
     <section class="user_login">
@@ -21,17 +21,21 @@
                     <input class="admin" id="password" value="" maxlength="20" placeholder="输入密码：">
                 </section>
 
-
+								{{#if isparentversion}}
 								<section class="lcon login_btn">
 									<div class="gift_btn" style="margin-left:20px; margin-right:20px">
                       <a href="#" id="btnregisterparent" >注册为家长</a>
 										</div>
                 </section>
+								{{/if}}
+
+								{{#if isteacherversion}}
 								<section class="lcon login_btn">
 									<div class="gift_btn" style="margin-left:20px; margin-right:20px">
                       <a href="#" id="btnregisterheadteacher" >注册为老师</a>
 										</div>
                 </section>
+								{{/if}}
             </section>
 
 
@@ -39,25 +43,5 @@
     </section>
 </section>
 
-<nav id="nav" class="navbg">
-  <ul>
-    <li class="on"> <a href="/">
-      <div class="home_nav"></div>
-      <p>首页</p>
-      </a> </li>
-    <li class=""> <a href="qa">
-      <div class="classify_nav"></div>
-      <p>问答</p>
-      </a> </li>
-    <li class=""> <a href="evaluation">
-      <div class="nav3sty  cart_nav"></div>
-      <p>测评</p>
-      </a> </li>
-    <li class=""> <a href="profile">
-      <div class="user_nav"></div>
-      <p>我的</p>
-      </a> </li>
-  </ul>
-</nav>
 </div>
 </template>

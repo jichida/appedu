@@ -5,11 +5,28 @@ Router.route('/', function () {
   this.render('home', {to: 'content'});
 });
 
-Router.route('/login',function(){
+Router.route('/login', function () {
+  this.render('login',{data:{id:0}});
+});
+
+
+Router.route('/login/:id',function(){
   console.log("login html");
-  this.layout('mainlayout');
-  this.render('navbar', {to: 'navbar'});
-  this.render('login', {to: 'content'});
+  this.render('login',{data:{id:this.params.id}});
+});
+
+Router.route('/register/:id',function(){//注册
+  console.log("register html");
+  // this.layout('mainlayout');
+  // this.render('navbar', {to: 'navbar'});
+  // this.render('login', {to: 'content'});
+  if(this.params.id == "0"){
+    this.render('register',{data:{isparentversion:true,id:this.params.id}});
+  }
+  else{
+    this.render('register',{data:{isteacherversion:true,id:this.params.id}});
+  }
+
 });
 
 Router.route('/profile', function () {
@@ -42,7 +59,7 @@ Router.route('/profile', function () {
       }
 
       var data = {
-        username:Meteor.user().username,
+        username:Meteor.user().profile.truename,
       };
       this.layout('mainlayout');
       this.render('navbar', {to: 'navbar'});
@@ -103,7 +120,7 @@ Router.route('/parentslettersrecvinfo/:id',function(){
   this.render('parentslettersrecvinfo', {data: data});
 });
 
-Router.route('/register');//注册
+
 Router.route('/changepassword');//修改密码
 
 //我的孩子列表
@@ -200,6 +217,8 @@ Router.route('/studentslist',function(){
   console.log("studentslist:" + EJSON.stringify(data));
   this.render('studentslist', {data: data});
 });
+Router.route('/basicinfo');
+
 Router.route('/teachplan');
 //Router.route('/profile');
 //Router.route('/parentsletters');
