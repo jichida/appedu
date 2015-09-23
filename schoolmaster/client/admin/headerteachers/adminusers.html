@@ -1,0 +1,28 @@
+<template name="adminusers">
+	<div class='jcd_admin_title'>
+		用户管理
+	</div>
+	<div class="panel panel-default">
+		<!-- Table -->
+		<table class='table jdc_admin_table'>
+			<tr>
+				<th>用户id</th>
+				<th>用户名</th>
+				<th>真实姓名</th>
+				<!--<th class='jdc_admin_table_right'>备注</th>-->
+			</tr>
+			{{#each users}}
+			<tr>
+				<td><a href="/admin/adminuserinfo/{{_id}}">{{_id}}</a></td>
+				<td>{{username}}</td>
+				<td>{{profile.truename}}</td>
+
+				<!--
+				<td class='jdc_admin_table_right'>
+					<a href="/admin/adminuserinfo/{{_id}}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>用户详情</a>
+				</td>-->
+			</tr>
+			{{/each}}
+		</table>
+	</div>
+</template>
