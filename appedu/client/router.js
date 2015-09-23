@@ -6,7 +6,7 @@ Router.route('/', function () {
 });
 
 Router.route('/login', function () {
-  this.render('login',{data:{id:0}});
+  this.redirect("/login/0");
 });
 
 
@@ -28,6 +28,11 @@ Router.route('/register/:id',function(){//注册
   }
 
 });
+
+Router.route('/retrievepassword/:id',function(){//忘记密码
+    this.render('retrievepassword',{data:{id:this.params.id}});
+});
+
 
 Router.route('/profile', function () {
     if (Meteor.user()) {
@@ -239,7 +244,7 @@ Router.route('/personal');
 //Router.route('/sendletter');
 Router.route('/publish');
 Router.route('/activitiesfb');
-Router.route('/retrievepassword');
+
 Router.route('/classxz');
 //Router.route('/changepassword');
 Router.route('/questionnaire');

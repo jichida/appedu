@@ -14,7 +14,12 @@ Meteor.methods({
         var userid = Accounts.createUser(userdoc);
         console.log("userid:" + userid + ",doc:" + EJSON.stringify(userdoc) + ",roles:"+ EJSON.stringify(roles) );
         Roles.addUsersToRoles(userid,roles);
-        Meteor.users.update({_id:userid}, { $set:{"profile.truename":userdoc.truename}} )
-
+        Meteor.users.update({_id:userid}, { $set:{"profile.truename":userdoc.truename}} );
     },
+    'resetpassword':function(userDoc){
+      var userid = Meteor.users.findOne({username:userDoc.username});
+      if(userid){
+        Accounts.setPassword(userid, userDoc.password);
+      }
+    }
   });
