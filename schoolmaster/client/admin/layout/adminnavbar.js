@@ -17,7 +17,7 @@ Template.adminnavbar.helpers({
           navtitle:'班级管理'
         },
         {
-          navurl:'/admin/navheaderteachers',
+          navurl:'/admin/headerteachers',
           navico:'glyphicon glyphicon-user',
           navtitle:'老师管理'
         },

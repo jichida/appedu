@@ -84,7 +84,7 @@ Router.route('/admin/classterms', function () {
   console.log("admin navorders html");
 
   var classtermlist = [];
-  console.log("展示订单:" + EJSON.stringify(orders));
+  console.log("展示订单:" + EJSON.stringify(classtermlist));
 
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
@@ -117,6 +117,18 @@ Router.route('/admin/activities', function () {
   this.render('activities', {to: 'admincontent',data:{activitylist:activitylist}});
 });
 
+//食谱列表页面
+Router.route('/admin/foods', function () {
+  var foods = [];
+  // SalesPromotions.find().forEach(function(sp){
+  //     salespromotions.push(sp);
+  // });
+  console.log("展示食谱:" + EJSON.stringify(foods));
+
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('foods', {to: 'admincontent',data:{foods:foods}});
+});
 //转让所有者列表
 // Router.route('/admin/navcoupons', function () {
 //   var coupons = [];
