@@ -222,7 +222,6 @@ Router.route('/basicinfo');
 Router.route('/teachplan');
 //Router.route('/profile');
 //Router.route('/parentsletters');
-Router.route('/parentscommunity');
 Router.route('/evaluation');
 Router.route('/checkinout');
 Router.route('/activities');
