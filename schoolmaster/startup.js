@@ -7,6 +7,8 @@ Meteor.startup(function(){
         Meteor.subscribe("users");
         Meteor.subscribe("schools");
         Meteor.subscribe("classterms");
+        Meteor.subscribe("activities");
+        Meteor.subscribe("foods");
     }
 
     if(Meteor.isServer){
@@ -21,6 +23,12 @@ Meteor.startup(function(){
      });
      Meteor.publish("classterms", function () {
         return dbClassterms.find();
+     });
+     Meteor.publish("activities", function () {
+        return dbActivities.find();
+     });
+     Meteor.publish("foods", function () {
+        return dbFoods.find();
      });
 
  }

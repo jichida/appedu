@@ -13,7 +13,22 @@ Meteor.methods({
   },
   'updateclassterm':function(id,classtermDoc){
     console.log("updateclassterm:" + EJSON.stringify(classtermDoc));
-		dbClassterms.update(id,{$set:classtermDoc});    
+		dbClassterms.update(id,{$set:classtermDoc});
   },
-
+  'insertactivity':function(activityDoc){
+    console.log("insertactivity:" + EJSON.stringify(activityDoc));
+    dbActivities.insert(activityDoc);
+  },
+  'updateactivity':function(id,activityDoc){
+    console.log("updateactivity:" + EJSON.stringify(activityDoc));
+		dbActivities.update(id,{$set:activityDoc});
+  },
+  'insertfood':function(foodDoc){
+    console.log("insertfood:" + EJSON.stringify(foodDoc));
+    dbFoods.insert(foodDoc);
+  },
+  'updatefood':function(id,foodDoc){
+    console.log("updatefood:" + EJSON.stringify(foodDoc));
+		dbFoods.update(id,{$set:foodDoc});
+  },
 });

@@ -22,10 +22,6 @@ Router.route('/changepassword',function(){
   this.render('changepassword', {to: 'admincontent'});
 });
 
-//管理端首页
-Router.route('/admin', function () {
-  Router.redirect('/admin/myschool');
-});
 //==========================================================================
 //幼儿园列表页面
 Router.route('/admin/myschool', function () {
@@ -142,14 +138,30 @@ Router.route('/admin/headerteachers', function () {
 //活动列表页面
 Router.route('/admin/activities', function () {
   var activitylist = [];
-  // SalesPromotions.find().forEach(function(sp){
-  //     salespromotions.push(sp);
-  // });
+  var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  dbActivities.find({schoolid:schoolid}).forEach(function(sp){
+      activitylist.push(sp);
+  });
   console.log("展示活动:" + EJSON.stringify(activitylist));
 
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('activities', {to: 'admincontent',data:{activitylist:activitylist}});
+});
+
+Router.route('/addactivity', function () {
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('addactivity', {to: 'admincontent'});
+});
+
+Router.route('/updateactivity/:id', function () {
+  var oneact = dbActivities.findOne(this.params.id);
+  console.log("展示活动:" + EJSON.stringify(oneact));
+
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('updateactivity', {to: 'admincontent',data:oneact});
 });
 
 
@@ -166,7 +178,7 @@ Router.route('/admin/foods', function () {
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('foods', {to: 'admincontent',data:{foods:foods}});
 });
-
+//----------------------------------------------------------------
 
 Router.onBeforeAction(function() {
   if (!Meteor.user()) {
