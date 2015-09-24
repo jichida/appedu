@@ -100,21 +100,45 @@ Router.route('/updateclassterm/:id', function () {
   this.render('updateclassterm', {to: 'admincontent',data:data});
 });
 
+Router.route('/classterminfo/:id', function () {
+  var headerteacherlist = [];
+  schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  Meteor.users.find({schoolid:schoolid}).forEach(function(user){
+    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+      headerteacherlist.push(user);
+    }
+  });
+  var classterm = dbClassterms.findOne(this.params.id);
+  var data = _.extend(classterm,{headerteacherlist:headerteacherlist});
+  console.log("admin index html");
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('classterminfo', {to: 'admincontent',data:data});
+});
+
 //=============================================================================
 
 //班主任列表页面
 Router.route('/admin/headerteachers', function () {
   console.log("admin navusers html");
-  var users = [];
+  var teacherlist = [];
   Meteor.users.find().forEach(function(ur){
-      users.push(ur);
+    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+       var teacher = {
+         truename:ur.profile.truename,
+         classtermname: dbClassterms.findOne(curclasstermid).name,
+         phonenumber:ur.username,
+       }
+        teacherlist.push(teacher);
+    }
   });
-  console.log("展示班主任:" + EJSON.stringify(users));
+  console.log("展示班主任:" + EJSON.stringify(teacherlist));
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
-  this.render('headerteachers', {to: 'admincontent',data:{users:users}});
+  this.render('headerteachers', {to: 'admincontent',data:{teacherlist:teacherlist}});
 });
 
+//===================================================================================
 //活动列表页面
 Router.route('/admin/activities', function () {
   var activitylist = [];
@@ -128,6 +152,8 @@ Router.route('/admin/activities', function () {
   this.render('activities', {to: 'admincontent',data:{activitylist:activitylist}});
 });
 
+
+//===================================================================================
 //食谱列表页面
 Router.route('/admin/foods', function () {
   var foods = [];
@@ -140,32 +166,6 @@ Router.route('/admin/foods', function () {
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('foods', {to: 'admincontent',data:{foods:foods}});
 });
-//转让所有者列表
-// Router.route('/admin/navcoupons', function () {
-//   var coupons = [];
-//   Coupons.find().forEach(function(cn){
-//       coupons.push(cn);
-//   });
-//   console.log("展示优惠券:" + EJSON.stringify(coupons));
-//
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('admincoupons', {to: 'admincontent',data:{coupons:coupons}});
-// });
-//
-// //我的申诉
-// Router.route('/admin/navredpackages', function () {
-//
-//   var redpackages = [];
-//   SystemRedPackages.find().forEach(function(rk){
-//       redpackages.push(rk);
-//   });
-//   console.log("展示红包:" + EJSON.stringify(redpackages));
-//
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('adminredpackages', {to: 'admincontent',data:{redpackages:redpackages}});
-// });
 
 
 Router.onBeforeAction(function() {
