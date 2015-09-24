@@ -53,10 +53,11 @@ footer{padding-left:180px;text-align:center;color: #CCC}
 #jcd_admin_container .jcd_admin_loginBtn,
 #jcd_admin_container .jcd_admin_loginPwd{background:#FFF;position:absolute;top:50px;right:140px;padding-left:30px;}
 #jcd_admin_container .jcd_admin_loginPwd{top:100px;right:140px;}
-#jcd_admin_container .jcd_admin_loginBtn{top:170px;right:140px;width:210px;padding:0;background:none}
-#jcd_admin_container .jcd_admin_loginBtn .jcd_adminLogin_subBtn{width:110px;background:#096;color:#FFF;margin-right:20px;}
-#jcd_admin_container .jcd_admin_loginBtn a.jcd_admin_forgetPwd{color:#FFF;text-decoration:none}
-#jcd_admin_container .jcd_form input{background:none;border:none;padding:10px;width:160px;}
+#jcd_admin_container .jcd_admin_loginBtn{top:170px;right:140px;width:230px;padding:0;background:none}
+#jcd_admin_container .jcd_admin_loginBtn .jcd_adminLogin_subBtn{width:110px;background:#096;color:#FFF;margin-right:10px;}
+#jcd_admin_container .jcd_admin_loginBtn a.jcd_admin_forgetPwd{color:#FFF;text-decoration:none;}
+#jcd_admin_container .jcd_admin_loginBtn .jcd_admin_register{color:#FFF;margin-right: 10px;}
+#jcd_admin_container .jcd_form input{background:none;border:none;padding:10px;width:200px;}
 #jcd_admin_container .jcd_admin_loginName_img{background:url(images/admin/loginBg.png) no-repeat;display:block;position:absolute;width:18px;height:18px;left:10px;top:10px}
 #jcd_admin_container .jcd_admin_loginPwd .jcd_admin_loginName_img{background-position:left -113px;}
 
@@ -67,3 +68,8 @@ footer{padding-left:180px;text-align:center;color: #CCC}
 .jcd_admin_head #admin_user .admin_user_list {position: absolute;right: 0;top: 50px;background: #367FA9;display: none}
 .jcd_admin_head #admin_user .admin_user_list a{color: #FFF;display: block;padding:5px 10px;width: 100px;text-align: center}
 .jcd_admin_head #admin_user .admin_user_list a:hover{background: #307096}
+
+
+/*登录注册界面*/
+.school_login_page {padding-left:50%;position: relative;}
+.school_login_pagebg{background-color: #009966; position: absolute;left: 0;top:0;z-index: 100;width: 50%}

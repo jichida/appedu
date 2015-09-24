@@ -49,3 +49,8 @@ Template.forgetpassword.events({
 
     },
   });
+
+Template.forgetpassword.rendered = (function () {
+  $('.school_login_pagebg').css('height',document.documentElement.clientHeight+'px')
+  $('body').css('backgroundColor','#FFF');
+});
