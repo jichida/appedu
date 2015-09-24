@@ -4,6 +4,9 @@ Router.configure({
 
 });
 
+Router.route('/register');
+Router.route('/forgetpassword');
+
 Router.route('/', function () {
   console.log("admin index html");
   this.layout('adminmainlayout');
@@ -26,6 +29,12 @@ Router.route('/admin', function () {
   this.render('adminorders', {to: 'admincontent'});
 });
 
+Router.route('/addschool', function () {
+  console.log("admin index html");
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('addschool', {to: 'admincontent'});
+});
 //新建幼儿园
 // Router.route('/admin/addschool', function () {
 //   console.log("admin addschool html");
@@ -169,4 +178,4 @@ Router.onBeforeAction(function() {
       this.render('login');
     }
   }
-});
+},{except:['register','forgetpassword']});
