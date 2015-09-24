@@ -235,17 +235,18 @@ Router.route('/studentslist',function(){
   console.log("classtermname:" + classtermname);
   var studentslist = dbClassterms.findOne(classtermid).studentslist;
   var children = [];
-  for ( var i = 0;i < studentslist.length; i++){
-     var student = studentslist[i];
-     var child = {
-       childid:student.childid,
-       childname:student.childname,
-       parentname:student.parentlist[i].truename,
-       parentuser:student.parentlist[i].username,
-     };
-     children.push(child);
+  if(studentslist){
+    for ( var i = 0;i < studentslist.length; i++){
+       var student = studentslist[i];
+       var child = {
+         childid:student.childid,
+         childname:student.childname,
+         parentname:student.parentlist[i].truename,
+         parentuser:student.parentlist[i].username,
+       };
+       children.push(child);
+    }
   }
-
   var data = {
     classtermname:classtermname,
     classtermid:classtermid,
