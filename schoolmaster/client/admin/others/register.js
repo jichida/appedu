@@ -43,7 +43,7 @@ Template.register.events({
         password:password,
         truename:truename,
       };
-      Meteor.call('createuser',newuser,['schoolmaster’'], function(error,result){
+      Meteor.call('createuser',newuser,['schoolmaster'], function(error,result){
         if(!error){
           Router.go('/');//登录成功
         }

@@ -11,11 +11,11 @@
           // FlashMessages.sendError(error.reason);
         }
         else{
-          if(Roles.userIsInRole(Meteor.user(), ['headerteachers'])){
+          if(Roles.userIsInRole(Meteor.user(), ['schoolmaster'])){
             Router.go('/');//登录成功
           }
           else{
-            alert("非admin用户");
+            alert("非园长用户");
           }
 
         }

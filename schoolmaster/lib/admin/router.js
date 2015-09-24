@@ -8,10 +8,11 @@ Router.route('/register');
 Router.route('/forgetpassword');
 
 Router.route('/', function () {
-  console.log("admin index html");
-  this.layout('adminmainlayout');
-  this.render('adminnavbar', {to: 'adminnavbar'});
-  this.render('adminorders', {to: 'admincontent'});
+  // console.log("admin index html");
+  // this.layout('adminmainlayout');
+  // this.render('adminnavbar', {to: 'adminnavbar'});
+  // this.render('adminorders', {to: 'admincontent'});
+  Router.go('/admin/myschool');
 });
 
 Router.route('/changepassword',function(){
@@ -23,10 +24,19 @@ Router.route('/changepassword',function(){
 
 //管理端首页
 Router.route('/admin', function () {
-  console.log("admin index html");
-  this.layout('adminmainlayout');
-  this.render('adminnavbar', {to: 'adminnavbar'});
-  this.render('adminorders', {to: 'admincontent'});
+  Router.redirect('/admin/myschool');
+});
+//==========================================================================
+//幼儿园列表页面
+Router.route('/admin/myschool', function () {
+    console.log("admin myschool html:" + EJSON.stringify(Meteor.user()));
+    var myschool = dbSchools.findOne({createuserid:Meteor.user()._id});
+
+    console.log("展示幼儿园:" + EJSON.stringify(myschool));
+
+   this.layout('adminmainlayout');
+   this.render('adminnavbar', {to: 'adminnavbar'});
+   this.render('myschool', {to: 'admincontent',data:myschool});
 });
 
 Router.route('/addschool', function () {
@@ -35,70 +45,62 @@ Router.route('/addschool', function () {
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('addschool', {to: 'admincontent'});
 });
-//新建幼儿园
-// Router.route('/admin/addschool', function () {
-//   console.log("admin addschool html");
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('addschool', {to: 'admincontent'});
-//  // this.render('adminproductadd');
-//  });
-//
-//
-//  //新建班级
-//  Router.route('/admin/addclassterm', function () {
-//   console.log("admin addclassterm html");
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('addclassterm', {to: 'admincontent'});
-//  //  this.render('addredpackage');
-//  });
-//
-//    //修改幼儿园
-//   Router.route('/admin/updateschool/:id', function () {
-//   console.log("admin updateschool html,id:" + this.params.id);
-//   var curschool = dbSchools.findOne({_id:this.params.id});
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('updateschool', {to: 'admincontent',data:{curredpackage:curredpackage}});
-//
-//  });
-//
-//  //老师详情
-//   Router.route('/admin/adminuserinfo/:id', function () {
-//   console.log("admin adminuserinfo html");
-//   // this.render('addcoupon');
-//   var curuser =  Meteor.users.findOne(this.params.id);
-//   this.layout('adminmainlayout');
-//   this.render('adminnavbar', {to: 'adminnavbar'});
-//   this.render('adminuserinfo', {to: 'admincontent',data:{curuser:curuser}});
-//   //this.render('adminuserinfo',{data:{curuser:curuser}});
-//  });
 
-//==========================================================================
-//幼儿园列表页面
-Router.route('/admin/myschool', function () {
-    console.log("admin myschool html");
-
-
-    console.log("展示幼儿园");
-
-   this.layout('adminmainlayout');
-   this.render('adminnavbar', {to: 'adminnavbar'});
-   this.render('myschool', {to: 'admincontent'});
+Router.route('/updateschool/:id', function () {
+  var myschool = dbSchools.findOne(this.params.id);
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('updateschool', {to: 'admincontent',data:myschool});
 });
 
+//------------------------------------------------------------------------------------
 //班级列表页面
 Router.route('/admin/classterms', function () {
-  console.log("admin navorders html");
-
+  console.log("admin classterms html");
+  schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
   var classtermlist = [];
-  console.log("展示订单:" + EJSON.stringify(classtermlist));
+  dbClassterms.find({schoolid:schoolid}).forEach(function(cls){
+    classtermlist.push(cls);
+  });
+
+  console.log("展示班级:" + EJSON.stringify(classtermlist));
 
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('classterms', {to: 'admincontent',data:{classtermlist:classtermlist}});
 });
+
+Router.route('/addclassterm', function () {
+  var headerteacherlist = [];
+  schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  Meteor.users.find({schoolid:schoolid}).forEach(function(user){
+    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+      headerteacherlist.push(user);
+    }
+  });
+  console.log("admin index html");
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('addclassterm', {to: 'admincontent',data:{headerteacherlist:headerteacherlist}});
+});
+//headerteacherlist
+Router.route('/updateclassterm/:id', function () {
+  var headerteacherlist = [];
+  schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  Meteor.users.find({schoolid:schoolid}).forEach(function(user){
+    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+      headerteacherlist.push(user);
+    }
+  });
+  var classterm = dbClassterms.findOne(this.params.id);
+  var data = _.extend(classterm,{headerteacherlist:headerteacherlist});
+  console.log("admin index html");
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('updateclassterm', {to: 'admincontent',data:data});
+});
+
+//=============================================================================
 
 //班主任列表页面
 Router.route('/admin/headerteachers', function () {
@@ -171,7 +173,7 @@ Router.onBeforeAction(function() {
     this.render('login');
   }
   else {
-    if(Roles.userIsInRole(Meteor.user(), ['headerteachers'])){
+    if(Roles.userIsInRole(Meteor.user(), ['schoolmaster'])){
         this.next();
     }
     else{

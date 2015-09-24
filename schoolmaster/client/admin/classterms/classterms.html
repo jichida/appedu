@@ -12,6 +12,7 @@
       <th>结束日期</th>
       <th>班主任名字</th>
       <th>学校名</th>
+      <th>操作</th>
     </tr>
     {{#each classtermlist}}
     <tr>
@@ -20,6 +21,9 @@
       <td>{{termend}}</td>
       <td>{{headerteachername}}</td>
       <td>{{schoolname}}</td>
+      <td class='jdc_admin_table_right'>
+        <a href="/updateclassterm/{{_id}}" class="btn btn-primary"><span class='glyphicon glyphicon-pencil'></span> 修改</a>
+      </td>
     </tr>
     {{/each}}
   </table>

@@ -1,5 +1,5 @@
-Template.addschool.events({
-    'click #btnaddschool':function(){
+Template.updateschool.events({
+    'click #btnupdateschool':function(){
       event.preventDefault();
 
       var name =  $("#name").val();
@@ -10,10 +10,9 @@ Template.addschool.events({
           address:address,
           createuserid:Meteor.user()._id,
           createusername:Meteor.user().profile.truename,
-          createtime:moment().format('YYYY-MM-DD HH:mm:ss'),
       }
-      console.log("insert schoolDoc:" + EJSON.stringify(schoolDoc));
-      Meteor.call("insertSchool",schoolDoc);
+      console.log("update schoolDoc:" + EJSON.stringify(schoolDoc));
+      Meteor.call("updateSchool",this._id,schoolDoc);
 
       Router.go("/admin/myschool");
 

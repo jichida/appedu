@@ -1,14 +1,18 @@
 <template name="myschool">
   <div class='jcd_admin_title'>
   我的幼儿园
-    <a href="/addschool" class='btn btn-primary jcd_admin_addbtn'><span class='glyphicon glyphicon-plus'></span> 新增幼儿园</a>
+  {{#if _id}}
+  <a href="/updateschool/{{_id}}" class='btn btn-primary jcd_admin_addbtn'><span class='glyphicon glyphicon-plus'></span> 编辑幼儿园</a>
+  {{else}}
+  <a href="/addschool" class='btn btn-primary jcd_admin_addbtn'><span class='glyphicon glyphicon-plus'></span> 新增幼儿园</a>
+  {{/if}}
 </div>
 
 	<div class='jcd_redpackage_con'>
 		<div class='redTxt'>
       <p><span>名字：</span>{{name}}</p>
 			<p><span>地址：</span>{{address}}</p>
-			<p><span>创建日期：</span>{{createdate}}</p>
+			<p><span>新建日期：</span>{{createtime}}</p>
 			<p><span>创建者：</span>{{createusername}}</p>
 		</div>
 	</div>
