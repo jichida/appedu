@@ -70,7 +70,7 @@ Router.route('/addclassterm', function () {
   var headerteacherlist = [];
   schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
   Meteor.users.find({schoolid:schoolid}).forEach(function(user){
-    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+    if(Roles.userIsInRole(user, ['headerteacher'])){
       headerteacherlist.push(user);
     }
   });
@@ -84,7 +84,7 @@ Router.route('/updateclassterm/:id', function () {
   var headerteacherlist = [];
   schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
   Meteor.users.find({schoolid:schoolid}).forEach(function(user){
-    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+    if(Roles.userIsInRole(user, ['headerteacher'])){
       headerteacherlist.push(user);
     }
   });
@@ -100,7 +100,7 @@ Router.route('/classterminfo/:id', function () {
   var headerteacherlist = [];
   schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
   Meteor.users.find({schoolid:schoolid}).forEach(function(user){
-    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+    if(Roles.userIsInRole(user, ['headerteacher'])){
       headerteacherlist.push(user);
     }
   });
@@ -119,13 +119,15 @@ Router.route('/admin/headerteachers', function () {
   console.log("admin navusers html");
   var teacherlist = [];
   Meteor.users.find().forEach(function(ur){
-    if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
+    console.log("finduser:" + EJSON.stringify(ur));
+    if(Roles.userIsInRole(ur, ['headerteacher'])){
+
        var teacher = {
          truename:ur.profile.truename,
-         classtermname: dbClassterms.findOne(curclasstermid).name,
+         classtermname: dbClassterms.findOne(ur.curclasstermid).name,
          phonenumber:ur.username,
        }
-        teacherlist.push(teacher);
+      teacherlist.push(teacher);
     }
   });
   console.log("展示班主任:" + EJSON.stringify(teacherlist));
