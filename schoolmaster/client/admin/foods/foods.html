@@ -7,19 +7,23 @@
      <!-- Table -->
      <table class='table jdc_admin_table'>
        <tr>
-         <th>班级名</th>
-         <th>开学日期</th>
-         <th>结束日期</th>
-         <th>班主任名字</th>
-         <th>学校名</th>
+         <th>食谱名</th>
+         <th>供应日期</th>
+         <th>活动内容</th>
+         <th>新建时间</th>
+         <th>新建者</th>
+         <th>操作</th>
        </tr>
-       {{#each classtermlist}}
+       {{#each foodlist}}
        <tr>
-         <td><a href="/classterminfo/{{_id}}">{{name}}</a></td>
-         <td>{{termbegin}}</td>
-         <td>{{termend}}</td>
-         <td>{{headerteachername}}</td>
-         <td>{{schoolname}}</td>
+         <td>{{foodname}}</td>
+         <td>{{fooddate}}</td>
+         <td>{{content}}</td>
+         <td>{{createtime}}</td>
+         <td>{{createusername}}</td>
+         <td class='jdc_admin_table_right'>
+           <a href="/updatefood/{{_id}}" class="btn btn-primary"><span class='glyphicon glyphicon-pencil'></span> 修改</a>
+         </td>
        </tr>
        {{/each}}
      </table>

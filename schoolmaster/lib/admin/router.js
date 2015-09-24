@@ -168,16 +168,33 @@ Router.route('/updateactivity/:id', function () {
 //===================================================================================
 //食谱列表页面
 Router.route('/admin/foods', function () {
-  var foods = [];
-  // SalesPromotions.find().forEach(function(sp){
-  //     salespromotions.push(sp);
-  // });
-  console.log("展示食谱:" + EJSON.stringify(foods));
+  var foodlist = [];
+  var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  dbFoods.find({schoolid:schoolid}).forEach(function(sp){
+      foodlist.push(sp);
+  });
+  console.log("展示食谱:" + EJSON.stringify(foodlist));
 
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
-  this.render('foods', {to: 'admincontent',data:{foods:foods}});
+  this.render('foods', {to: 'admincontent',data:{foodlist:foodlist}});
 });
+
+Router.route('/addfood', function () {
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('addfood', {to: 'admincontent'});
+});
+
+Router.route('/updatefood/:id', function () {
+  var onefood = dbFoods.findOne(this.params.id);
+  console.log("展示活动:" + EJSON.stringify(onefood));
+
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('updatefood', {to: 'admincontent',data:onefood});
+});
+
 //----------------------------------------------------------------
 
 Router.onBeforeAction(function() {
