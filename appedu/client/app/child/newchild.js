@@ -35,7 +35,7 @@ Template.newchild.onRendered(function () {
   console.log($('input[name=province]').val())
   //var provincelist = $('input[name=province]').val().split(',');
   //var J_province = $('#J_province');.
-    
+
     //for(var i=0;i<provincelist.length;i++){
      // var addOption=new Option("文本","值");//生成一个选项
       //obj.add(addOption);    //这个只能在IE中有效

@@ -12,7 +12,7 @@ Router.route('/parentscommunity', function () {
   this.layout('mainlayout');
   this.render('navbar', {to: 'navbar'});
   this.render('parentscommunity', {
-  	to: 'content', 
+  	to: 'content',
   	data:{
   		community: community,
       love: community.love

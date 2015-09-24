@@ -11,7 +11,12 @@ Template.login.events({
           // FlashMessages.sendError(error.reason);
         }
         else{
-          Router.go('/profile');//登录成功
+          if (Roles.userIsInRole(Meteor.user(), ['parent'])) {
+            Router.go('/loginselectchild');//登录成功
+          }
+          else if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])) {
+            Router.go('/loginselectclassterm');//登录成功
+          }
         }
       });
     },

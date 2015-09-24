@@ -15,6 +15,38 @@ Router.route('/login/:id',function(){
   this.render('login',{data:{id:this.params.id}});
 });
 
+Router.route('/loginselectchild',function(){
+  var mychildlist = [];
+  var children = Meteor.user().children;
+  if(children){
+    for( var i=0;i <children.length; i++){
+      var curclasstermid = dbChildren.findOne(children[i].childid).curclasstermid;
+      var child = {
+        childtruename:children[i].childname,
+        curclasstermname:dbClassterms.find(curclasstermid).name,
+      }
+      mychildlist.push(child);
+    }
+  }
+  this.render('loginselectchild',{data:{mychildlist:mychildlist}});
+});
+
+Router.route('/loginselectclassterm',function(){
+  var classtermlist = [];
+  // var curclasstermid = Meteor.user().curclasstermid;
+  // var children = Meteor.user().curclasstermid;
+  // for( var i=0;i <children.length; i++){
+  //   var curclasstermid = dbChildren.findOne(children[i].childid).curclasstermid;
+  //   var child = {
+  //     childtruename:children[i].childname,
+  //     curclasstermname:dbClassterms.find(curclasstermid).name,
+  //   }
+  //   mychildlist.push(child);
+  // }
+  this.render('loginselectclassterm',{data:{classtermlist:classtermlist}});
+});
+
+
 Router.route('/register/:id',function(){//注册
   console.log("register html");
   // this.layout('mainlayout');
