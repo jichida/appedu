@@ -1,4 +1,4 @@
-Router.route('/', function () {
+﻿Router.route('/', function () {
   console.log("index html");
   this.layout('mainlayout');
   this.render('navbar', {to: 'navbar'});
@@ -337,3 +337,6 @@ Router.route('/qaxq/:id',function(){
     };
     this.render('qaxq', {to: 'content',data : data});
 });
+
+Router.route('/sp');
+Router.route('/dlls');
