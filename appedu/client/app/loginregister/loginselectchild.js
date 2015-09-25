@@ -22,6 +22,6 @@ Template.loginselectchild.events({
 
     },
     'click #btnselectchild':function(){
-        console.log("select child:" + this.childid);
+        console.log("select child:" + this.childid + ",this childtruename:" + this.childtruename);
     }
   });

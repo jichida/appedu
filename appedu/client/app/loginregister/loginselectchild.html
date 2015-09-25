@@ -6,12 +6,21 @@
 <section class="content pad padb">
 <div class="product-list">
     <div class="product-viewport huandong">
-      <ol class="product-style-list" style="width: 1424px;">
-        <li class="product-style-item"> <a href="/newchild/loginselectchild"><span style="font-size:24px; margin-top:26px">+</span></a> </li>
+    <div class="uesr">
+        <li><a href="/newchild/loginselectchild">
+        <h2>+
+        </h2>
+        </a>
+        </li>
+
         {{#each mychildlist}}
-        <li class="product-style-item"> <a href="#" id="btnselectchild"><span>{{childtruename}}</span><em>{{curclasstermname}}</em></a> </li>
+        <li id="btnselectchild">
+        <h2>{{childtruename}}
+        <span>{{curclasstermname}}</span>
+        </h2>
+        </li>
         {{/each}}
-      </ol>
+      </div>
     </div>
   </div>
  <div class="feed_back">

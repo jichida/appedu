@@ -22,7 +22,7 @@ Router.route('/loginselectchild',function(){
     for( var i=0;i <children.length; i++){
       var curclasstermid = dbChildren.findOne(children[i].childid).curclasstermid;
       var child = {
-        childid:children.childid,
+        childid:children[i].childid,
         childtruename:children[i].childname,
         curclasstermname:dbClassterms.find(curclasstermid).name,
       }

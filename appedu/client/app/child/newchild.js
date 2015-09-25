@@ -1,7 +1,7 @@
 Template.newchild.events({
     "click #btnaddclass": function () {
       console.log(EJSON.stringify(this.schools));
-      /*
+
       console.log("click btn btnaddclass");
       event.preventDefault();
       var truename =  $('#truename').val();
@@ -22,8 +22,8 @@ Template.newchild.events({
         createusername:Meteor.user().username
       }
       Meteor.call('insertChild',Meteor.user(), childDoc);
-      Router.go('/childlist');
-      */
+      Router.go('/' + this.returnurl);
+
     },
 
 

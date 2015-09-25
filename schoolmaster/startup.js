@@ -9,6 +9,7 @@ Meteor.startup(function(){
         Meteor.subscribe("classterms");
         Meteor.subscribe("activities");
         Meteor.subscribe("foods");
+        Session.set("MeteorToys_display", true);
     }
 
     if(Meteor.isServer){
