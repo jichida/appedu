@@ -1,3 +1,4 @@
+
 // 用户（家长，班主任，老师，园长）
 // 园长新建幼儿园
 // 班主任新建学期班级，挂靠在幼儿园
@@ -171,14 +172,16 @@ Meteor.publish("userData", function () {
       //<---------------------------------------------
       var usrschoolmaster = Meteor.users.findOne({username:'schoolmastertest'});
       //1>园长新建幼儿园
-      var schoolDoc = {
-        name:'常州武进锦绣幼儿园',
-        address:'常州武进永胜中路100号',
-        createdate:'2011-02-12',
-        createuserid:usrschoolmaster._id,
-        createusername:usrschoolmaster.username
-      };
-      Meteor.call('insertSchool', schoolDoc);
+      if(usrschoolmaster){
+        var schoolDoc = {
+          name:'常州武进锦绣幼儿园',
+          address:'常州武进永胜中路100号',
+          createdate:'2011-02-12',
+          createuserid:usrschoolmaster._id,
+          createusername:usrschoolmaster.username
+        };
+        Meteor.call('insertSchool', schoolDoc);
+      }
     }
 
     // if(dbClassterms.find().count() == 0){

@@ -17,6 +17,9 @@ Template.login.events({
           else if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])) {
             Router.go('/loginselectclassterm');//登录成功
           }
+          else{
+            console.log("no role for this user!");
+          }
         }
       });
     },

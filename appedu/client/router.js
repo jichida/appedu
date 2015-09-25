@@ -95,8 +95,12 @@ Router.route('/profile', function () {
         });
       }
 
+      var truename = Meteor.user().username;
+      if(Meteor.user().profile){
+        truename = Meteor.user().profile.truename;
+      }
       var data = {
-        username:Meteor.user().profile.truename,
+        username:truename
       };
       this.layout('mainlayout');
       this.render('navbar', {to: 'navbar'});
@@ -206,9 +210,15 @@ Router.route('/myclassterm',function(){
   //<----------------
   // <td>{{classname}}</td>
   // <td>{{schoolname}}</td>
+  var classtermname = '';
+  var schoolname = '';
+  if(Session.get('curclassterm')){
+    classtermname = Session.get('curclassterm').classtermname;
+    schoolname = Session.get('curclassterm').schoolname;
+  }
   var data = {
-    classname:Session.get('curclassterm').classtermname,
-    schoolname:Session.get('curclassterm').schoolname,
+    classname:classtermname,
+    schoolname:schoolname,
   }
   this.render('myclassterm', {data: data});
 });
@@ -229,24 +239,31 @@ Router.route('/createclassterm',function(){
 
 Router.route('/studentslist',function(){
   console.log("studentslist:" + EJSON.stringify(Session.get('curclassterm')));
-  var classtermname = Session.get('curclassterm').classtermname;
-  var classtermid = Session.get('curclassterm').classtermid;
 
-  console.log("classtermname:" + classtermname);
-  var studentslist = dbClassterms.findOne(classtermid).studentslist;
-  var children = [];
-  if(studentslist){
-    for ( var i = 0;i < studentslist.length; i++){
-       var student = studentslist[i];
-       var child = {
-         childid:student.childid,
-         childname:student.childname,
-         parentname:student.parentlist[i].truename,
-         parentuser:student.parentlist[i].username,
-       };
-       children.push(child);
+  var classtermname = '';
+  var classtermid = '';
+  if(Session.get('curclassterm')){
+    classtermname = Session.get('curclassterm').classtermname;
+    classtermid = Session.get('curclassterm').classtermid;
+
+    console.log("classtermname:" + classtermname);
+    var studentslist = dbClassterms.findOne(classtermid).studentslist;
+    var children = [];
+    if(studentslist){
+      for ( var i = 0;i < studentslist.length; i++){
+         var student = studentslist[i];
+         var child = {
+           childid:student.childid,
+           childname:student.childname,
+           parentname:student.parentlist[i].truename,
+           parentuser:student.parentlist[i].username,
+         };
+         children.push(child);
+      }
     }
   }
+
+
   var data = {
     classtermname:classtermname,
     classtermid:classtermid,

@@ -19,9 +19,9 @@ Template.loginselectchild.events({
       //       Router.go('/loginselectclassterm');//登录成功
       //     }
       //   }
-      });
+
     },
     'click #btnaddchild':function(){
-      
+
     }
   });
