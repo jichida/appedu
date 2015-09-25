@@ -284,6 +284,12 @@ Router.route('/checkinout');
 
 Router.route('/activities',function(){
   var activitylist = [];
+  var schoolid = '';
+  var classtermid = '';
+  if(Session.get('curclassterm')){
+    schoolid = Session.get('curclassterm').schoolid;
+    classtermid = Session.get('curclassterm').classtermid;
+  }
   //下面有很多过滤条件，学校和班级
   dbActivities.find().forEach(function(act){
     activitylist.push(act);
