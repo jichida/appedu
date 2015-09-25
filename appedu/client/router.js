@@ -281,7 +281,27 @@ Router.route('/teachplan');
 //Router.route('/parentsletters');
 Router.route('/evaluation');
 Router.route('/checkinout');
-Router.route('/activities');
+
+Router.route('/activities',function(){
+  var activitylist = [];
+  //下面有很多过滤条件，学校和班级
+  dbActivities.find().forEach(function(act){
+    activitylist.push(act);
+  });
+  var data = {
+    returnurl:'',
+    activitylist:activitylist
+  }
+  this.render('activities', {data: data});
+});
+
+Router.route('/newactivity',function(){
+  var data = {
+    returnurl:'activities'
+  }
+  this.render('newactivity', {data: data});
+});
+
 Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');

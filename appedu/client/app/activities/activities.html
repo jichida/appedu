@@ -1,39 +1,27 @@
 <template name="activities">
 <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">活动管理</span>
+	<a href="/{{returnurl}}" class="back"><img src="images/mark1.png"></a><span class="category_h_title">活动管理</span>
    </header>
 <section class="content pad padb">
 <div  class="faq">
-<a href="activitiesfb"><div class="faq_1"><span>发表活动</span></div></a>
+{{#if isheaderteacher}}
+<a href="/newactivity"><div class="faq_1"><span>发表活动</span></div></a>
+{{/if}}
 </div>
 <div class="jxjh_1">
-<a href="news"><dl class="wbox"><dt><span class="ys3"></span><em>幼儿园</em></dt><dd><span>活动内容<em>时间：2015-08-20</em></span>学校举行运动会
-</dd></dl></a>
-<a href="news"><dl class="wbox"><dt><span class="ys2"></span><em>班级</em></dt><dd><span>活动内容<em>时间：2015-08-20</em></span>小6班举办亲子互动
-</dd></dl></a>
-<a href="news"><dl class="wbox"><dt><span class="ys2"></span><em>班级</em></dt><dd><span>活动内容<em>时间：2015-08-20</em></span>小6班举办亲子互动、拉拉队比赛、歌唱比赛
-</dd></dl></a>
+	{{#each activitylist}}
+	<a href="news"><dl class="wbox">
+		{{#if visiblerangeisclass}}
+		<dt><span class="ys2"></span><em>班级</em></dt>
+		{{else}}
+		<dt><span class="ys3"></span><em>幼儿园</em></dt>
+		{{/if}}
+		<dd><span>
+			{{content}}
+			<em>时间：{{activitydate}}</em></span>{{title}}
+	</dd></dl></a>
+	{{/each}}
 </div>
 </section>
 
-<nav id="nav" class="navbg">
-  <ul>
-    <li class="on"> <a href="/">
-      <div class="home_nav"></div>
-      <p>首页</p>
-      </a> </li>
-    <li class=""> <a href="qa">
-      <div class="classify_nav"></div>
-      <p>问答</p>
-      </a> </li>
-    <li class=""> <a href="evaluation">
-      <div class="nav3sty  cart_nav"></div>
-      <p>测评</p>
-      </a> </li>
-    <li class=""> <a href="profile">
-      <div class="user_nav"></div>
-      <p>我的</p>
-      </a> </li>
-  </ul>
-</nav>
 </template>
