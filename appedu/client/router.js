@@ -22,6 +22,7 @@ Router.route('/loginselectchild',function(){
     for( var i=0;i <children.length; i++){
       var curclasstermid = dbChildren.findOne(children[i].childid).curclasstermid;
       var child = {
+        childid:children.childid,
         childtruename:children[i].childname,
         curclasstermname:dbClassterms.find(curclasstermid).name,
       }
@@ -185,7 +186,7 @@ Router.route('/childlist',function(){
 });
 
 //新增孩子
-Router.route('/newchild',function(){
+Router.route('/newchild/:returnurl',function(){
   var schools = [];
   var classterms = [];
   var dbschools = dbSchools.find();
@@ -198,6 +199,7 @@ Router.route('/newchild',function(){
   });
 
   var data = {
+    returnurl:this.params.returnurl,
     schools:schools,
     classterms:classterms,
   };

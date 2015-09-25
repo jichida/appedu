@@ -21,7 +21,7 @@ Template.loginselectchild.events({
       //   }
 
     },
-    'click #btnaddchild':function(){
-
+    'click #btnselectchild':function(){
+        console.log("select child:" + this.childid);
     }
   });
