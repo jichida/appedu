@@ -290,15 +290,29 @@ Router.route('/activities',function(){
     schoolid = Session.get('curclassterm').schoolid;
     classtermid = Session.get('curclassterm').classtermid;
   }
+  console.log("schoolid:" + schoolid +",classid:" + classtermid);
   //下面有很多过滤条件，学校和班级
-  dbActivities.find().forEach(function(act){
-    activitylist.push(act);
+  dbActivities.find({schoolid:schoolid}).forEach(function(act){
+    if(act == 'class'){
+      if ( act.classtermid == 'classtermid'){
+        activitylist.push(act);
+      }
+    }
+    else{
+      activitylist.push(act);
+    }
+
   });
   var data = {
     returnurl:'',
     activitylist:activitylist
   }
   this.render('activities', {data: data});
+});
+
+Router.route('/activityinfo/:id',function(){
+  var actinfo = dbActivities.findOne(this.params.id);
+  this.render('activityinfo', {data: actinfo});
 });
 
 Router.route('/newactivity',function(){
