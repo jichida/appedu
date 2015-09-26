@@ -321,7 +321,37 @@ Router.route('/newactivity',function(){
   }
   this.render('newactivity', {data: data});
 });
+//-------------------------------------------------------------
+Router.route('/foods',function(){
+  var foodlist = [];
+  var schoolid = '';
+  if(Session.get('curclassterm')){
+    schoolid = Session.get('curclassterm').schoolid;
+  }
+  console.log("schoolid:" + schoolid);
+  //下面有很多过滤条件，学校和班级
+  dbFoods.find({schoolid:schoolid}).forEach(function(food){
+      foodlist.push(food);
+  });
+  var data = {
+    returnurl:'',
+    foodlist:foodlist
+  }
+  this.render('foods', {data: data});
+});
 
+Router.route('/foodinfo/:id',function(){
+  var food = foodlist.findOne(this.params.id);
+  this.render('foodinfo', {data: food});
+});
+
+Router.route('/newfood',function(){
+  var data = {
+    returnurl:'foods'
+  }
+  this.render('newfood', {data: data});
+});
+//---------------------------------------------
 Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');

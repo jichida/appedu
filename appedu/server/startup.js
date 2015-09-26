@@ -84,7 +84,9 @@ Meteor.publish("userData", function () {
   Meteor.publish("teachplans",function(){
       return dbTeachplans.find();
   });
-
+  Meteor.publish("foods", function () {
+     return dbFoods.find();
+  });
 
   //===================================================================
   if(dbConstaddress.find().count() == 0){

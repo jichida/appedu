@@ -1,13 +1,13 @@
 <template name="activities">
 <header id="header">
 	<a href="/{{returnurl}}" class="back"><img src="images/mark1.png"></a><span class="category_h_title">活动管理</span>
+	{{#if isheaderteacher}}
+	<span class="category_h_nav back1">
+	<a href="/newactivity">发表</a>
+	</span>
+	{{/if}}
    </header>
 <section class="content pad padb">
-<div  class="faq">
-{{#if isheaderteacher}}
-<a href="/newactivity"><div class="faq_1"><span>发表活动</span></div></a>
-{{/if}}
-</div>
 <div class="jxjh_1">
 	{{#each activitylist}}
 	<a href="/activityinfo/{{_id}}"><dl class="wbox">
