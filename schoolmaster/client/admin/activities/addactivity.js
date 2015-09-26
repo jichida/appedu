@@ -25,3 +25,7 @@ Template.addactivity.events({
 
     }
 });
+
+Template.addactivity.rendered=function() {
+    $('#activitydate').pickadate();
+}

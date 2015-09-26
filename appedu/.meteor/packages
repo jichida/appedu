@@ -14,7 +14,6 @@ mobile-experience
 mongo
 blaze-html-templates
 session
-jquery
 tracker
 logging
 reload
@@ -25,4 +24,6 @@ check
 tomi:upload-server
 tomi:upload-jquery
 twbs:bootstrap
+jquery
 msavin:mongol
+cwohlman:pickadate

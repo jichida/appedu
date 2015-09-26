@@ -21,4 +21,5 @@ Meteor.subscribe("foods");
 Meteor.subscribe('constaddress');
 
 Session.set("MeteorToys_display", true);
+
 });
