@@ -190,11 +190,55 @@ Router.route('/addfood', function () {
 
 Router.route('/updatefood/:id', function () {
   var onefood = dbFoods.findOne(this.params.id);
-  console.log("展示活动:" + EJSON.stringify(onefood));
+  console.log("展示食谱:" + EJSON.stringify(onefood));
 
   this.layout('adminmainlayout');
   this.render('adminnavbar', {to: 'adminnavbar'});
   this.render('updatefood', {to: 'admincontent',data:onefood});
+});
+
+
+//===================================================================================
+//教学计划列表页面
+Router.route('/admin/teachplans', function () {
+  var teachplanlist = [];
+  var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  dbTeachplans.find({schoolid:schoolid}).forEach(function(sp){
+      teachplanlist.push(sp);
+  });
+  console.log("展示教学计划:" + EJSON.stringify(teachplanlist));
+
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('teachplans', {to: 'admincontent',data:{teachplanlist:teachplanlist}});
+});
+
+Router.route('/addteachplan', function () {
+  this.layout('adminmainlayout');
+  var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+  var classtermlist = [];
+  dbClassterms.find({schoolid:schoolid}).forEach(function(cls){
+    classtermlist.push(cls);
+  });
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('addteachplan', {to: 'admincontent',data:{classtermlist:classtermlist}});
+});
+
+Router.route('/updateteachplan/:id', function () {
+  var oneteachplan = dbTeachplans.findOne(this.params.id);
+  console.log("展示教学计划:" + EJSON.stringify(oneteachplan));
+  var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+
+  var classtermlist = [];
+  dbClassterms.find({schoolid:schoolid}).forEach(function(cls){
+    classtermlist.push(cls);
+  });
+  var data = _.extend(oneteachplan,{
+    classtermlist:classtermlist
+  })
+  this.layout('adminmainlayout');
+  this.render('adminnavbar', {to: 'adminnavbar'});
+  this.render('updateteachplan', {to: 'admincontent',data:data});
 });
 
 //----------------------------------------------------------------

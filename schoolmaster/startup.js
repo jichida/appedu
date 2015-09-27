@@ -9,6 +9,7 @@ Meteor.startup(function(){
         Meteor.subscribe("classterms");
         Meteor.subscribe("activities");
         Meteor.subscribe("foods");
+        Meteor.subscribe("teachplan");
         Session.set("MeteorToys_display", true);
     }
 
@@ -30,6 +31,9 @@ Meteor.startup(function(){
      });
      Meteor.publish("foods", function () {
         return dbFoods.find();
+     });
+     Meteor.publish("teachplan", function () {
+        return dbTeachplans.find();
      });
 
  }

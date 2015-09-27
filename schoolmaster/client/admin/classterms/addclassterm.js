@@ -27,3 +27,8 @@ Template.addclassterm.events({
 
     }
 });
+
+Template.addclassterm.rendered=function() {
+  $('#termbegin').pickadate();
+  $('#termend').pickadate();
+}

@@ -28,3 +28,8 @@ Template.updateclassterm.events({
 
     }
 });
+
+Template.updateclassterm.rendered=function() {
+  $('#termbegin').pickadate();
+  $('#termend').pickadate();
+}

@@ -21,3 +21,7 @@ Template.updatefood.events({
 
     }
 });
+
+Template.updatefood.rendered=function() {
+    $('#fooddate').pickadate();
+}
