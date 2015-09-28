@@ -320,13 +320,18 @@ Router.route('/teachplan',function(){
         $lt:enddate,
       }
     };
-
+    var weekdaysFull= [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
     console.log("query:" + EJSON.stringify(querycondition));
     dbTeachplans.find(querycondition).forEach(function(plan){
+
+      var dayindexweekdate = moment(plan.teachdate).day();
+      if(dayindexweekdate == 0){
+        dayindexweekdate = 7;
+      }
       //weekname/teachername/teachcontent
       teachplanlist.push({
-        index:1,
-        weekname:'周一',
+        index:dayindexweekdate,
+        weekname:weekdaysFull[dayindexweekdate],
         teachername:plan.teachername,
         teachcontent:plan.teachcontent
       });
@@ -389,21 +394,76 @@ Router.route('/newactivity',function(){
 });
 //-------------------------------------------------------------
 Router.route('/foods',function(){
-  var foodlist = [];
-  var schoolid = '';
-  if(Session.get('curclassterm')){
-    schoolid = Session.get('curclassterm').schoolid;
-  }
-  console.log("schoolid:" + schoolid);
-  //下面有很多过滤条件，学校和班级
-  dbFoods.find({schoolid:schoolid}).forEach(function(food){
-      foodlist.push(food);
-  });
+
+  var getfoodlist = function(offsetweekdays){
+    var foodlist = [];
+    var mcurdate = moment();
+    var curweekdate = mcurdate.day();
+    if(curweekdate == 0){
+      curweekdate = 7;
+    }
+
+    if(offsetweekdays < 0){
+      var thisweekbegin = moment().subtract({days:curweekdate+6});
+      var thisweekend = moment().subtract({days:curweekdate});
+    }
+    else if(offsetweekdays == 0){
+      var thisweekbegin = moment().subtract({days:curweekdate-1});
+      var thisweekend = moment().add({days:7-curweekdate});
+    }
+    else{
+      var thisweekbegin = moment().add({days:curweekdate+6});
+      var thisweekend = moment().add({days:14-curweekdate});
+    }
+
+    var curdate = mcurdate.format('YYYY-MM-DD');
+    var startdate =  thisweekbegin.format('YYYY-MM-DD');
+    var enddate = thisweekend.format('YYYY-MM-DD');
+    console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
+  //  .add(1, 'day');
+    var schoolid = '';
+    var classtermid = '';
+    if(Session.get('curclassterm')){
+      schoolid = Session.get('curclassterm').schoolid;
+      classtermid = Session.get('curclassterm').classtermid;
+    }
+
+    var querycondition =
+    {
+      schoolid:schoolid,
+      fooddate:{
+        $gt:startdate,
+        $lt:enddate,
+      }
+    };
+    var weekdaysFull= [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
+    console.log("query:" + EJSON.stringify(querycondition));
+    dbFoods.find(querycondition).forEach(function(food){
+
+      var dayindexweekdate = moment(food.fooddate).day();
+      if(dayindexweekdate == 0){
+        dayindexweekdate = 7;
+      }
+      //weekname/teachername/teachcontent
+      foodlist.push({
+        index:dayindexweekdate,
+        weekname:weekdaysFull[dayindexweekdate],
+        foodname:food.foodname,
+        content:food.content
+      });
+    });
+    console.log("foodlist:" + EJSON.stringify(foodlist));
+    return foodlist;
+  };
+//------------------------------------------------------------------------
   var data = {
-    returnurl:'',
-    foodlist:foodlist
+    lastfoodlist:getfoodlist(-7),
+    thisfoodlist:getfoodlist(0),
+    nextfoodlist:getfoodlist(7),
   }
+  console.log("foodlist:" + EJSON.stringify(data));
   this.render('foods', {data: data});
+
 });
 
 Router.route('/foodinfo/:id',function(){
