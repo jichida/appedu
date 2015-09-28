@@ -4,7 +4,7 @@
 <template name="newchild">
 <header id="header">
 	<a href="/{{returnurl}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">新增孩子</span>
-   </header>
+</header>
 <section class="login_con padb">
     <section class="user_login">
         <form action="#" method="post" enctype="multipart/form-data" id="theForm">
@@ -13,35 +13,29 @@
                   <div>
                   <label for="">省份</label>
                     <select class="J_province borderbox" id='J_province'>
-                        <option>选择</option>
+                    	<option value='0'>-请选择-</option>
+                        {{#each newProvince}}
+                        <option value='{{name}}'>{{name}}</option>
+                      	{{/each}}
                     </select>
                   </div>
                 </div>
                 <div class="form_mod form_select">
                   <div>
                     <label for="">城市</label>
-                    <select class="J_city borderbox">
-                      {{#each address}}
-                        {{#each province}}
-                        <option value='{{province}}'>{{province}}</option>
-                        {{/each}}
-                      {{/each}}
+                    <select class="J_city borderbox" id='J_city'>
+                    	<option value='0'>-请选择-</option>
                     </select>
                     </div>
                 </div>
-                <input type = 'text' name='province2' value = '2'/>
-                <input type = 'text' name='province' value = '{{#each address}}{{province}}{{/each}}'/>
-                <input type = 'text' name='cities' value = '{{#each address}}{{cities}}{{/each}}'/>
-
-                <span id='ddd'></span>
 
                 <div class="form_mod form_select">
                   <div>
                   <label for="">幼儿园</label>
                     <select class="select" id="selschool" data-tmp="">
-                      {{#each schools}}
+                      	{{#each schools}}
                       	<option value="{{_id}}">{{name}}</option>
-											{{/each}}
+						{{/each}}
                     </select>
                   </div>
                 </div>
@@ -81,3 +75,4 @@
 </section>
 
 </template>
+
