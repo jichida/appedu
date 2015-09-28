@@ -276,7 +276,20 @@ Router.route('/studentslist',function(){
 });
 Router.route('/basicinfo');
 
-Router.route('/teachplan');
+Router.route('/teachplan',function(){
+  var thiseachplanlist = [];
+  var lasteachplanlist = [];
+  var nexteachplanlist = [];
+
+
+  var data = {
+    lasteachplanlist:lasteachplanlist,
+    thiseachplanlist:thiseachplanlist,
+    nexteachplanlist:nexteachplanlist,
+  }
+  console.log("teachplan:" + EJSON.stringify(data));
+  this.render('teachplan', {data: data});
+});
 //Router.route('/profile');
 //Router.route('/parentsletters');
 Router.route('/evaluation');
