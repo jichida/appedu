@@ -3,8 +3,8 @@ Template.addteachplan.events({
       event.preventDefault();
 
       var teachcontent =  $("#teachcontent").val();
-      var teachdate =  $("#teachdate").val(); 
-      var teachername = $("teachername").val();
+      var teachdate =  $("#teachdate").val();
+      var teachername = $("#teachername").val();
       var content =  $("#content").val();
       var classtermname = $("#classtermtype").find("option:selected").text();
       var classtermid = $("#classtermtype").val();

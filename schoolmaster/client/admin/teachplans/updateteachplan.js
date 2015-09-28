@@ -4,7 +4,7 @@ Template.updateteachplan.events({
 
       var teachcontent =  $("#teachcontent").val();
       var teachdate =  $("#teachdate").val();
-      var teachername = $("teachername").val();
+      var teachername = $("#teachername").val();
       var content =  $("#content").val();
       var classtermname = $("#classtermtype").find("option:selected").text();
       var classtermid = $("#classtermtype").val();
@@ -20,7 +20,7 @@ Template.updateteachplan.events({
           classtermname:classtermname,
       }
       console.log("update teachplanDoc:" + EJSON.stringify(teachplanDoc));
-      Meteor.call("updateteachplan",teachplanDoc);
+      Meteor.call("updateteachplan",this._id,teachplanDoc);
 
       Router.go("/admin/teachplans");
 
