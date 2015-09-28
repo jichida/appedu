@@ -277,15 +277,68 @@ Router.route('/studentslist',function(){
 Router.route('/basicinfo');
 
 Router.route('/teachplan',function(){
-  var thiseachplanlist = [];
-  var lasteachplanlist = [];
-  var nexteachplanlist = [];
 
+  var getteachplanlist = function(offsetweekdays){
+    var teachplanlist = [];
+    var mcurdate = moment();
+    var curweekdate = mcurdate.day();
+    if(curweekdate == 0){
+      curweekdate = 7;
+    }
 
+    if(offsetweekdays < 0){
+      var thisweekbegin = moment().subtract({days:curweekdate+6});
+      var thisweekend = moment().subtract({days:curweekdate});
+    }
+    else if(offsetweekdays == 0){
+      var thisweekbegin = moment().subtract({days:curweekdate-1});
+      var thisweekend = moment().add({days:7-curweekdate});
+    }
+    else{
+      var thisweekbegin = moment().add({days:curweekdate+6});
+      var thisweekend = moment().add({days:14-curweekdate});
+    }
+
+    var curdate = mcurdate.format('YYYY-MM-DD');
+    var startdate =  thisweekbegin.format('YYYY-MM-DD');
+    var enddate = thisweekend.format('YYYY-MM-DD');
+    console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
+  //  .add(1, 'day');
+    var schoolid = '';
+    var classtermid = '';
+    if(Session.get('curclassterm')){
+      schoolid = Session.get('curclassterm').schoolid;
+      classtermid = Session.get('curclassterm').classtermid;
+    }
+
+    var querycondition =
+    {
+      schoolid:schoolid,
+      classtermid:classtermid,
+      teachdate:{
+        $gt:startdate,
+        $lt:enddate,
+      }
+    };
+
+    console.log("query:" + EJSON.stringify(querycondition));
+    dbTeachplans.find(querycondition).forEach(function(plan){
+      //weekname/teachername/teachcontent
+      teachplanlist.push({
+        index:1,
+        weekname:'周一',
+        teachername:plan.teachername,
+        teachcontent:plan.teachcontent
+      });
+    });
+    console.log("teachplanlist:" + EJSON.stringify(teachplanlist));
+    return teachplanlist;
+  };
+//------------------------------------------------------------------------
   var data = {
-    lasteachplanlist:lasteachplanlist,
-    thiseachplanlist:thiseachplanlist,
-    nexteachplanlist:nexteachplanlist,
+    lasteachplanlist:getteachplanlist(-7),
+    thiseachplanlist:getteachplanlist(0),
+    nexteachplanlist:getteachplanlist(7),
   }
   console.log("teachplan:" + EJSON.stringify(data));
   this.render('teachplan', {data: data});
