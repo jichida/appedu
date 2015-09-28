@@ -316,11 +316,11 @@ Router.route('/teachplan',function(){
       schoolid:schoolid,
       classtermid:classtermid,
       teachdate:{
-        $gt:startdate,
-        $lt:enddate,
+        $gte:startdate,
+        $lte:enddate,
       }
     };
-    var weekdaysFull= [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
+    var weekdaysFull= [ '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','星期日'];
     console.log("query:" + EJSON.stringify(querycondition));
     dbTeachplans.find(querycondition).forEach(function(plan){
 
@@ -331,7 +331,7 @@ Router.route('/teachplan',function(){
       //weekname/teachername/teachcontent
       teachplanlist.push({
         index:dayindexweekdate,
-        weekname:weekdaysFull[dayindexweekdate],
+        weekname:weekdaysFull[dayindexweekdate-1],
         teachername:plan.teachername,
         teachcontent:plan.teachcontent
       });
@@ -432,11 +432,11 @@ Router.route('/foods',function(){
     {
       schoolid:schoolid,
       fooddate:{
-        $gt:startdate,
-        $lt:enddate,
+        $gte:startdate,
+        $lte:enddate,
       }
     };
-    var weekdaysFull= [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
+    var weekdaysFull= [ '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','星期日' ];
     console.log("query:" + EJSON.stringify(querycondition));
     dbFoods.find(querycondition).forEach(function(food){
 
@@ -447,7 +447,7 @@ Router.route('/foods',function(){
       //weekname/teachername/teachcontent
       foodlist.push({
         index:dayindexweekdate,
-        weekname:weekdaysFull[dayindexweekdate],
+        weekname:weekdaysFull[dayindexweekdate-1],
         foodname:food.foodname,
         content:food.content
       });
