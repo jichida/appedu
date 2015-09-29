@@ -509,7 +509,6 @@ Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');
 //Router.route('/register');
-Router.route('/qaxq');
 Router.route('/growth');
 Router.route('/studentslistxq');
 Router.route('/studentslistxg');
@@ -521,7 +520,6 @@ Router.route('/activitiesfb');
 
 Router.route('/classxz');
 //Router.route('/changepassword');
-Router.route('/questionnaire');
 Router.route('/news');
 Router.route('/mischiefxz');
 
@@ -615,3 +613,46 @@ Router.route('/qaxq/:id',function(){
 
 Router.route('/sp');
 Router.route('/dlls');
+
+Router.route('/questionnaire',function(){
+    console.log("questionnaire.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('questionnaire', {to: 'content'});
+});
+
+Router.route('/questionnairexz',function(){
+    console.log("questionnairexz.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('questionnairexz', {to: 'content'});
+});
+
+Router.route('/questionnairexq/:id',function(){
+    console.log("questionnairexq.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    if(Roles.userIsInRole(Meteor.user(), ['parent'])){
+       if(dbQnfeedback.find({'qnaireid':this.params.id,'answererid':Meteor.userId()}).count()>0){
+           Router.go("/qnfeedbackxq/"+this.params.id+"/"+Meteor.userId());
+       }else{
+           Router.go("/qnfeedbackxz/"+this.params.id);
+       }
+    }else{
+        this.render('questionnairexq', {to: 'content',data : {'qnid':this.params.id}});
+    }
+});
+
+Router.route('/qnfeedbackxz/:qnid',function(){
+    console.log("questionnairexq.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('qnfeedbackxz', {to: 'content',data : {'qnid':this.params.qnid}});
+});
+
+Router.route('/qnfeedbackxq/:qnid/:answererid',function(){
+    console.log("questionnairexq.html");
+    this.layout('mainlayout');
+    this.render('navbar', {to: 'navbar'});
+    this.render('qnfeedbackxq', {to: 'content',data : {'qnid':this.params.qnid,'answererid':this.params.answererid}});
+});

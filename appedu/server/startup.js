@@ -71,11 +71,19 @@ Meteor.publish("userData", function () {
   Meteor.publish("teachplans",function(){
       return dbTeachplans.find();
   });
+
   Meteor.publish("foods", function () {
      return dbFoods.find();
   });
   Meteor.publish('userchildren',function(){
       return dbUserchildren.find();
+  });
+  
+  Meteor.publish("questionnaire",function(){
+      return dbQuestionnaire.find();
+  });
+  Meteor.publish("qnfeedback",function(){
+      return dbQnfeedback.find();
   });
 
   //===================================================================

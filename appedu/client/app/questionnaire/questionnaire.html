@@ -1,0 +1,22 @@
+<template name="questionnaire">
+    <header id="header">
+        <a href="javascript:history.go(-1);" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">问卷调查</span>
+    </header>
+    <section class="content pad padb">
+        {{#if isheaderteacher}}
+            <div  class="faq"> <a href="/questionnairexz"><div class="faq_1"><span>发起问卷调查</span></div></a> </div>
+        {{/if}}
+        <div class="jxjh_1">
+            {{#each questionnairelist }}
+                <dl class="wbox">
+                    <dt><span class="ys2"></span><em>3/10</em></dt>
+                    <dd>
+                        <span>调查内容<em>发起时间：{{createtime}}</em></span>
+                        <a href="/questionnairexq/{{_id}}">{{qnairetitle}}</a>
+                    </dd>
+                </dl>
+            {{/each}}
+        </div>
+    </section>
+
+</template>
