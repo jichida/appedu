@@ -134,7 +134,6 @@ Meteor.publish("userData", function () {
     cities:cities,
   };
   dbConstaddress.insert(address);
-
   }
 
 });

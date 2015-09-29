@@ -10,6 +10,7 @@ Meteor.startup(function(){
         Meteor.subscribe("activities");
         Meteor.subscribe("foods");
         Meteor.subscribe("teachplan");
+        Meteor.subscribe("constaddress");
         Session.set("MeteorToys_display", true);
     }
 
@@ -34,6 +35,9 @@ Meteor.startup(function(){
      });
      Meteor.publish("teachplan", function () {
         return dbTeachplans.find();
+     });
+     Meteor.publish("constaddress", function () {
+        return dbConstaddress.find();
      });
 
  }

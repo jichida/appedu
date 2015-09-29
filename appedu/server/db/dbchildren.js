@@ -25,9 +25,13 @@ Meteor.methods({
                  'blackflowerlist':[]
              });
          }
-
        }
-
+       return childid;
+     },
+     'addChildtoschool':function(schoolid,paraentuser,childid){
+         if (Roles.userIsInRole(parentuser, ['parent'])) {
+           dbChildren.update(childid, {$set: {schoolid: schoolid}});
+         }
      },
      'addChildtoclassterm':function(classtermid,parentuser,childid){
        if (Roles.userIsInRole(parentuser, ['parent'])) {

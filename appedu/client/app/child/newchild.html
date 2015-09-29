@@ -9,64 +9,45 @@
     <section class="user_login">
         <form action="#" method="post" enctype="multipart/form-data" id="theForm">
             <section class="lcon user_input telephone_area">
-            <div class="form_mod form_select">
-                  <div>
-                  <label for="">省份</label>
-                    <select class="J_province borderbox" id='J_province'>
-                    	<option value='0'>-请选择-</option>
-                        {{#each newProvince}}
-                        <option value='{{name}}'>{{name}}</option>
-                      	{{/each}}
-                    </select>
-                  </div>
-                </div>
-                <div class="form_mod form_select">
-                  <div>
-                    <label for="">城市</label>
-                    <select class="J_city borderbox" id='J_city'>
-                    	<option value='0'>-请选择-</option>
-                    </select>
-                    </div>
-                </div>
+							<div class="form_mod form_select">
+								<div>
+								<label for="">家长</label>
+									<select class="select" id="home_address-sarea" data-tmp="">
+										<option value="0">请选择</option>
+										<option value="100000">父亲</option>
+										<option value="100073">母亲</option>
+									</select>
+								</div>
+							</div>
+							<section class="lcon pass_input">
+									<input class="admin" id="truename" value="" maxlength="20" placeholder="孩子的姓名：">
+							</section>
+							<section class="lcon pass_input">
+									<input class="admin" id="birthday" value="" maxlength="20" placeholder="出生日期：">
+							</section>
 
-                <div class="form_mod form_select">
-                  <div>
-                  <label for="">幼儿园</label>
-                    <select class="select" id="selschool" data-tmp="">
-                      	{{#each schools}}
-                      	<option value="{{_id}}">{{name}}</option>
-						{{/each}}
-                    </select>
-                  </div>
-                </div>
-                <div class="form_mod form_select">
-                  <div>
-                  <label for="">班级</label>
-                    <select class="select" id="selclass" data-tmp="">
-											{{#each classterms}}
-                        <option value="{{_id}}">{{name}}</option>
-											{{/each}}
-                    </select>
-                  </div>
-                </div>
-                <section class="lcon pass_input">
-                    <input class="admin" id="truename" value="" maxlength="20" placeholder="孩子的姓名：">
-                </section>
-                <div class="form_mod form_select">
-                  <div>
-                  <label for="">家长</label>
-                    <select class="select" id="home_address-sarea" data-tmp="">
-                      <option value="0">请选择</option>
-                      <option value="100000">父亲</option>
-                      <option value="100073">母亲</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="gift_btn" style="margin-left:20px; margin-right:20px">
-                      <a href="#" id="btnaddclass" title="会员登录">加入班级</a>
-                </div>
+							<label class="col-sm-2 control-label">性别</label>
+
+						       <div class="col-sm-4">
+						         <div class="radio">
+						           <label for="male">
+						             <input type="radio" name="gender" id="male" value="Male"/>
+						           男</label>
+						         </div>
+
+						         <div class="radio">
+						           <label for="female">
+						             <input type="radio" name="gender" id="female" value="Female"/>
+						           女</label>
+						         </div>
+						       </div>
+
+
+
             </section>
-
+						<div class="gift_btn" style="margin-left:20px; margin-right:20px">
+									<a href="#" id="btnaddchild" title="会员登录">新建孩子</a>
+						</div>
 
          </form>
     </section>
@@ -75,4 +56,3 @@
 </section>
 
 </template>
-

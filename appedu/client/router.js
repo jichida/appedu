@@ -185,35 +185,34 @@ Router.route('/childlist',function(){
     this.render('childlist', {data: data});
 });
 
+
+//------------------------------------------------------------
 //新增孩子
 Router.route('/newchild/:returnurl',function(){
-	var schools = [];
-	var classterms = [];
-	var dbschools = dbSchools.find();
-	dbschools.forEach(function(sc){
-		schools.push(sc);
-	});
-	dbclassterms = dbClassterms.find();
-	dbclassterms.forEach(function(cls){
-		classterms.push(cls);
-	});	
-	var pr = dbConstaddress.findOne().province;
-	var provinceList = [];
-	for (var i=0; i<pr.length; i++){
-		var p = {
-			'name': pr[i],
-			'id': i
-		};
-		provinceList.push(p);
-	}
 	var data = {
 		returnurl: this.params.returnurl,
-		schools: schools,
-		newProvince: provinceList
-	};	
+	};
 	this.render('newchild', {data: data});
 });
+Router.route('/newchildsetschool/:childid/:returnurl',function(){
+	var data = {
+		returnurl: this.params.returnurl,
+    childid:this.params.childid,    
+	};
+	this.render('newchildsetschool', {data: data});
+});
+Router.route('/newchildsetclassterm/:childid/:schoolid/:returnurl',function(){
+	var data = {
+		returnurl: this.params.returnurl,
+    childid:this.params.childid,
+    schoolid:this.params.schoolid,
+	};
+	this.render('newchildsetclassterm', {data: data});
+});
+//------------------------------------------------------------
 
+
+//--------------------------------
 Router.route('/myclassterm',function(){
   //<----------------
   // <td>{{classname}}</td>
