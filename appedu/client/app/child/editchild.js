@@ -1,6 +1,6 @@
-Template.newchild.events({
-	"click #btnaddchild": function (event, tmpl) {
-		console.log("click btn btnaddclass");
+Template.editchild.events({
+	"click #btneditchild": function (event, tmpl) {
+		console.log("click btn btneditchild");
 		event.preventDefault();
 		var truename =  $('#truename').val();
 		var sex = tmpl.find('input:radio[name=gender]:checked').value;
@@ -14,11 +14,16 @@ Template.newchild.events({
 			createuserid:Meteor.userId(),
 			createusername:Meteor.user().username,
 			releationshipname:releationshipname
-		};
-
-		Meteor.call('insertChild', Meteor.user(),childDoc,this.returnurl,function(error,result){
+		}
+		Meteor.call('editChild',this.childid,childDoc,this.returnurl,function(error,result){
 			if(!error){
-				Router.go('/newchildsetschool/' + result.childid +"/" + result.returnurl);
+        Router.go('/'+result.returnurl);
+        // if(dbChildren.findOne(result.childid).schoolid){
+        //   Router.go('/'+result.returnurl);
+        // }
+        // else{
+        //   Router.go('/newchildsetschool/' + result.childid +"/" + result.returnurl);
+        // }
 			}
 			else{
 				alert(error.reason);
@@ -26,7 +31,7 @@ Template.newchild.events({
 		});
 	}
 });
-Template.newchild.helpers({
+Template.editchild.helpers({
 	'releationshiplist':function(){
 		return [
 			{name:'爸爸'},
@@ -46,6 +51,6 @@ Template.newchild.helpers({
 	}
 });
 
-Template.newchild.rendered=function() {
+Template.editchild.rendered=function() {
     $('#birthday').pickadate();
 }

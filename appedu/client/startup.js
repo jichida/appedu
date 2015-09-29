@@ -19,7 +19,7 @@ Meteor.subscribe('teachplans');//教学计划
 Meteor.subscribe('userData');
 Meteor.subscribe("foods");
 Meteor.subscribe('constaddress');
-
+Meteor.subscribe('userchildren');
 Session.set("MeteorToys_display", true);
 
 });

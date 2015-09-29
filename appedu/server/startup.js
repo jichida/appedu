@@ -6,19 +6,6 @@
 // 家长新建孩子
 // 家长让孩子加入到该班级
 
-// 家长：
-// 用户名：parenttest
-// 密码：123456
-//
-// 园长：
-// 用户名：schoolmastertest
-// 密码：123456
-//
-//
-//班主任：
-//用户名：headerteachertest
-//密码：123456
-
 //注：为简单期间，本版本只考虑班主任，不考虑任课老师
 Meteor.startup(function(){
   //===================================================================
@@ -86,6 +73,9 @@ Meteor.publish("userData", function () {
   });
   Meteor.publish("foods", function () {
      return dbFoods.find();
+  });
+  Meteor.publish('userchildren',function(){
+      return dbUserchildren.find();
   });
 
   //===================================================================

@@ -9,7 +9,7 @@ Meteor.startup(function(){
       clear: '清除',
       close: '关闭',
       firstDay: 1,
-      format: 'YYYY-MM-DD',
+      format: 'yyyy-mm-dd',
       formatSubmit: 'yyyy/mm/dd'
   });
 

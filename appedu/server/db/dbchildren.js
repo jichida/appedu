@@ -1,42 +1,63 @@
 Meteor.methods({
-    'insertChild': function(user,childDoc){
+
+    'insertChild': function(user,childDoc,returnurl){
        console.log("insertchildDoc:" + EJSON.stringify(childDoc));
        var childid = dbChildren.insert(childDoc);
        //把孩子放入自己信息中
        if (Roles.userIsInRole(user, ['parent'])) {
-         var children = [];
-         if(user.children){
-           children = user.children;
-         }
-         var child = {
+         //插入孩子和家长关系
+         var userchildrenDoc = {
+           userid:user._id,
            childid:childid,
-           childname:childDoc.truename,
-         };
-         children.push(child);
-         Meteor.users.update(user._id, {$set: {children: children}});
-
-         if(childDoc.curclasstermid){
-             Meteor.call('addChildtoclassterm',childDoc.curclasstermid,user,childid);
-             Meteor.call('insertFlowerslist',{
-                 'classtermid':childDoc.curclasstermid,
-                 'childid':childid,
-                 'childname':childDoc.truename,
-                 'redflowerlist':[],
-                 'blackflowerlist':[]
-             });
+           releationshipname:childDoc.releationshipname
          }
+         dbUserchildren.insert(userchildrenDoc);
        }
-       return childid;
+       return {
+         returnurl:returnurl,
+         childid:childid
+       };
      },
-     'addChildtoschool':function(schoolid,paraentuser,childid){
+     'editChild':function(childid,childDoc,returnurl){
+        console.log("editChild:" + EJSON.stringify(childDoc));
+        dbChildren.update(childid, {$set: childDoc});
+        if(childDoc.releationshipname){
+          var userchild = dbUserchildren.findOne({
+            userid:Meteor.userId(),
+            childid:childid,
+          });
+          if(userchild){
+            dbUserchildren.update(userchild._id,{$set:{releationshipname:childDoc.releationshipname}});
+          }
+          else{
+            var userchildrenDoc = {
+              userid:Meteor.userId(),
+              childid:childid,
+              releationshipname:childDoc.releationshipname
+            }
+            dbUserchildren.insert(userchildrenDoc);
+          }
+
+        }
+        return {
+          returnurl:returnurl,
+          childid:childid
+        };
+      },
+     'addChildtoschool':function(schoolid,parentuser,childid){
          if (Roles.userIsInRole(parentuser, ['parent'])) {
-           dbChildren.update(childid, {$set: {schoolid: schoolid}});
+           dbChildren.upsert(childid, {$set: {schoolid: schoolid}});
          }
      },
      'addChildtoclassterm':function(classtermid,parentuser,childid){
        if (Roles.userIsInRole(parentuser, ['parent'])) {
           //把学生和自己放入班级中
           var child = dbChildren.findOne(childid);
+
+          console.log("add child/" +"childid:"+childid + "/curclasstermid:" + classtermid );
+          dbChildren.update(childid, {$set:{curclasstermid: classtermid}});
+          //追加班级花名册
+
           var classterm = dbClassterms.findOne(classtermid);
           if(classterm && child){
             var studentslist = [];
@@ -57,6 +78,14 @@ Meteor.methods({
             studentslist.push(student);
             dbClassterms.update(classtermid, {$set: {studentslist: studentslist}});
 
+            //新增红花榜数据
+            Meteor.call('insertFlowerslist',{
+                'classtermid':classtermid,
+                'childid':childid,
+                'childname':child.truename,
+                'redflowerlist':[],
+                'blackflowerlist':[]
+            });
             console.log("addChildtoclassterm:" + EJSON.stringify(dbClassterms.findOne(classtermid)));
           }
        }

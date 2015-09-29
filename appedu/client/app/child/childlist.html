@@ -8,23 +8,39 @@
 
 <template name="childlist">
 <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">孩子列表</span><span class="category_h_nav back1"><a href="/newchild/childlist">新增</a></span>
+	<a href="/profile" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">孩子列表</span><span class="category_h_nav back1"><a href="/newchild/childlist">新增</a></span>
    </header>
 <section class="content pad padb pad10">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="banji" style="margin-top:0px">
   <tr>
-    <th>孩子姓名</th>
+		<th>孩子姓名</th>
+		<th>孩子关系</th>
+	  <th>所在班级</th>
     <th>所在幼儿园</th>
 		<th>操作</th>
   </tr>
-	{{#each childreninfo}}
+	{{#each childlist}}
   <tr>
-    <td>{{childname}}</td>
+		<td>{{childname}}</td>
+		<td>{{releationshipname}}</td>
+		<td>{{classtermname}}</td>
     <td>{{schoolname}}</td>
-		<td><a href="#" id="btneditchild">编辑</a>
-			<a href="#" id="btnexitclass">退出班级</a>
-			<a href="#" id="btndeletechild">删除</a>
+		<td>
+			<a href="/editchild/{{childid}}/childlist">编辑</a>
 
+			{{#if isinschool}}
+				{{#if isinclassterm}}
+				<a href="#" id="btnexitclass">退出班级</a>
+				{{else}}
+				<a href='/newchildsetclassterm/{{childid}}/{{schoolid}}/childlist'>加入班级</a>
+				{{/if}}
+			<a href="#" id="btnexitschool">退出学校</a>
+			{{else}}
+				<a href='/newchildsetschool/{{childid}}/childlist'>加入学校</a>
+			{{/if}}
+
+
+			<a href="#" id="btndeletechild">删除</a>
 		</td>
 
   </tr>

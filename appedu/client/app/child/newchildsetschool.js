@@ -7,7 +7,8 @@ Template.newchildsetschool.events({
     var selschooltypestring = $("#selschool").find("option:selected").text();
     var selschooltypevalue = $("#selschool").val();
     var schoolid = selschooltypevalue;
-  	Meteor.call('addChildtoschool',schoolid ,Meteor.user(), this.childid);
+    console.log(EJSON.stringify(Meteor.user()));
+  	Meteor.call('addChildtoschool',schoolid,Meteor.user(), this.childid);
 
     Router.go('/newchildsetclassterm/' +childid + "/" + schoolid + "/" + this.returnurl );
     //加入学校

@@ -8,7 +8,7 @@ Template.newchildsetclassterm.events({
 		var selclasstypevalue = $("#selclass").val();
 		var classtermid = selclasstypevalue;
 
-		Meteor.call('addChildtoclassterm',classtermid, Meteor.user(), this.schoolid);
+		Meteor.call('addChildtoclassterm',classtermid, Meteor.user(), this.childid);
 		Router.go('/' + this.returnurl);
 	}
 

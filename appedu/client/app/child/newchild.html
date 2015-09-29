@@ -3,7 +3,7 @@
 -->
 <template name="newchild">
 <header id="header">
-	<a href="/{{returnurl}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">新增孩子</span>
+	<a href="/{{returnurl}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">新增孩子信息</span>
 </header>
 <section class="login_con padb">
     <section class="user_login">
@@ -12,10 +12,11 @@
 							<div class="form_mod form_select">
 								<div>
 								<label for="">家长</label>
-									<select class="select" id="home_address-sarea" data-tmp="">
+									<select id="releationshipname" class="select" data-tmp="">
 										<option value="0">请选择</option>
-										<option value="100000">父亲</option>
-										<option value="100073">母亲</option>
+										{{#each releationshiplist}}
+											<option>{{name}}</option>
+										{{/each}}
 									</select>
 								</div>
 							</div>

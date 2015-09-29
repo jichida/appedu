@@ -17,7 +17,7 @@ Meteor.methods({
 			}
 		}
 		if(j>0){
-			var x=0,lovelist2=[];			
+			var x=0,lovelist2=[];
 			for(x in lovelist){
 				if(lovelist[i].uid!=doc.uid){
 					lovelist2.push(lovelist[i]);
