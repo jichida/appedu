@@ -84,6 +84,12 @@ Meteor.publish("userData", function () {
   Meteor.publish("teachplans",function(){
       return dbTeachplans.find();
   });
+  Meteor.publish("questionnaire",function(){
+      return dbQuestionnaire.find();
+  });
+  Meteor.publish("qnfeedback",function(){
+      return dbQnfeedback.find();
+  });
 
 
   //===================================================================

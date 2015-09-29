@@ -19,4 +19,10 @@ Meteor.subscribe('teachplans');//教学计划
 Meteor.subscribe('userData');
 
 Meteor.subscribe('constaddress');
+
+Meteor.subscribe('questionnaire');//问卷调查
+Meteor.subscribe('qnfeedback');//问卷调查反馈
+
+    Session.set("MeteorToys_display", true);
+
 });
