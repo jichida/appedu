@@ -1,4 +1,4 @@
-<template name="loginselectchild">
+﻿<template name="loginselectchild">
 
 <header id="header">
   <span class="category_h_title">选择自己的孩子</span>
@@ -21,6 +21,15 @@
         </h2>
         </li>
         {{/each}}
+
+        <div class="form_mod form_select">
+          <label for="">孩子列表</label>
+            <select class="select" id="selchild" data-tmp="">
+              {{#each mychildlist}}
+                <option value="{{childid}}">{{childname}}</option>
+              {{/each}}
+            </select>
+        </div>
       </div>
     </div>
   </div>

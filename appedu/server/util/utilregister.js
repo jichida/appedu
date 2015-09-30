@@ -1,4 +1,4 @@
-Meteor.methods({
+﻿Meteor.methods({
     'getauthcode': function(phonenumber){
        var authcode = "";
        for (var i=0;i<4;i++){
@@ -21,5 +21,6 @@ Meteor.methods({
       if(userid){
         Accounts.setPassword(userid, userDoc.password);
       }
-    }
+    },
+
   });

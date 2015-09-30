@@ -1,4 +1,4 @@
-Template.sendletter.helpers({
+﻿Template.sendletter.helpers({
   'isparent':function(){
     return  Roles.userIsInRole(Meteor.user(), ['parent']);
   },
@@ -6,14 +6,15 @@ Template.sendletter.helpers({
     return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
   },
   'sendusers':function(){
+    var classtermid = Meteor.user().profile.curclasstermid;
     if(Roles.userIsInRole(Meteor.user(), ['parent'])){
       return [{
-        userid:Session.get('curclassterm').headerteacherid,
-        truename:Session.get('curclassterm').headerteachername,
+        userid: dbClassterms.findOne(classtermid).headerteacherid,
+        truename:dbClassterms.findOne(classtermid).headerteachername,
       }];
     }
     if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
-      return Session.get('curclassterm').parentlist;
+      return dbClassterms.findOne(classtermid).parentlist;
     }
     return [];
   },
@@ -51,7 +52,7 @@ Template.sendletter.events({
      var touserid =  $("#specialrecvuser").val();
      var totruename =  $("#specialrecvuser").find("option:selected").text();
      var recvid = this.recvid;
-     var classtermid = Session.get('curclassterm').classtermid;
+     var classtermid = Meteor.user().profile.curclasstermid;
 
      var images = [];
 

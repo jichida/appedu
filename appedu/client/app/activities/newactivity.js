@@ -1,4 +1,4 @@
-Template.newactivity.events({
+﻿Template.newactivity.events({
     'click #btnaddactivity':function(){
       event.preventDefault();
 
@@ -8,10 +8,7 @@ Template.newactivity.events({
 
   //    var visiblerange = $("#visiblerange").find("option:selected").text();
       var visiblerange = $("#visiblerange").val();
-      var schoolid = '';
-      if(Session.get('curclassterm')){
-        schoolid = Session.get('curclassterm').schoolid;
-      }
+      var schoolid = Meteor.user().profile.curschoolid;
       var activityDoc = {
           title:title,
           activitydate:activitydate,

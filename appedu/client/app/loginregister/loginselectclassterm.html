@@ -1,4 +1,4 @@
-<template name="loginselectclassterm">
+﻿<template name="loginselectclassterm">
 
 <header id="header">
 <span class="category_h_title">选择自己的班级</span>
@@ -9,7 +9,7 @@
       <ol class="product-style-list" style="width: 1424px;">
         <li class="product-style-item"> <a href="#" id="btnaddchild"><span style="font-size:24px; margin-top:26px">+</span></a> </li>
         {{#each classtermlist}}
-        <li class="product-style-item"> <a href="#"><span>{{childtruename}}</span><em>{{curclasstermname}}</em></a> </li>
+        <li class="product-style-item"> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
         {{/each}}
       </ol>
     </div>

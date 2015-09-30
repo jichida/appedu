@@ -92,16 +92,7 @@ Router.route('/profile', function () {
     if (Meteor.user()) {
       console.log("判断角色登录 login");
       if (Roles.userIsInRole(Meteor.user(), ['parent'])) {
-        if(Meteor.user().children){
-          console.log("parent(家长) children:" + EJSON.stringify(Meteor.user().children));
-          if(Meteor.user().children.length){
-            var childid = Meteor.user().children[0].childid;
-            Meteor.subscribe("curclassterm",childid,function(){
-                Session.set('curclassterm',dbClientClassterm.findOne());
-                console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
-            });
-          }
-        }
+        console.log("parent(家长) login");
       }
       if (Roles.userIsInRole(Meteor.user(), ['schoolmaster'])) {
         console.log("schoolmaster(园长) login");
@@ -111,10 +102,6 @@ Router.route('/profile', function () {
       }
       if (Roles.userIsInRole(Meteor.user(), ['headerteacher'])) {
         console.log("headerteacher(班主任) login");
-        Meteor.subscribe("curclassterm","",function(){
-          Session.set('curclassterm',dbClientClassterm.findOne());
-          console.log("loginin,get session:" + EJSON.stringify(Session.get('curclassterm')));
-        });
       }
 
       var truename = Meteor.user().username;
@@ -213,6 +200,7 @@ Router.route('/newchildsetschool/:childid/:returnurl',function(){
 	};
 	this.render('newchildsetschool', {data: data});
 });
+
 Router.route('/newchildsetclassterm/:childid/:schoolid/:returnurl',function(){
 	var data = {
 		returnurl: this.params.returnurl,
@@ -239,12 +227,12 @@ Router.route('/myclassterm',function(){
   //<----------------
   // <td>{{classname}}</td>
   // <td>{{schoolname}}</td>
-  var classtermname = '';
-  var schoolname = '';
-  if(Session.get('curclassterm')){
-    classtermname = Session.get('curclassterm').classtermname;
-    schoolname = Session.get('curclassterm').schoolname;
-  }
+
+  var schoolid = Meteor.user().profile.curschoolid;
+  var classtermid = Meteor.user().profile.curclasstermid;
+  var classtermname = dbClassterms.findOne(classtermid).name;
+  var schoolname = dbSchools.findOne(schoolid).name;
+
   var data = {
     classname:classtermname,
     schoolname:schoolname,
@@ -269,11 +257,8 @@ Router.route('/createclassterm',function(){
 Router.route('/studentslist',function(){
   console.log("studentslist:" + EJSON.stringify(Session.get('curclassterm')));
 
-  var classtermname = '';
-  var classtermid = '';
-  if(Session.get('curclassterm')){
-    classtermname = Session.get('curclassterm').classtermname;
-    classtermid = Session.get('curclassterm').classtermid;
+  var classtermid = Meteor.user().profile.curclasstermid;
+  var classtermname = dbClassterms.findOne(classtermid).name;
 
     console.log("classtermname:" + classtermname);
     var studentslist = dbClassterms.findOne(classtermid).studentslist;
@@ -290,7 +275,7 @@ Router.route('/studentslist',function(){
          children.push(child);
       }
     }
-  }
+
 
 
   var data = {
@@ -331,12 +316,9 @@ Router.route('/teachplan',function(){
     var enddate = thisweekend.format('YYYY-MM-DD');
     console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
   //  .add(1, 'day');
-    var schoolid = '';
-    var classtermid = '';
-    if(Session.get('curclassterm')){
-      schoolid = Session.get('curclassterm').schoolid;
-      classtermid = Session.get('curclassterm').classtermid;
-    }
+   var schoolid = Meteor.user().profile.curschoolid;
+   var classtermid = Meteor.user().profile.curclasstermid;
+
 
     var querycondition =
     {
@@ -382,12 +364,9 @@ Router.route('/checkinout');
 
 Router.route('/activities',function(){
   var activitylist = [];
-  var schoolid = '';
-  var classtermid = '';
-  if(Session.get('curclassterm')){
-    schoolid = Session.get('curclassterm').schoolid;
-    classtermid = Session.get('curclassterm').classtermid;
-  }
+  var schoolid = Meteor.user().profile.curschoolid;
+  var classtermid = Meteor.user().profile.curclasstermid;
+
   console.log("schoolid:" + schoolid +",classid:" + classtermid);
   //下面有很多过滤条件，学校和班级
   dbActivities.find({schoolid:schoolid}).forEach(function(act){
@@ -448,12 +427,8 @@ Router.route('/foods',function(){
     var enddate = thisweekend.format('YYYY-MM-DD');
     console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
   //  .add(1, 'day');
-    var schoolid = '';
-    var classtermid = '';
-    if(Session.get('curclassterm')){
-      schoolid = Session.get('curclassterm').schoolid;
-      classtermid = Session.get('curclassterm').classtermid;
-    }
+    var schoolid = Meteor.user().profile.curschoolid;
+    var classtermid = Meteor.user().profile.curclasstermid;
 
     var querycondition =
     {
@@ -509,6 +484,7 @@ Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');
 //Router.route('/register');
+Router.route('/qaxq');
 Router.route('/growth');
 Router.route('/studentslistxq');
 Router.route('/studentslistxg');
@@ -520,6 +496,7 @@ Router.route('/activitiesfb');
 
 Router.route('/classxz');
 //Router.route('/changepassword');
+Router.route('/questionnaire');
 Router.route('/news');
 Router.route('/mischiefxz');
 
@@ -613,46 +590,3 @@ Router.route('/qaxq/:id',function(){
 
 Router.route('/sp');
 Router.route('/dlls');
-
-Router.route('/questionnaire',function(){
-    console.log("questionnaire.html");
-    this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
-    this.render('questionnaire', {to: 'content'});
-});
-
-Router.route('/questionnairexz',function(){
-    console.log("questionnairexz.html");
-    this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
-    this.render('questionnairexz', {to: 'content'});
-});
-
-Router.route('/questionnairexq/:id',function(){
-    console.log("questionnairexq.html");
-    this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
-    if(Roles.userIsInRole(Meteor.user(), ['parent'])){
-       if(dbQnfeedback.find({'qnaireid':this.params.id,'answererid':Meteor.userId()}).count()>0){
-           Router.go("/qnfeedbackxq/"+this.params.id+"/"+Meteor.userId());
-       }else{
-           Router.go("/qnfeedbackxz/"+this.params.id);
-       }
-    }else{
-        this.render('questionnairexq', {to: 'content',data : {'qnid':this.params.id}});
-    }
-});
-
-Router.route('/qnfeedbackxz/:qnid',function(){
-    console.log("questionnairexq.html");
-    this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
-    this.render('qnfeedbackxz', {to: 'content',data : {'qnid':this.params.qnid}});
-});
-
-Router.route('/qnfeedbackxq/:qnid/:answererid',function(){
-    console.log("questionnairexq.html");
-    this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
-    this.render('qnfeedbackxq', {to: 'content',data : {'qnid':this.params.qnid,'answererid':this.params.answererid}});
-});
