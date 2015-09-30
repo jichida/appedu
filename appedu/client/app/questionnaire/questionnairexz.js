@@ -25,7 +25,7 @@ Template.questionnairexz.events({
             'createuserid':Meteor.userId(),
             'createusername':Meteor.user().username,
             'createtime':moment().format('YYYY-MM-DD'),
-            'classtermid':Session.get('curclassterm').classtermid
+            'classtermid':Meteor.user().profile.curclasstermid
         };
         var questionlist = [];
         $("div[class='fb_con']").each(function() {

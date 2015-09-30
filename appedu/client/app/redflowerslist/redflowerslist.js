@@ -6,7 +6,7 @@ Template.redflowerslist.helpers({
 
     flowerslist : function(){
         var list = [];
-        var termid = Session.get('curclassterm').classtermid;
+        var termid = Meteor.user().profile.curclasstermid;
         var records = dbRedflowerslist.find({'classtermid':termid});
         records.forEach(function(rec){
             var temp_rec = _.extend(rec,{

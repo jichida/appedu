@@ -4,7 +4,7 @@
 
 Template.questionnaire.helpers({
     questionnairelist:function(){
-        var termid = Session.get('curclassterm').classtermid;
+        var termid = Meteor.user().profile.curclasstermid;
         return  dbQuestionnaire.find({'classtermid':termid});
     },
     'isparent':function(){
