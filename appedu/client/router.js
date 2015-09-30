@@ -299,29 +299,23 @@ Router.route('/teachplan',function(){
 
   var getteachplanlist = function(offsetweekdays){
     var teachplanlist = [];
-    var mcurdate = moment();
-    var curweekdate = mcurdate.day();
-    if(curweekdate == 0){
-      curweekdate = 7;
-    }
 
     if(offsetweekdays < 0){
-      var thisweekbegin = moment().subtract({days:curweekdate+6});
-      var thisweekend = moment().subtract({days:curweekdate});
+      var thisweekbegin = moment().subtract({days:7}).startOf('week');;
+      var thisweekend = moment().subtract({days:7}).endOf('week');
     }
     else if(offsetweekdays == 0){
-      var thisweekbegin = moment().subtract({days:curweekdate-1});
-      var thisweekend = moment().add({days:7-curweekdate});
+      var thisweekbegin = moment().startOf('week');
+      var thisweekend = moment().endOf('week');
     }
     else{
-      var thisweekbegin = moment().add({days:curweekdate+6});
-      var thisweekend = moment().add({days:14-curweekdate});
+      var thisweekbegin = moment().add({days:7}).startOf('week');
+      var thisweekend = moment().add({days:7}).endOf('week');
     }
 
-    var curdate = mcurdate.format('YYYY-MM-DD');
     var startdate =  thisweekbegin.format('YYYY-MM-DD');
     var enddate = thisweekend.format('YYYY-MM-DD');
-    console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
+    console.log("thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
   //  .add(1, 'day');
    var schoolid = Meteor.user().profile.curschoolid;
    var classtermid = Meteor.user().profile.curclasstermid;
@@ -336,18 +330,14 @@ Router.route('/teachplan',function(){
         $lte:enddate,
       }
     };
-    var weekdaysFull= [ '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','星期日'];
+    var weekdaysFull= [ '星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
     console.log("query:" + EJSON.stringify(querycondition));
     dbTeachplans.find(querycondition).forEach(function(plan){
 
-      var dayindexweekdate = moment(plan.teachdate).day();
-      if(dayindexweekdate == 0){
-        dayindexweekdate = 7;
-      }
       //weekname/teachername/teachcontent
       teachplanlist.push({
-        index:dayindexweekdate,
-        weekname:weekdaysFull[dayindexweekdate-1],
+        index:moment(plan.teachdate).day(),
+        weekname:weekdaysFull[moment(plan.teachdate).day()],
         teachername:plan.teachername,
         teachcontent:plan.teachcontent
       });
@@ -370,26 +360,10 @@ Router.route('/evaluation');
 Router.route('/checkinout');
 
 Router.route('/activities',function(){
-  var activitylist = [];
-  var schoolid = Meteor.user().profile.curschoolid;
-  var classtermid = Meteor.user().profile.curclasstermid;
 
-  console.log("schoolid:" + schoolid +",classid:" + classtermid);
-  //下面有很多过滤条件，学校和班级
-  dbActivities.find({schoolid:schoolid}).forEach(function(act){
-    if(act == 'class'){
-      if ( act.classtermid == 'classtermid'){
-        activitylist.push(act);
-      }
-    }
-    else{
-      activitylist.push(act);
-    }
-
-  });
   var data = {
     returnurl:'',
-    activitylist:activitylist
+  //  activitylist:activitylist
   }
   this.render('activities', {data: data});
 });
@@ -410,30 +384,23 @@ Router.route('/foods',function(){
 
   var getfoodlist = function(offsetweekdays){
     var foodlist = [];
-    var mcurdate = moment();
-    var curweekdate = mcurdate.day();
-    if(curweekdate == 0){
-      curweekdate = 7;
-    }
-
     if(offsetweekdays < 0){
-      var thisweekbegin = moment().subtract({days:curweekdate+6});
-      var thisweekend = moment().subtract({days:curweekdate});
+      var thisweekbegin = moment().subtract({days:7}).startOf('week');;
+      var thisweekend = moment().subtract({days:7}).endOf('week');
     }
     else if(offsetweekdays == 0){
-      var thisweekbegin = moment().subtract({days:curweekdate-1});
-      var thisweekend = moment().add({days:7-curweekdate});
+      var thisweekbegin = moment().startOf('week');
+      var thisweekend = moment().endOf('week');
     }
     else{
-      var thisweekbegin = moment().add({days:curweekdate+6});
-      var thisweekend = moment().add({days:14-curweekdate});
+      var thisweekbegin = moment().add({days:7}).startOf('week');
+      var thisweekend = moment().add({days:7}).endOf('week');
     }
 
-    var curdate = mcurdate.format('YYYY-MM-DD');
     var startdate =  thisweekbegin.format('YYYY-MM-DD');
     var enddate = thisweekend.format('YYYY-MM-DD');
-    console.log("curdate:"+curdate +",curweekdate:"+curweekdate+",thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
-  //  .add(1, 'day');
+    console.log("thisweekbegin:" + startdate + ",thisweekend:"+ enddate);
+
     var schoolid = Meteor.user().profile.curschoolid;
     var classtermid = Meteor.user().profile.curclasstermid;
 
@@ -445,18 +412,14 @@ Router.route('/foods',function(){
         $lte:enddate,
       }
     };
-    var weekdaysFull= [ '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','星期日' ];
+    var weekdaysFull= ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
     console.log("query:" + EJSON.stringify(querycondition));
     dbFoods.find(querycondition).forEach(function(food){
 
-      var dayindexweekdate = moment(food.fooddate).day();
-      if(dayindexweekdate == 0){
-        dayindexweekdate = 7;
-      }
       //weekname/teachername/teachcontent
       foodlist.push({
-        index:dayindexweekdate,
-        weekname:weekdaysFull[dayindexweekdate-1],
+        index:moment(food.fooddate).day(),
+        weekname:weekdaysFull[moment(food.fooddate).day()],
         foodname:food.foodname,
         content:food.content
       });
