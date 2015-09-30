@@ -46,17 +46,6 @@
 Template.sendletter.events({
   'click #btnsendletter': function(event) {
      event.preventDefault();
-//      title
-// content
-// createtime
-// images
-// createuserid
-// createusername
-// tousers
-// touserid
-// tousername
-// recvid
-// classtermid
 
 	   var title= $('#title').val();
 	   var content= $('#content').val();
