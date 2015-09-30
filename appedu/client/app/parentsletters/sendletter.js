@@ -14,7 +14,22 @@
       }];
     }
     if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
-      return dbClassterms.findOne(classtermid).parentlist;
+      //找到本班级所有孩子
+      var users = [];
+      dbChildren.find({curclasstermid:classtermid}).forEach(function(child){
+          dbUserchildren.find({childid:child._id}).forEach(function(userchild){
+            console.log("users:" + userchild.userid + ",childid:" + child._id);
+            var usershowname = Meteor.users.findOne(userchild.userid).profile.truename + "(" + child.truename + userchild.releationshipname + ")";
+              var user = {
+                userid:userchild.userid,
+                truename:usershowname
+              }
+              users.push(user);
+          });
+      });
+
+
+      return users;
     }
     return [];
   },

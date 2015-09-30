@@ -1,7 +1,7 @@
 ﻿Meteor.methods({
   'setSelChildid':function(selchildid,user){
       if (Roles.userIsInRole(user, ['parent'])) {
-        var child = dbChildren.findOne(userchildren.childid);
+        var child = dbChildren.findOne(selchildid);
         if(child){
           var schoolid = child.schoolid;
           var curclasstermid = child.curclasstermid;

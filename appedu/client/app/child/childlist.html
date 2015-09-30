@@ -17,6 +17,7 @@
 		<th>孩子关系</th>
 	  <th>所在班级</th>
     <th>所在幼儿园</th>
+		<th>切换</th>
 		<th>操作</th>
   </tr>
 	{{#each childlist}}
@@ -25,6 +26,11 @@
 		<td>{{releationshipname}}</td>
 		<td>{{classtermname}}</td>
     <td>{{schoolname}}</td>
+		{{#if curchild}}
+		<td>当前孩子</td>
+		{{else}}
+		<td><a href="#" id="btnswitch">切换到当前</a></td>
+		{{/if}}
 		<td>
 			<a href="/editchild/{{childid}}/childlist">编辑</a>
 

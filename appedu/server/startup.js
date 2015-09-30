@@ -85,7 +85,9 @@ Meteor.publish("userData", function () {
   Meteor.publish("qnfeedback",function(){
       return dbQnfeedback.find();
   });
-
+  Meteor.publish("users",function(){
+      return Meteor.users.find();
+  });
   //===================================================================
   if(dbConstaddress.find().count() == 0){
     var province=['北京','上海','天津','福建','海南','浙江','江西','广西','广东','重庆','宁夏','河北','陕西','辽宁','吉林','江苏','山东','湖南','四川','云南','甘肃','青海','安徽','贵州','山西','湖北','西藏','河南','新疆','澳门','香港','台湾','内蒙古','黑龙江','海外','其他'];

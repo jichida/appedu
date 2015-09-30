@@ -49,7 +49,7 @@ var getchildrenfromuser = function(userid){
 };
 
 Router.route('/loginselectchild',function(){
-  var mychildlist = getchildrenfromuser(Meteor.user()._id);
+  var mychildlist = getchildrenfromuser(Meteor.userId());
   this.render('loginselectchild',{data:{mychildlist:mychildlist}});
 });
 
@@ -192,7 +192,7 @@ Router.route('/changepassword');//修改密码
 
 //我的孩子列表
 Router.route('/childlist',function(){
-    var childlist = getchildrenfromuser(Meteor.user()._id);
+    var childlist = getchildrenfromuser(Meteor.userId());
     var data = {
       childlist:childlist,
     }
@@ -244,17 +244,7 @@ Router.route('/myclassterm',function(){
   //<----------------
   // <td>{{classname}}</td>
   // <td>{{schoolname}}</td>
-
-  var schoolid = Meteor.user().profile.curschoolid;
-  var classtermid = Meteor.user().profile.curclasstermid;
-  var classtermname = dbClassterms.findOne(classtermid).name;
-  var schoolname = dbSchools.findOne(schoolid).name;
-
-  var data = {
-    classname:classtermname,
-    schoolname:schoolname,
-  }
-  this.render('myclassterm', {data: data});
+  this.render('myclassterm');
 });
 
 // Router.route('/createclassterm',function(){

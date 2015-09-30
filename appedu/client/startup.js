@@ -1,5 +1,5 @@
 Meteor.startup(function(){
-
+Meteor.subscribe('users');
 Meteor.subscribe('schools');//幼儿园
 Meteor.subscribe('classterms');//班级、学期
 Meteor.subscribe('childrelationships');//亲属关系
