@@ -24,10 +24,6 @@ check
 tomi:upload-server
 tomi:upload-jquery
 twbs:bootstrap
-<<<<<<< HEAD
 jquery
 msavin:mongol
 cwohlman:pickadate
-=======
-msavin:mongol
->>>>>>> ludev
