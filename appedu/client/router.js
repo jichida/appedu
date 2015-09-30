@@ -54,20 +54,37 @@ Router.route('/loginselectchild',function(){
 });
 
 Router.route('/loginselectclassterm',function(){
-  var classtermlist = [];
-  // var curclasstermid = Meteor.user().curclasstermid;
-  // var children = Meteor.user().curclasstermid;
-  // for( var i=0;i <children.length; i++){
-  //   var curclasstermid = dbChildren.findOne(children[i].childid).curclasstermid;
-  //   var child = {
-  //     childtruename:children[i].childname,
-  //     curclasstermname:dbClassterms.find(curclasstermid).name,
-  //   }
-  //   mychildlist.push(child);
-  // }
-  this.render('loginselectclassterm',{data:{classtermlist:classtermlist}});
+  this.render('loginselectclassterm');
 });
 
+Router.route('/createclasstermsetschool/:returnurl',function(){
+  var data = {
+    returnurl: this.params.returnurl,
+  };
+  this.render('createclasstermsetschool', {data: data});
+});
+
+Router.route('/createclasstermsetclassterm/:schoolid/:returnurl',function(){
+  var classterms = [];
+  var schoolname = '';
+  var schoolid =  this.params.schoolid;
+  if(schoolid){
+    schoolname = dbSchools.findOne(schoolid).name;
+  }
+  dbclassterms = dbClassterms.find({schoolid:schoolid});
+  dbclassterms.forEach(function(cls){
+    classterms.push(cls);
+  });
+  var data = {
+    schoolname:schoolname,
+    classterms:classterms,
+    returnurl: this.params.returnurl,
+    schoolid: schoolid,
+  };
+  this.render('createclasstermsetclassterm', {data: data});
+});
+
+//================================================================
 
 Router.route('/register/:id',function(){//注册
   console.log("register html");
@@ -240,19 +257,19 @@ Router.route('/myclassterm',function(){
   this.render('myclassterm', {data: data});
 });
 
-Router.route('/createclassterm',function(){
-  var schools = [];
-  var dbschools = dbSchools.find();
-  dbschools.forEach(function(sc){
-    schools.push(sc);
-  });
-  var data = {
-    schools:schools,
-  };
-
-  console.log("createclassterm:" + EJSON.stringify(data));
-  this.render('createclassterm', {data: data});
-});
+// Router.route('/createclassterm',function(){
+//   var schools = [];
+//   var dbschools = dbSchools.find();
+//   dbschools.forEach(function(sc){
+//     schools.push(sc);
+//   });
+//   var data = {
+//     schools:schools,
+//   };
+//
+//   console.log("createclassterm:" + EJSON.stringify(data));
+//   this.render('createclassterm', {data: data});
+// });
 
 Router.route('/studentslist',function(){
   console.log("studentslist:" + EJSON.stringify(Session.get('curclassterm')));

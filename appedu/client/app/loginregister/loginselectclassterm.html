@@ -7,11 +7,20 @@
 <div class="product-list">
     <div class="product-viewport huandong">
       <ol class="product-style-list" style="width: 1424px;">
-        <li class="product-style-item"> <a href="#" id="btnaddchild"><span style="font-size:24px; margin-top:26px">+</span></a> </li>
+        <li class="product-style-item"> <a href="#" id="btncreateclassterm"><span style="font-size:24px; margin-top:26px">+</span></a> </li>
         {{#each classtermlist}}
         <li class="product-style-item"> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
         {{/each}}
       </ol>
+    </div>
+
+    <div class="form_mod form_select">
+      <label for="">班级列表</label>
+        <select class="select" id="selchild" data-tmp="">
+          {{#each classtermlist}}
+            <option value="{{childid}}">{{name}}/{{schoolname}}</option>
+          {{/each}}
+        </select>
     </div>
   </div>
  <div class="feed_back">
@@ -19,6 +28,6 @@
             <span style=" line-height:32px; display:block"><label for="" style="float:left; margin-top:5px"><input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px"></label>设为默认</span>
             <span style=" line-height:32px; display:block; clear:both"><label for="" style="float:left;margin-top:5px"><input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px"></label>自动登录</span>
         </div></div>
-<section class="gift_btn" style="margin-left:20px; margin-right:20px"> <a href="/profile">进入</a> </section>
+<section class="gift_btn" style="margin-left:20px; margin-right:20px"> <a href="#" id="btnenter">进入</a> </section>
 </section>
 </template>

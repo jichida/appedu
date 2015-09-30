@@ -14,6 +14,34 @@
         }
       }
   },
+  'setschoolid':function(schoolid,user){
+    if (Roles.userIsInRole(user, ['headerteacher'])) {
+
+        Meteor.users.update(user._id, { $set:
+          {
+            'profile.curschoolid':schoolid,
+          }} );
+
+    }
+  },
+  'setclasstermidtomyself':function(selclasstermid,user){
+    if (Roles.userIsInRole(user, ['headerteacher'])) {
+      var classterm = dbClassterms.findOne(selclasstermid);
+      if(classterm){
+        if(Meteor.users.findOne(classterm.headerteacherid)){
+            //error
+        }
+        else{
+          dbClassterms.update(selclasstermid,{ $set:
+            {
+              'headerteacherid':user._id,
+              'headerteachername':user.profile.truename,
+            }} );
+            Meteor.call('setSelClasstermid',selclasstermid,user);
+        }
+      }
+    }
+  },
   'setSelClasstermid':function(selclasstermid,user){
       if (Roles.userIsInRole(user, ['headerteacher'])) {
         var classterm = dbClassterms.findOne(selclasstermid);
