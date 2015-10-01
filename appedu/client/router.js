@@ -262,36 +262,7 @@ Router.route('/myclassterm',function(){
 // });
 
 Router.route('/studentslist',function(){
-  console.log("studentslist:" + EJSON.stringify(Session.get('curclassterm')));
-
-  var classtermid = Meteor.user().profile.curclasstermid;
-  var classtermname = dbClassterms.findOne(classtermid).name;
-
-    console.log("classtermname:" + classtermname);
-    var studentslist = dbClassterms.findOne(classtermid).studentslist;
-    var children = [];
-    if(studentslist){
-      for ( var i = 0;i < studentslist.length; i++){
-         var student = studentslist[i];
-         var child = {
-           childid:student.childid,
-           childname:student.childname,
-           parentname:student.parentlist[i].truename,
-           parentuser:student.parentlist[i].username,
-         };
-         children.push(child);
-      }
-    }
-
-
-
-  var data = {
-    classtermname:classtermname,
-    classtermid:classtermid,
-    children:children
-  };
-  console.log("studentslist:" + EJSON.stringify(data));
-  this.render('studentslist', {data: data});
+  this.render('studentslist');
 });
 Router.route('/basicinfo');
 
@@ -367,6 +338,8 @@ Router.route('/activities',function(){
   }
   this.render('activities', {data: data});
 });
+
+Router.route('/newteachplan');
 
 Router.route('/activityinfo/:id',function(){
   var actinfo = dbActivities.findOne(this.params.id);

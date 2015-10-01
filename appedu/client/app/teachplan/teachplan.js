@@ -31,3 +31,9 @@ Template.teachplan.events({
   },
 
 });
+
+Template.teachplan.helpers({
+  'isheaderteacher':function(){
+    return Roles.userIsInRole(Meteor.user(), ['headerteacher']);
+  },
+});

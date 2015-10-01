@@ -1,9 +1,21 @@
 <template name="studentslist">
   <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">花名册</span><span class="category_h_nav back1"><a href="studentslistxg">新增</a></span>
-   </header>
+	<a href="/" class="back"><img src="/images/mark1.png"></a>
+  <span class="category_h_title">花名册</span>
+ </header>
+
 <section class="content pad padb pad10">
-<div class="padleft mt15">
+
+  <div class="jxjh" id="Tab1">
+    <ul class="wbox">
+      <li class="hover" id="tabone1">系统</li>
+      <li class="" id="tabone2">手动维护</li>
+    </ul>
+  </div>
+
+<div class="jxjh_1 hover" id="con_one_1">
+  <!--
+  <div class="padleft mt15">
 <div class="sxtj"><div>
                     <select class="select" id="home_address-scity" data-tmp="">
                       <option value="{{classtermid}}">{{classtermname}}</option>
@@ -20,20 +32,74 @@
         </form>
     </div>
 </div>
+-->
 <ul class="address_manage">
-      {{#each children}}
-        <li class="address_mod ">
-          <div class="bd">
-            <div><span class="name"><em>{{childname}}</em></span><span class="tel">男</span><span class="shengri">2010-04-10</span></div>
-            <p>妈妈：{{parentname}}&nbsp;&nbsp;{{parentuser}}</p>
-          </div>
-          <div class="ft clearfix">
-            <div class="fl"> <a href="/studentinfo/{{childid}}"><span class="auto"><b class="icon_auto"></b>查看详情</span></a></div>
-            <div class="fr"> <a href="/editstudent/{{childid}}"><span class="edit"><b class="icon_edit"></b>编辑</span></a></div>
-          </div>
-        </li>
+  {{#each studentslistregister}}
+    <li class="address_mod ">
+      <div class="bd">
+        <div><span class="name">
+          <em>{{childtruename}}</em>
+        </span><span class="tel">{{sex}}</span>
+        <span class="shengri">{{birthday}}</span></div>
+        <ul>
+          {{#each parentuserlist}}
+          <li>
+          <p>家长姓名:{{parenttruename}}</p>
+          <p>和孩子关系:{{parentrelationname}}</p>
+          <p>联系电话:{{parenttel}}</p>
+          </li>
+          {{/each}}          
+        </ul>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+
+
+</div>
+
+<div class="jxjh_1" id="con_one_2" style="display:none">
+    <!--
+  <div class="padleft mt15">
+  <div class="sxtj"><div>
+                      <select class="select" id="home_address-scity" data-tmp="">
+                        <option value="{{classtermid}}">{{classtermname}}</option>
+                      </select>
+                    </div></div>
+  <div class="search">
+          <form id="search_form" dd_name="搜索部分" method="get" action="" target="_parent" onsubmit="return submit_search();">
+              <div class="text_box" name="list_search_text_box" dd_name="搜索框" onclick="return 1;">
+                  <input id="_keyword" name="key" type="text" placeholder="输入姓名" class="text" value="">
+              </div>
+              <span class="mix_submit"></span> <a href="javascript:void(0)" class="clear_input" id="clear_input"></a>
+              <input type="hidden" value="eccec8b9091fa03b" name="sid">
+              <input type="submit" value="" class="submit" id="list_search_submit" dd_name="提交">
+          </form>
+      </div>
+  </div>
+-->
+
+  <ul class="address_manage">
+        {{#each studentslist}}
+          <li class="address_mod ">
+            <div class="bd">
+              <div><span class="name">
+                <em>{{childtruename}}</em>
+              </span><span class="tel">{{sex}}</span>
+              <span class="shengri">{{birthday}}</span></div>
+              {{#each parentuserlist}}
+              <p>{{parenttruename}}|{{parentrelationname}}|{{parenttel}}</p>
+              {{/each}}
+            </div>
+            <div class="ft clearfix">
+              <div class="fl"> <a href="/studentinfo/{{childid}}"><span class="auto"><b class="icon_auto"></b>查看详情</span></a></div>
+              <div class="fr"> <a href="/editstudent/{{childid}}"><span class="edit"><b class="icon_edit"></b>编辑</span></a></div>
+            </div>
+          </li>
         {{/each}}
-      </ul>
+  </ul>
+</div>
+
 </section>
 
 </template>
