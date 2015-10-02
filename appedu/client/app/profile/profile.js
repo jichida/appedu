@@ -12,5 +12,11 @@ Template.profile.events({
     },
     'isheaderteacher':function(){
       return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
+    },
+    'newrecvcount':function(){
+      return dbparentslettersrecv.find({
+        recvuserid:Meteor.userId(),
+        isreaded:false
+      }).count();
     }
   });

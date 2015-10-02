@@ -183,6 +183,7 @@ Router.route('/parentsletterssendinfo/:id',function(){
 
 Router.route('/parentslettersrecvinfo/:id',function(){
   //新建家长信
+  Meteor.call('setLetterReaded',this.params.id);
   var data = dbparentslettersrecv.findOne({_id:this.params.id});
   this.render('parentslettersrecvinfo', {data: data});
 });

@@ -15,9 +15,13 @@ Meteor.methods({
           recvtruename:sendDoc.totruename,
           fromuserid:sendDoc.createuserid,
           fromtruename:sendDoc.createtruename,
-          classtermid:sendDoc.classtermid
+          classtermid:sendDoc.classtermid,
+          isreaded:false,
        };
        dbparentslettersrecv.insert(recvDoc);
        //
      },
+     'setLetterReaded':function(recvid){
+       dbparentslettersrecv.update(recvid,{$set:{isreaded:true}});
+     }
 	});

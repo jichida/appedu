@@ -1,7 +1,7 @@
 <template name="parentsletters">
 
 <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">家长信</span><span class="category_h_nav  back1"><a href="/sendletter">发表</a></span>
+	<a href="/profile" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">家长信</span><span class="category_h_nav  back1"><a href="/sendletter">发表</a></span>
    </header>
 <section class="content pad padb pad10">
 <div class="jzx_1" id="Tab1"><ul class="wbox"><li id="tabone1" class="hover">收件箱</li><li id="tabone2" class="">发件箱</li></ul></div>
@@ -18,9 +18,13 @@
 </div>
 <div class="jzq hover" id="con_one_1">
 	{{#each parentslettersrecv}}
-<dl><dt><img src="images/jzq.jpg"></dt><dd><h2>{{fromusername}}</h2>
+<dl><dt><img src="/images/jzq.jpg"></dt><dd><h2>{{fromusername}}</h2>
 <span>
 {{title}}
+{{#if isreaded}}
+{{else}}
+<img src="/images/new.gif">
+{{/if}}
 </span>
 <div class="jzq_fl">{{createtime}}<span><a href="/parentslettersrecvinfo/{{_id}}">查看详情</a></span>
 	<div class="jzq_fr"><a href="/sendletter/{{_id}}"><span class="jzq_ly"></span></a></div></div>
@@ -30,7 +34,7 @@
 
 <div class="jzq" id="con_one_2" style="display:none">
 	{{#each parentsletterssend}}
-<dl><dt><img src="images/jzq.jpg"></dt><dd><h2>{{tousername}}</h2>
+<dl><dt><img src="/images/jzq.jpg"></dt><dd><h2>{{tousername}}</h2>
 <span>
 {{title}}
 </span>
