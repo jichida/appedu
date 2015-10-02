@@ -8,9 +8,11 @@ Template.addschool.events({
       var schoolDoc = {
           name:name,
           address:address,
-          createuserid:Meteor.user()._id,
+          createuserid:Meteor.userId(),
           createusername:Meteor.user().profile.truename,
           createtime:moment().format('YYYY-MM-DD HH:mm:ss'),
+          schoolmasterid:Meteor.userId(),
+          schoolmastername:Meteor.user().profile.truename,
       }
 
       if(Session.get('selprovice')){
@@ -28,7 +30,7 @@ Template.addschool.events({
       console.log("insert schoolDoc:" + EJSON.stringify(schoolDoc));
       Meteor.call("insertSchool",schoolDoc);
 
-      Router.go("/admin/myschool");
+      Router.go("/" + this.returnurl);
 
     },
     'change #J_province':function(){

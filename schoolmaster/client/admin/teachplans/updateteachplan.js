@@ -8,7 +8,7 @@ Template.updateteachplan.events({
       var content =  $("#content").val();
       var classtermname = $("#classtermtype").find("option:selected").text();
       var classtermid = $("#classtermtype").val();
-      var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+      var schoolid =  Meteor.user().profile.curschoolid;
       var teachplanDoc = {
           teachcontent:teachcontent,
           teachdate:teachdate,
@@ -22,7 +22,7 @@ Template.updateteachplan.events({
       console.log("update teachplanDoc:" + EJSON.stringify(teachplanDoc));
       Meteor.call("updateteachplan",this._id,teachplanDoc);
 
-      Router.go("/admin/teachplans");
+      Router.go("/teachplans");
 
     }
 });

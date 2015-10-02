@@ -8,8 +8,10 @@ Template.updateschool.events({
       var schoolDoc = {
           name:name,
           address:address,
-          createuserid:Meteor.user()._id,
+          createuserid:Meteor.userId(),
           createusername:Meteor.user().profile.truename,
+          schoolmasterid:Meteor.userId(),
+          schoolmastername:Meteor.user().profile.truename,
       }
       if(Session.get('selprovice')){
         schoolDoc = _.extend(schoolDoc,{
@@ -26,7 +28,7 @@ Template.updateschool.events({
       console.log("update schoolDoc:" + EJSON.stringify(schoolDoc));
       Meteor.call("updateSchool",this._id,schoolDoc);
 
-      Router.go("/admin/myschool");
+      Router.go("/myschool");
 
     },
       'change #J_province':function(){

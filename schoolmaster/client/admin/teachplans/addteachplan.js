@@ -5,16 +5,16 @@ Template.addteachplan.events({
       var teachcontent =  $("#teachcontent").val();
       var teachdate =  $("#teachdate").val();
       var teachername = $("#teachername").val();
-      var content =  $("#content").val();
+    //  var content =  $("#content").val();
       var classtermname = $("#classtermtype").find("option:selected").text();
       var classtermid = $("#classtermtype").val();
 
-      var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+      var schoolid =  Meteor.user().profile.curschoolid;
       var teachplanDoc = {
           teachcontent:teachcontent,
           teachdate:teachdate,
           teachername:teachername,
-          content:content,
+      //    content:content,
           schoolid:schoolid,
           classtermid:classtermid,
           classtermname:classtermname,
@@ -24,7 +24,7 @@ Template.addteachplan.events({
       console.log("insert teachplanDoc:" + EJSON.stringify(teachplanDoc));
       Meteor.call("insertteachplan",teachplanDoc);
 
-      Router.go("/admin/teachplans");
+      Router.go("/teachplans");
 
     }
 });

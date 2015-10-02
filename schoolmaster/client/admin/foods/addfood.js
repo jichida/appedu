@@ -6,7 +6,7 @@ Template.addfood.events({
       var fooddate =  $("#fooddate").val();
       var content =  $("#content").val();
 
-      var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+      var schoolid =  Meteor.user().profile.curschoolid;
       var foodDoc = {
           foodname:foodname,
           fooddate:fooddate,
@@ -18,7 +18,7 @@ Template.addfood.events({
       console.log("insert foodDoc:" + EJSON.stringify(foodDoc));
       Meteor.call("insertfood",foodDoc);
 
-      Router.go("/admin/foods");
+      Router.go("/foods");
 
     }
 });

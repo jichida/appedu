@@ -8,7 +8,7 @@ Template.addactivity.events({
 
   //    var visiblerange = $("#visiblerange").find("option:selected").text();
       var visiblerange = $("#visiblerange").val();
-      var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
+      var schoolid =  Meteor.user().profile.curschoolid;
       var activityDoc = {
           title:title,
           activitydate:activitydate,
@@ -21,7 +21,7 @@ Template.addactivity.events({
       console.log("insert activityDoc:" + EJSON.stringify(activityDoc));
       Meteor.call("insertactivity",activityDoc);
 
-      Router.go("/admin/activities");
+      Router.go("/activities");
 
     }
 });

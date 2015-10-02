@@ -21,5 +21,15 @@ Meteor.methods({
       if(userid){
         Accounts.setPassword(userid, userDoc.password);
       }
+    },
+    'setSelSchoolid':function(schoolid,user){
+       if (Roles.userIsInRole(user, ['schoolmaster'])) {
+
+          Meteor.users.update(user._id, { $set:
+            {
+              'profile.curschoolid':schoolid,
+            }} );
+
+      }
     }
   });

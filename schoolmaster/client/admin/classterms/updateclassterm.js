@@ -7,8 +7,8 @@ Template.updateclassterm.events({
       var termend =  $("#termend").val();
       var headerteacherid = $("#headerteachertype").find("option:selected").text();
       var headerteachername = $("#headerteachertype").val();
-      var schoolid =  dbSchools.findOne({createuserid:Meteor.user()._id})._id;
-      var schoolname =  dbSchools.findOne({createuserid:Meteor.user()._id}).name;
+      var schoolid =  Meteor.user().profile.curschoolid;
+      var schoolname =  dbSchools.findOne(schoolid).name;
 
       var classtermDoc = {
           name:name,
@@ -24,7 +24,7 @@ Template.updateclassterm.events({
       console.log("insert classtermDoc:" + EJSON.stringify(classtermDoc));
       Meteor.call("updateclassterm",this._id,classtermDoc);
 
-      Router.go("/admin/classterms");
+      Router.go("/classterms");
 
     }
 });

@@ -15,13 +15,13 @@ Template.updateactivity.events({
           content:content,
           visiblerange:visiblerange,
 
-          createuserid:Meteor.user()._id,
+          createuserid:Meteor.userId(),
           createtime:moment().format('YYYY-MM-DD HH:mm:ss'),
       }
       console.log("update activityDoc:" + EJSON.stringify(activityDoc));
       Meteor.call("updateactivity",this._id,activityDoc);
 
-      Router.go("/admin/activities");
+      Router.go("/activities");
 
     }
 });
