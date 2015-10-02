@@ -1,4 +1,11 @@
 ﻿Meteor.methods({
+  'settruename':function(truename){
+    Meteor.users.update(Meteor.userId(), { $set:
+      {
+        'profile.truename':truename,
+      }} );
+  
+  },
   'setSelChildid':function(selchildid,user){
       if (Roles.userIsInRole(user, ['parent'])) {
         var child = dbChildren.findOne(selchildid);

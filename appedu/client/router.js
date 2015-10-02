@@ -104,7 +104,7 @@ Router.route('/retrievepassword/:id',function(){//忘记密码
     this.render('retrievepassword',{data:{id:this.params.id}});
 });
 
-
+Router.route('/basicinfo');
 Router.route('/profile', function () {
     if (Meteor.user()) {
       console.log("判断角色登录 login");

@@ -1,70 +1,22 @@
 <template name="basicinfo">
 <header id="header">
-	<a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">我的账户信息</span>
+	<a href="/profile" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">基本信息</span>
    </header>
 <section class="pad padb">
 <section class="padleft">
     <form action="#" id="edit" name="edit" method="post">
         <table width="100%" class="pwd myinfo my_information">
-            <tbody><tr>
-                <td height="20" colspan="2" class="td2">
-                                    </td>
-            </tr>
-            <tr>
-                <td class="td1">
-                    与其关系:
-                </td>
-                <td><select class="txt_200" name="year">
-                                                        <option value="父亲">
-                                父亲                            </option>
-                                                        <option value="母亲">
-                                母亲                            </option>
-                                                        <option value="爷爷">
-                                爷爷                            </option>
-                                                        <option value="奶奶">
-                                奶奶                            </option>
-                                                    </select> </td>
-            </tr>
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
-            <tr>
-                <td class="td1">
-                    联系电话:
-                </td>
-                <td><input type="text" name="telephone" disabled="true" class="pwd_t" value="15105121241"></td>
-            </tr>
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
-            <tr>
-                <td class="td1">
-                    您的姓氏:<span>*</span>
-                </td>
-                <td><input type="text" name="firstname" value="" class="pwd_t"></td>
-            </tr>
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
+            <tbody>
+
             <tr>
                 <td class="td1">
                     您的姓名:<span> </span>
                 </td>
-                <td><input type="text" name="lastname" value="" class="pwd_t"></td>
+                <td><input type="text" id="truename" value="{{truename}}" class="pwd_t"></td>
             </tr>
 
-
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
-            <tr>
-                <td height="20" colspan="2" class="td2"></td>
-            </tr>
         </tbody></table>
-        <section class="gift_btn"><a href="javascript:;" onclick="javascript:document.getElementById(&#39;edit&#39;).submit();">保存</a></section>
+        <section class="gift_btn"><a href="#" id="btnmodify">保存</a></section>
     </form>
     </section>
 </section>
