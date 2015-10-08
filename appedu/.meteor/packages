@@ -21,9 +21,10 @@ random
 ejson
 spacebars
 check
-tomi:upload-server
-tomi:upload-jquery
+reactive-var
 twbs:bootstrap
 jquery
 msavin:mongol
 cwohlman:pickadate
+cfs:standard-packages
+cfs:gridfs

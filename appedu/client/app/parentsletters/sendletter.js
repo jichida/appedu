@@ -6,16 +6,16 @@
     return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
   },
   'sendusers':function(){
+    var users = [];
     var classtermid = Meteor.user().profile.curclasstermid;
     if(Roles.userIsInRole(Meteor.user(), ['parent'])){
-      return [{
+      users.push({
         userid: dbClassterms.findOne(classtermid).headerteacherid,
         truename:dbClassterms.findOne(classtermid).headerteachername,
-      }];
+      });
     }
     if(Roles.userIsInRole(Meteor.user(), ['headerteacher'])){
       //找到本班级所有孩子
-      var users = [];
       dbChildren.find({curclasstermid:classtermid}).forEach(function(child){
           dbUserchildren.find({childid:child._id}).forEach(function(userchild){
             console.log("users:" + userchild.userid + ",childid:" + child._id);
@@ -27,23 +27,34 @@
               users.push(user);
           });
       });
-
-
-      return users;
     }
-    return [];
-  },
-  fileUploadedCallback: function() {
-    return {
-        finished: function(index, fileInfo, context) {
-
-          Session.set("imagePath","uploads/"+fileInfo.name);
-          console.log(fileInfo + ","+Session.get('imagePath'));
-        }
-    }
+    console.log("sendusers:" + EJSON.stringify(users));
+    return users;
   },
 });
+var _imgsz = new ReactiveVar([]);
 Template.sendletter.events({
+  'change #letterimage' : function(event, template){
+     console.log("change image...");
+     var self = this;
+     FS.Utility.eachFile(event, function(file){
+       var image = Images.insert(file, function(err, fileObj){
+         if(err){
+           //handle error
+           console.log("error:" + EJSON.stringify(err));
+           alert(err.reason);
+         } else {
+           var imgsz = _imgsz.get();
+           console.log("imgsz:" + EJSON.stringify(imgsz));
+           imgsz.push({imageid:image._id});
+           _imgsz.set(imgsz);
+         }
+
+       });
+
+
+     });
+   },
   'click #btnsendletter': function(event) {
      event.preventDefault();
 
@@ -72,6 +83,7 @@ Template.sendletter.events({
        totruename:totruename,
        classtermid:classtermid,
        recvid:recvid,
+       images:_imgsz.get(),
      }
      Meteor.call('insertLetter', letterDoc);
 

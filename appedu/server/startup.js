@@ -38,9 +38,6 @@ Meteor.publish("userData", function () {
   Meteor.publish("childrenarchives",function(){
       return dbChildrenarchives.find();
   });
-  Meteor.publish("images",function(){
-      return dbImages.find();
-  });
   Meteor.publish("activities",function(){
       return dbActivities.find();
   });
@@ -87,6 +84,9 @@ Meteor.publish("userData", function () {
   });
   Meteor.publish("users",function(){
       return Meteor.users.find();
+  });
+  Meteor.publish("images", function(){
+    return Images.find();
   });
   //===================================================================
   if(dbConstaddress.find().count() == 0){

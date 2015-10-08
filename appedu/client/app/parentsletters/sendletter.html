@@ -23,14 +23,13 @@
     <input name="" type="text" class="input_200" id="title" placeholder="家长信标题">
     <div class="fb_con">
         <textarea placeholder="输入您要发送的内容..." class="J_idea" id="content"></textarea>
-        <div class="zp"><em>+</em><span>添加照片</span></div>
+        <div class="zp"><em>+</em><span><input id="letterimage" type="file" />添加照片</span></div>
         <div class="fb_m">
             <label for=""><input name="" type="checkbox" value="" class="c_checkbox_1"></label>
             <input type="tel" class="fb_mobile" placeholder="放入学生档案" readonly>
         </div>
     </div>
-		{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
-    <section class="gift_btn"> <a href="#" id="btnsendletter">发送</a> </section>
+	  <section class="gift_btn"> <a href="#" id="btnsendletter">发送</a> </section>
 </div>
 </section>
 
