@@ -33,6 +33,7 @@ Template.qnfeedbackxz.events({
         }
     },
     'click #qnxzbtn':function(event){
+       event.preventDefault();
         if($('.uncheck').length>0){
             alert('请完成所有问题解答，再提交！');
             return ;
@@ -90,5 +91,3 @@ Template.qnfeedbackxq.helpers({
 
     }
 });
-
-

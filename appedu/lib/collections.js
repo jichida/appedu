@@ -20,4 +20,3 @@ dbConstaddress = new Mongo.Collection('constaddress');
 dbUserchildren = new Mongo.Collection('userchildren');
 dbQuestionnaire = new Mongo.Collection('questionnaire');//问卷调查
 dbQnfeedback = new Mongo.Collection('qnfeedback');//问卷调查反馈表
-
