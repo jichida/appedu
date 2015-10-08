@@ -265,7 +265,7 @@ Router.route('/myclassterm',function(){
 Router.route('/studentslist',function(){
   this.render('studentslist');
 });
-Router.route('/basicinfo');
+//Router.route('/basicinfo');
 
 Router.route('/teachplan',function(){
 
