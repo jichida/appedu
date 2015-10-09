@@ -428,7 +428,6 @@ Router.route('/classmanagement');
 Router.route('/cxw');
 //Router.route('/memberindex');
 //Router.route('/register');
-Router.route('/qaxq');
 Router.route('/growth');
 Router.route('/studentslistxq');
 Router.route('/studentslistxg');
@@ -440,9 +439,7 @@ Router.route('/activitiesfb');
 
 Router.route('/classxz');
 //Router.route('/changepassword');
-//Router.route('/questionnaire');
 Router.route('/news');
-Router.route('/mischiefxz');
 
 Router.route('/redflowerslist',function(){
     console.log("redflowerslist.html");
@@ -471,7 +468,7 @@ Router.route('/redflowerslistxz/:id',function(){
     this.render('navbar', {to: 'navbar'});
     var data = {
         'flowerlistid':this.params.id,
-        'happendtime':'2015-09-15 20:30:00'
+        'happendtime':moment().format('YYYY-MM-DD')
     };
     this.render('redflowerslistxz', {to: 'content',data : data});
 });
@@ -503,7 +500,7 @@ Router.route('/mischiefxz/:id',function(){
     this.render('navbar', {to: 'navbar'});
     var data = {
         'flowerlistid':this.params.id,
-        'happendtime':'2015-09-15 20:30:00'
+        'happendtime':moment().format('YYYY-MM-DD')
     };
     this.render('mischiefxz', {to: 'content',data : data});
 });
