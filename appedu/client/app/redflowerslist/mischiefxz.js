@@ -10,7 +10,7 @@ Template.mischiefxz.events({
         var redflower = {
             'teacherid':Meteor.userId(),
             'teachername':Meteor.user().username,
-            'happentime':this.happendtime,
+            'happentime':$('#happendtime').val(),
             'content':content
         };
         console.log("teacherid:"+Meteor.userId()+" teachername:"+Meteor.user().username+" flowerlistid:"+this.flowerlistid);
@@ -19,3 +19,7 @@ Template.mischiefxz.events({
     }
 
 });
+
+Template.mischiefxz.rendered=function() {
+    $('#happendtime').pickadate();
+}

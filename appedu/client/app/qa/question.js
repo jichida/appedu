@@ -11,7 +11,7 @@ Template.question.events({
         var isallowotherscommit = $('#isallowotherscommit').attr('checked') == "checked";
         var createuserid = Meteor.userId();
         var createusername = Meteor.user().username;
-        var createtime = "2015-09-16 21:45";
+        var createtime = moment().format('YYYY-MM-DD HH:mm:ss');
         var qaDoc = {
             'qtitle':title,
             'qcontent':content,

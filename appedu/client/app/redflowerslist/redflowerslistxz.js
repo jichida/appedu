@@ -10,12 +10,15 @@ Template.redflowerslistxz.events({
         var redflower = {
             'teacherid':Meteor.userId(),
             'teachername':Meteor.user().username,
-            'happentime':this.happendtime,
+            'happentime':$('#happendtime').val(),
             'content':content
         };
         console.log("teacherid:"+Meteor.userId()+" teachername:"+Meteor.user().username+" flowerlistid:"+this.flowerlistid);
         Meteor.call('updateFlowerslist', {'_id':this.flowerlistid},{$push: {'redflowerlist': redflower}});
         Router.go("/redflowerslistxq/"+this.flowerlistid);
     }
-
 });
+
+Template.redflowerslistxz.rendered=function() {
+    $('#happendtime').pickadate();
+}

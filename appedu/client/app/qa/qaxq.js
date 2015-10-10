@@ -22,7 +22,7 @@ Template.qaxq.events({
             'replyuserid':Meteor.userId(),
             'replyusername':Meteor.user().username,
             'replycontent':replycontent,
-            'replytime':'2015-09-17 20:27:30'
+            'replytime':moment().format('YYYY-MM-DD HH:mm:ss')
         };
         Meteor.call('updateQA',{'_id':this.qaid},{$push: {'replylist': reply}});
         template.$('#qreply').val('');
