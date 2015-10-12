@@ -1,0 +1,10 @@
+/*表单样式*/
+*{text-decoration:none;outline:none}
+a:link,a:visited,a:hover,a:active {color: #333;TEXT-DECORATION: none}
+.jcd_form input[type="checkbox"]{display:none}
+.jcd_form label{font-size:18px;font-weight:normal}
+.jcd_form .jcd_input_con{position:relative;background:#FFF;border-radius:6px;border:1px solid #EEE;padding-left:10px;}
+.jcd_form .jcd_input_con input{background:none;border:none;}
+.jcd_form .jcd_form_chickbox{overflow:hidden;height:auto}
+.jcd_form .jcd_form_chickbox .jcd_form_chickbox_lnk{display:block;height:40px;float:left;padding-right:20px;background:#FFF;line-height:38px;padding-left:30px;background:url(images/jcd_chickbox.png) no-repeat left -70px;background-size:20px 100px;font-size:18px;}
+.jcd_form .jcd_form_chickbox .sel{background-position:left 10px;color:#00CC66;}

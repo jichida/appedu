@@ -1,65 +1,59 @@
+var _imgsz_parentscommunity = new ReactiveVar([]);
 Template.sendcommunity.events({
-    'click #btnsendcommunity': function(event) {
-      event.preventDefault();
-      var title= $('#title').val();
-      var content= $('#content').val();
-      var visiblerange = $('#visiblerange').val();
-      var createuserid = Meteor.user()._id;
-      var createusername = Meteor.user().username;
-      if(title!='' && content!=''){
-        var communityDoc ={
-          title:title,
-          content: content,
-          visiblerange: visiblerange,
-          createuserid: createuserid,
-          createusername: createusername,
-          love: [],
-          reply: []
-        }
-        console.log(communityDoc)
-        Meteor.call('insertParentscommunity', communityDoc);
-        Router.go("/parentscommunity");
-     }else{
-      if(title=='') alert('取一个响亮的标题吧');
-      else if(content=='') alert('内容部分不能为空');
-      return false;
-     }
-  },
+	'click #btnsendcommunity': function(event) {
+		event.preventDefault();
+		var title= $('#title').val();
+		var content= $('#content').val();
+		var visiblerange = $('#visiblerange').val();
+		var createuserid = Meteor.user()._id;
+		var createusername = Meteor.user().username;
+		var createtime = new Date().getTime();//获取当前时间的时间戳
+		if(title!='' && content!=''){
+			var communityDoc ={
+				title:title,
+				content: content,
+				visiblerange: visiblerange,
+				createuserid: createuserid,
+				createusername: createusername,
+				createtime: createtime,
+				images:_imgsz_parentscommunity.get(),
+				love: [],
+				reply: []
+			}		
+			console.log(communityDoc)
+			Meteor.call('insertParentscommunity', communityDoc);
+			Router.go("/parentscommunity");
+			}else{
+				if(title=='')
+				alert('取一个响亮的标题吧');
+			else if(content=='')
+				alert('内容部分不能为空');
+			return false;
+		}
+	},
     'change #addImgInput': function(event){
-        var f = $("#addImgInput").get(0).files;
-        Meteor.call('addimgs', f);
-        /*
-
-        var files = event.target.files;
-
-          for (var i = 0, ln = files.length; i < ln; i++) {
-            Images.insert(files[i], function (err, fileObj) {
-              console.log(files);
-              console.log(files._id);
-            });
-          }
-
-        */
-    }
-  /*
-   console.log($("#addImgInput").get(0).files[0])
-   var fileObj = Images.insert(file);
-   var interval = Meteor.setInterval( function() {
-   if (fileObj.hasStored('images')) {
-   var imageURL = "/cfs/files/images/" + fileObj._id;
-   Meteor.call('dbImages', imageURL, function (error, result) {
-   Meteor.clearInterval(interval);
-   });
-   }
-   },50)
-   */
-  /*
-  'click .addImg' : function(event){
-    event.preventDefault();
-    MeteorCamera.getPicture('100','100',100, function(err, data){
-      alert(data)
-    })
-  }
-  */
-
+		console.log("change image...");
+		var self = this;
+		FS.Utility.eachFile(event, function(file){
+			var image = Images.insert(file, function(err, fileObj){
+				if(err){
+					console.log("error:" + EJSON.stringify(err));
+					alert("图片尺寸过大或这文件格式不正确！");
+				} else {
+					var imgsz = _imgsz_parentscommunity.get();
+					imgsz.push({imageid:image._id});
+					_imgsz_parentscommunity.set(imgsz);
+				}
+			});
+		});
+	}
 });
+Template.sendcommunity.helpers({
+  'imagefile':function(){
+    return _imgsz_parentscommunity.get();
+  }
+});
+//当模版关闭的时候
+Template.sendcommunity.destroyed = function(){
+	_imgsz_parentscommunity = new ReactiveVar([]);//清空上传图片缓存
+}

@@ -1,43 +1,43 @@
 <template name="parentscommunity">
-<header id="header">
-  <a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">家长圈</span><span class="category_h_nav back1"><a href="sendcommunity">发表</a></span>
-</header>
-<section class="content pad padb pad10">
-<div class="jzq">
-  {{#each community}}
-  <dl class='parentscommunity_list_{{_id}}'>
-    <dt><img src="images/jzq.jpg"></dt>
-    <dd>
-      <h2>{{title}}</h2>
-      <span><a href="parentslettersxq">{{content}}</a></span>
-      <div class="jzq_1">
-        <ul>
-          <li><img src="images/jzq1.jpg"></li>
-          <li><img src="images/jzq2.jpg"></li>
-          <li><img src="images/jzq3.jpg"></li>
-          <li><img src="images/jzq4.jpg"></li>
-        </ul>
-      </div>
-      <div class="jzq_fl">
-        20分钟前<span>20次预览</span>
-        <div class="jzq_fr">
-          <span class="jzq_zan" data='{{_id}}'></span>
-          <span class="jzq_ly"></span>
-        </div>
-      </div>
-      <div class="jzq_3">
-        <span class="Homeslide_angle"></span>
-        <dl>
-          {{#if love}}
-          <dt><i></i>{{#each love}}{{uname}}, {{/each}}</dt>
-          {{/if}}
-          <dd>小爸爸：真不错，赞一个</dd>
-          <dd>小爸爸：真不错，赞一个</dd>
-        </dl>
-      </div>
-    </dd>
-  </dl>
-  {{/each}}
-</div>
-</section>
+	<header id="header"> <a href="javascript:history.go(-1);" class="back"><img src="images/mark1.png"></a><span class="category_h_title">家长圈</span><span class="category_h_nav back1"><a href="sendcommunity">发表</a></span> </header>
+	<section class="content pad padb pad10">
+		<div class="jzq"> {{#each community}}
+			<dl class='parentscommunity_list_{{_id}}'>
+				<dt><img src="images/jzq.jpg"></dt>
+				<dd>
+					<h2>{{title}}</h2>
+					<span><a href="parentslettersxq">{{content}}</a></span>
+					<div class="jzq_1">
+						<ul>
+							{{#each images}}
+							<li><img src="/cfs/files/images/{{imageid}}" /></li>
+							{{/each}}
+						</ul>
+					</div>
+					<div class="jzq_fl"> {{createtimeString}}
+						<div class="jzq_fr"> <span class="jzq_zan" data='{{_id}}'></span> <span class="jzq_ly" data='{{_id}}'></span> </div>
+					</div>					
+					<div class="jzq_3">
+						{{#if replybox}}
+						<span class="Homeslide_angle"></span>
+						<dl>
+							{{#if love}}
+								<dt><i></i>{{#each love}}{{uname}}, {{/each}}</dt>
+							{{/if}}
+							{{#if reply}}
+								{{#each reply}}
+								<dd>{{uname}}：{{cont}}</dd>
+								{{/each}}
+							{{/if}}
+						</dl>
+						{{/if}}
+					</div>
+					<div class="jzq_reply" id='jzq_reply_{{_id}}'>
+						<textarea name="reply" style='overflow-y: hidden;height:40px' onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height = this.scrollHeight + 'px';"></textarea>
+						<a href="javascript:;" class="replyLnk">回复</a>
+					</div>
+				</dd>
+			</dl>
+			{{/each}} </div>
+	</section>
 </template>

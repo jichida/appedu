@@ -13,7 +13,6 @@ Template.register.events({
         }
 
       });
-
     },
     "click #btnregisterparent": function () {
       console.log("click btn sign");
@@ -93,3 +92,7 @@ Template.register.events({
 
     },
   });
+Template.register.onRendered(function () {
+	//单选框
+	var l = $('.jcd_form_selone')
+});

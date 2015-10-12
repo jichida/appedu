@@ -20,11 +20,14 @@
     <div class="fb_con">
         <textarea placeholder="输入您要发送的内容..." class="J_idea" id="content"></textarea>
         <div class="zp addImg" style="position: relative">
+			{{#each imagefile}}
+				<img src="http://localhost:3000/cfs/files/images/{{imageid}}" width="40" height="40" />
+			{{/each}}
             <em>+</em><span>添加照片</span>
             <input type='file' multiple="multiple" id="addImgInput" style="height:47px;width:47px;position: absolute;top:0;left:0;opacity: 0" />
         </div>
     </div>
-    <section class="gift_btn"> <a href="javascript:;" id="btnsendcommunity">发送</a> </section>
+    <section class="gift_btn"> <a href="javascript:;" id="btnsendcommunity" style="color:#FFF">发送</a> </section>
 </div>
 </section>
 

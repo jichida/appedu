@@ -29,4 +29,10 @@ Meteor.methods({
 			dbparentscommunity.update(id,{$set: {"love": lovelist }})
 		}
 	},
+	'replyParentscommunity': function(doc, id){
+		var i=0;
+		var replylist = dbparentscommunity.findOne({_id: id}).reply;
+		replylist.push(doc);
+		dbparentscommunity.update(id,{$set: {"reply": replylist }})
+	}
 });

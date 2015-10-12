@@ -2,58 +2,41 @@
 说明：这是个新建孩子表单
 -->
 <template name="editchild">
-<header id="header">
-	<a href="/{{returnurl}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">编辑孩子信息</span>
-</header>
-<section class="login_con padb">
-    <section class="user_login">
-        <form action="#" method="post" enctype="multipart/form-data" id="theForm">
-            <section class="lcon user_input telephone_area">
-							<div class="form_mod form_select">
-								<div>
-								<label for="">家长</label>
-									<select id="releationshipname" class="select" data-tmp="">
-										<option value="0">请选择</option>
-										{{#each releationshiplist}}
-											<option>{{name}}</option>
-										{{/each}}
-									</select>
-								</div>
-							</div>
-							<section class="lcon pass_input">
-									<input class="admin" id="truename" value="{{truename}}">
-							</section>
-							<section class="lcon pass_input">
-									<input class="admin" id="birthday" value="{{birthday}}">
-							</section>
-
-							<label class="col-sm-2 control-label">性别</label>
-
-						       <div class="col-sm-4">
-						         <div class="radio">
-						           <label for="male">
-						             <input type="radio" name="gender" id="male" value="Male"/>
-						           男</label>
-						         </div>
-
-						         <div class="radio">
-						           <label for="female">
-						             <input type="radio" name="gender" id="female" value="Female"/>
-						           女</label>
-						         </div>
-						       </div>
-
-
-
-            </section>
-						<div class="gift_btn" style="margin-left:20px; margin-right:20px">
-									<a href="#" id="btneditchild" title="会员登录">编辑</a>
+	<header id="header"> <a href="/{{returnurl}}" class="back"><img src="/images/mark1.png"></a><span class="category_h_title">编辑孩子信息</span> </header>
+	<section class="padb" style="padding:15px;">
+		<section class="user_login">
+			<form action="#" method="post" enctype="multipart/form-data" id="theForm">
+				<section class="user_input telephone_area">
+					<div class="form_mod form_select">
+						<div>
+							<label for="" style='width:78px;'>家长角色</label>
+							<select id="releationshipname" class="select" data-tmp="">
+								<option value="0">请选择</option>{{#each releationshiplist}}
+								<option>{{name}}</option>{{/each}}
+							</select>
 						</div>
-
-         </form>
-    </section>
-
-
-</section>
-
+					</div>
+					<section class="lcon pass_input">
+						<input class="admin" id="truename" value="{{truename}}">
+					</section>
+					<section class="lcon pass_input">
+						<input class="admin" id="birthday" value="{{birthday}}">
+					</section>
+					<br/>
+					<label>性别</label>
+					<div class="jcd_form">
+						<section class="jcd_form_chickbox" style="margin-bottom:20px;">
+							<label for="male" class="jcd_form_chickbox_lnk sel">
+								<input type="radio" name="gender" id="male" value="Male" />男
+							</label>
+							<label for="female" class="jcd_form_chickbox_lnk">
+								<input type="radio" name="gender" id="female" value="Female"/>女
+							</label>
+						</section>
+					</div>
+				</section>
+				<div class="gift_btn"><a href="#" id="btneditchild" style="color:#FFF">确定</a></div>
+			</form>
+		</section>
+	</section>
 </template>

@@ -1,4 +1,5 @@
-﻿Template.sendletter.helpers({
+﻿var _imgsz = new ReactiveVar([]);
+Template.sendletter.helpers({
   'isparent':function(){
     return  Roles.userIsInRole(Meteor.user(), ['parent']);
   },
@@ -31,8 +32,14 @@
     console.log("sendusers:" + EJSON.stringify(users));
     return users;
   },
+	'imagefile':function(){
+		return _imgsz.get();
+	}
 });
-var _imgsz = new ReactiveVar([]);
+//当模版关闭的时候
+Template.sendletter.destroyed = function(){
+	_imgsz = new ReactiveVar([]);//清空上传图片缓存
+}
 Template.sendletter.events({
   'change #letterimage' : function(event, template){
      console.log("change image...");
@@ -51,8 +58,6 @@ Template.sendletter.events({
          }
 
        });
-
-
      });
    },
   'click #btnsendletter': function(event) {
