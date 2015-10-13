@@ -19,7 +19,7 @@ Template.sendcommunity.events({
 				images:_imgsz_parentscommunity.get(),
 				love: [],
 				reply: []
-			}		
+			}
 			console.log(communityDoc)
 			Meteor.call('insertParentscommunity', communityDoc);
 			Router.go("/parentscommunity");

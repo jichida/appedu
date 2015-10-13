@@ -33,12 +33,20 @@ Template.sendletter.helpers({
     return users;
   },
 	'imagefile':function(){
-		return _imgsz.get();
+    var imgsz = _imgsz.get();
+    var imgurlsz = _.map(imgsz,function(imgid){
+      var imgurl = globalgetimgurl(imgid);
+    //var imgurl = Images.findOne(imgid);
+      return {imgurl:imgurl};
+    });
+    console.log("imgurlsz:"+EJSON.stringify(imgurlsz));
+		return imgurlsz;
 	}
 });
 //当模版关闭的时候
 Template.sendletter.destroyed = function(){
-	_imgsz = new ReactiveVar([]);//清空上传图片缓存
+  _imgsz.set([]);
+	//_imgsz = new ReactiveVar([]);//清空上传图片缓存
 }
 Template.sendletter.events({
   'change #letterimage' : function(event, template){
@@ -52,9 +60,9 @@ Template.sendletter.events({
            alert(err.reason);
          } else {
            var imgsz = _imgsz.get();
-           console.log("imgsz:" + EJSON.stringify(imgsz));
            imgsz.push({imageid:image._id});
            _imgsz.set(imgsz);
+           console.log("imgsz:" + EJSON.stringify(imgsz));
          }
 
        });

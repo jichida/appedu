@@ -34,7 +34,7 @@
 				<textarea placeholder="输入您要发送的内容..." class="J_idea" id="content"></textarea>
 				<div class="zp addImg" style="position: relative">
 					{{#each imagefile}}
-						<img src="http://localhost:3000/cfs/files/images/{{imageid}}" width="40" height="40" />
+						<img src="{{imgurl}}" width="40" height="40" />
 					{{/each}}
 					<em>+</em><span>添加照片</span>
 					<input type='file' multiple="multiple" id="letterimage" style="height:47px;width:47px;position: absolute;top:0;left:0;opacity: 0" />
