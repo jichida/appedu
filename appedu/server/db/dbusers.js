@@ -4,9 +4,10 @@
       {
         'profile.truename':truename,
       }} );
-  
+
   },
   'setSelChildid':function(selchildid,user){
+      console.log("setSelChildid:" + selchildid);
       if (Roles.userIsInRole(user, ['parent'])) {
         var child = dbChildren.findOne(selchildid);
         if(child){

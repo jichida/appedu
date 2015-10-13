@@ -15,42 +15,9 @@ Router.route('/login/:id',function(){
   this.render('login',{data:{id:this.params.id}});
 });
 
-var getchildrenfromuser = function(userid){
-  var mychildlist = [];
-
-  dbUserchildren.find({userid:userid}).forEach(
-    function(userchildren){
-      var child = dbChildren.findOne(userchildren.childid);
-        if(child){
-          var schoolname = '';
-          var classtermname = '';
-          var schoolid = child.schoolid;
-          var curclasstermid = child.curclasstermid;
-          if(schoolid){
-            schoolname = dbSchools.findOne(schoolid).name;
-          }
-          if(curclasstermid){
-            classtermname = dbClassterms.findOne(curclasstermid).name;
-          }
-
-          mychildlist.push({
-            childid:userchildren.childid,
-            releationshipname:userchildren.releationshipname,
-            schoolname:schoolname,
-            classtermname:classtermname,
-            schoolid:schoolid,
-            curclasstermid:curclasstermid,
-            childname:child.truename
-          });
-        }
-      });
-      console.log("mychildlist:" + EJSON.stringify(mychildlist));
-      return mychildlist;
-};
 
 Router.route('/loginselectchild',function(){
-  var mychildlist = getchildrenfromuser(Meteor.userId());
-  this.render('loginselectchild',{data:{mychildlist:mychildlist}});
+  this.render('loginselectchild');
 });
 
 Router.route('/loginselectclassterm',function(){
@@ -193,12 +160,7 @@ Router.route('/changepassword');//修改密码
 
 //我的孩子列表
 Router.route('/childlist',function(){
-    var childlist = getchildrenfromuser(Meteor.userId());
-    var data = {
-      childlist:childlist,
-    }
-    console.log("children:" + EJSON.stringify(data));
-    this.render('childlist', {data: data});
+    this.render('childlist');
 });
 
 

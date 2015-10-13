@@ -27,10 +27,18 @@ Template.childlist.helpers({
   'isinschool':function(){
     return this.schoolid != null && this.schoolid!="";
   },
-  'curchild':function(){
-    console.log("childid:"+this.childid + ",curselchildid:" + Meteor.user().profile.curchildid);
-    return this.childid == Meteor.user().profile.curchildid;
-  },
+  'childlist':function(){
+    var mychildlist = globalgetchildrenfromuser(Meteor.userId());
+    mychildlist = _.map(mychildlist,function(child){
+      var iscurchild = child.childid == Meteor.user().profile.curchildid;
+      return _.extend(child,{
+        iscurchild:iscurchild,
+      });
+    });
+    console.log("mychildlist:" + EJSON.stringify(mychildlist));
+    return mychildlist;
+  }
+
 
 });
 

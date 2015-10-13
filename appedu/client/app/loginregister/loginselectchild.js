@@ -1,21 +1,33 @@
-﻿Template.loginselectchild.events({
+var curchildid = new ReactiveVar('');
+Template.loginselectchild.events({
 	"click #btnenter": function () {
-		console.log("click btn sign");
+		console.log("click btn btnenter");
 		event.preventDefault();
-		//var selclasstypestring = $("#selchild").find("option:selected").text();	
-		//var selclasstypevalue = $("#selchild").val();
-		//var selchildid = selclasstypestring;	
-		var selchildid = $('#childId').val();
+		var selchildid = curchildid.get();
 		Meteor.call('setSelChildid',selchildid, Meteor.user());
-		Router.go('/' + this.returnurl);
-	},
-	'click #btnselectchild':function(){
-		console.log("select child:" + this.childid + ",this childtruename:" + this.childtruename);
+		Router.go('/');
 	},
 	'click .jcd_btnselectchild li':function(){
 		var id = this.childid;
 		$('.jcd_btnselectchild li').removeClass('sel');
 		$('.selchild_'+id).addClass('sel');
-		$('#childId').val(id);
+		curchildid.set(id);
 	}
 });
+
+Template.loginselectchild.helpers({
+	'mychildlist':function(){
+		var mychildlist = globalgetchildrenfromuser(Meteor.userId());
+		mychildlist = _.map(mychildlist,function(child){
+			var iscurchild = child.childid == Meteor.user().profile.curchildid;
+			if(iscurchild){
+				curchildid.set(child.childid);
+			}
+			return _.extend(child,{
+				iscurchild:iscurchild,
+			});
+		});
+		console.log("mychildlist:" + EJSON.stringify(mychildlist));
+		return mychildlist;
+	}
+})

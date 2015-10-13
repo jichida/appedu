@@ -4,12 +4,16 @@
 		<div>
 			<ul class="jcd_btnselectchild">
 				{{#each mychildlist}}
-				<li class='selchild_{{childid}}'><span>{{childname}}</span><span>{{classtermname}}</span><span>{{schoolname}}</span> </li>
+					{{#if iscurchild}}
+						<li class='selchild_{{childid}} sel'><span>{{childname}}</span><span>{{classtermname}}</span><span>{{schoolname}}</span> </li>
+					{{else}}
+						<li class='selchild_{{childid}}'><span>{{childname}}</span><span>{{classtermname}}</span><span>{{schoolname}}</span> </li>
+					{{/if}}
 				{{/each}}
 			</ul>
 			<input type="hidden" value="" id="childId" />
 		</div>
-		
+
 		<div class="feed_back chickbox-aggree">
 			<div class="fb_m" style="margin-left:15px;">
 				<label for="">
@@ -19,6 +23,6 @@
 			</div>
 		</div>
 		<div><br/></div>
-		<section class="gift_btn" style="margin-left:15px; margin-right:15px;clear:both"> <a href="/profile" style="color:#FFF">进入</a> </section>
+		<section class="gift_btn" style="margin-left:15px; margin-right:15px;clear:both"> <a href="#" style="color:#FFF" id="btnenter">进入</a> </section>
 	</section>
 </template>

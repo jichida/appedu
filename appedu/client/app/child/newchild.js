@@ -3,7 +3,7 @@ Template.newchild.events({
 		console.log("click btn btnaddclass");
 		event.preventDefault();
 		var truename =  $('#truename').val();
-		var sex = tmpl.find('input:radio[name=gender]:checked').value;
+		var sex = $('input:radio[name=gender]:checked').val();
 		var birthday =  $('#birthday').val();
 		var releationshipname = $("#releationshipname").val();
 		var childDoc = {

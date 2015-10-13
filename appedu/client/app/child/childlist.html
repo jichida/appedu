@@ -12,10 +12,10 @@
 		<ul class="address_manage">
 			{{#each childlist}}
 			<li class="address_mod ">
-				{{#if curchild}}
+				{{#if iscurchild}}
 				<a href="#" id="btnswitch" class="btnswitch btnswitch_sel">当前孩子</a>
 				{{else}}
-				<a href="#" id="btnswitch" class="btnswitch">却换到当前</a>
+				<a href="#" id="btnswitch" class="btnswitch">切换到当前</a>
 				{{/if}}
 				<div class="bd">
 					<div> <span class="name"><em>{{childname}}</em></span>
