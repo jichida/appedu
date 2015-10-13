@@ -1,4 +1,13 @@
 Template.login.events({
+    "click #btntest":function(){
+      if(Session.get('targetdevice') == 'ios'){
+        console.log("click btntest run on ios device");
+        var inputjson = {type:'req',param1:'wx',param2:''};
+        globalcalliosfunction('isinstalled',inputjson,function(outputjson){
+            console.log("outputjson:" + EJSON.stringify(outputjson));
+        });
+      }
+    },
     "click #btnlogin": function () {
       console.log("click btn sign");
       event.preventDefault();

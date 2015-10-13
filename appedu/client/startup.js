@@ -1,4 +1,5 @@
 Meteor.startup(function(){
+	console.log("startup...");
 	Meteor.subscribe('users');
 	Meteor.subscribe('schools');//幼儿园
 	Meteor.subscribe('classterms');//班级、学期
