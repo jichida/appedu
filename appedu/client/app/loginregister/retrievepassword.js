@@ -43,7 +43,7 @@ Template.retrievepassword.events({
       };
       Meteor.call('resetpassword',newuser,function(error,result){
         if(!error){
-          Router.go('/login/' + this.id);//登录成功
+          Router.go('/login');//登录成功
         }
       });
 

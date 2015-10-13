@@ -1,7 +1,7 @@
 /*表单样式*/
 *{text-decoration:none;outline:none}
 a:link,a:visited,a:hover,a:active {color: #333;TEXT-DECORATION: none}
-.jcd_form input[type="checkbox"]{display:none}
+.jcd_form input[type="checkbox"],.jcd_form input[type="radio"]{display:none}
 .jcd_form label{font-size:18px;font-weight:normal}
 .jcd_form .jcd_input_con{position:relative;background:#FFF;border-radius:6px;border:1px solid #EEE;padding-left:10px;}
 .jcd_form .jcd_input_con input{background:none;border:none;}

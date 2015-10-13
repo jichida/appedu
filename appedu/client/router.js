@@ -6,15 +6,8 @@
 });
 
 Router.route('/login', function () {
-  this.redirect("/login/0");
+  this.render('login');
 });
-
-
-Router.route('/login/:id',function(){
-  console.log("login html");
-  this.render('login',{data:{id:this.params.id}});
-});
-
 
 Router.route('/loginselectchild',function(){
   this.render('loginselectchild');
@@ -53,22 +46,12 @@ Router.route('/createclasstermsetclassterm/:schoolid/:returnurl',function(){
 
 //================================================================
 
-Router.route('/register/:id',function(){//注册
+Router.route('/register',function(){//注册
   console.log("register html");
-  // this.layout('mainlayout');
-  // this.render('navbar', {to: 'navbar'});
-  // this.render('login', {to: 'content'});
-  if(this.params.id == "0"){
-    this.render('register',{data:{isparentversion:true,id:this.params.id}});
-  }
-  else{
-    this.render('register',{data:{isteacherversion:true,id:this.params.id}});
-  }
-
+  this.render('register');
 });
-
-Router.route('/retrievepassword/:id',function(){//忘记密码
-    this.render('retrievepassword',{data:{id:this.params.id}});
+Router.route('/retrievepassword',function(){//忘记密码
+    this.render('retrievepassword');
 });
 
 Router.route('/basicinfo');

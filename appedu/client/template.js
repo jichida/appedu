@@ -24,15 +24,15 @@ Template.onRendered(function () {
 					if(cw<w){
 						c.eq(0).css('margin-left', Math.floor((w-cw)/2)+'px');
 					}
-				}				
+				}
 			}
 			$('.jcd_form .jcd_form_chickbox_lnk').each(function(index, element) {
 				$(this).click(function(){
 					$('.jcd_form .jcd_form_chickbox_lnk').removeClass('sel');
-					$(this).addClass('sel');						
+					$(this).addClass('sel');
 				})
 			});
-		}		
+		}
 		,jcd_height_full : function(){
 			var full = $('.jcd_height_full');
 			if(full.length>0){
@@ -44,14 +44,14 @@ Template.onRendered(function () {
 				}
 			}
 		}
-		
+
 	};
 
-	jcd_templete.jcd_start();	
+	jcd_templete.jcd_start();
 
 	window.onresize = function(){
 		jcd_templete.jcd_start();
 	}
 
-	
+
 });
