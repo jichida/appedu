@@ -5,14 +5,16 @@
 
 
 Template.questionnairexz.events({
-    'blur input': function(event,element) {
+    'blur #qnairetitle': function(event,element) {
         event.preventDefault();
         if($(event.target).val()==""){
-            alert('当前选项不能为空！');
+            alert('标题不能为空！');
+			$('#qnairetitle').focus();
             $(event.target).addClass('noempty');
         }else{
             $(event.target).removeClass('noempty');
         }
+		
     },
     'click #qnconfirmbtn':function(event){
         event.preventDefault();
@@ -54,10 +56,10 @@ Template.questionnairexz.events({
         var questionitem = $("<div class='fb_con'></div>");
         questionitem.append("<input name='questioncontent' type='text' class='input_200 noempty' placeholder='问题内容'/>");
         var questionoptions = $("<div class='fb_m'></div>");
-        $('<label for="option_a">选项A:<input class="noempty" name="option_a" type="input" /></label>').appendTo(questionoptions);
-        $('<label for="option_b">选项B:<input class="noempty" name="option_b" type="input" /></label>').appendTo(questionoptions);
-        $('<label for="option_c">选项C:<input class="noempty" name="option_c" type="input" /></label>').appendTo(questionoptions);
-        $('<label for="option_d">选项D:<input class="noempty" name="option_d" type="input" /></label>').appendTo(questionoptions);
+        $('<label for="option_a"><span>选项A: </span><input class="noempty" name="option_a" type="input" /></label>').appendTo(questionoptions);
+        $('<label for="option_b"><span>选项B: </span><input class="noempty" name="option_b" type="input" /></label>').appendTo(questionoptions);
+        $('<label for="option_c"><span>选项C: </span><input class="noempty" name="option_c" type="input" /></label>').appendTo(questionoptions);
+        $('<label for="option_d"><span>选项D: </span><input class="noempty" name="option_d" type="input" /></label>').appendTo(questionoptions);
         questionitem.append(questionoptions);
         $(".gift_btn").before(questionitem);
     }

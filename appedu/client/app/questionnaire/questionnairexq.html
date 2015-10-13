@@ -5,16 +5,16 @@
         <span class="category_h_nav  back1"><a href="/questionnairexz">新增</a></span>
     </header>
 
-    <section class="content pad padb pad10">
-        <div style="display:block;text-align:center;">{{questionnairexq.qnairetitle}}</div>
+    <section class="content pad padb pad10 qnfeedbackxz">
+        <div class="title">{{questionnairexq.qnairetitle}}</div>
         {{#each questionnairexq.questionlist}}
-            <div style="display:block;text-align:center; margin-top:20px;">
-                <div style="diaplay:block;"> <span>{{questioncontent}}</span></div>
+            <div class="qnfeedbackxz_list">
+                <div class="title2"> <span>{{questioncontent}}</span></div>
                 <ul>
                     {{#each answerlist}}
                         <li>
-                            <span>{{answercontent}}</span>
-                            <span>选择数量：{{checkcount}}</span>
+                            <span class="l">{{answercontent}}</span>
+                            <span class="r">{{checkcount}}人</span>
                         </li>
                     {{/each}}
                 </ul>
@@ -31,8 +31,8 @@
         <span id="qnxzbtn" class="category_h_nav  back1"><a href="#">完成</a></span>
     </header>
 
-    <section class="content pad padb pad10">
-        <div style="display:block;text-align:center;">{{questionnairexq.qnairetitle}}</div>
+    <section class="content pad padb pad10 qnfeedbackxz">
+        <div class="title">{{questionnairexq.qnairetitle}}</div>
         {{#each questionnairexq.questionlist}}
             <div style="display:block;text-align:center; margin-top:20px;" id="{{questionid}}" class="uncheck">
                 <div style="diaplay:block;"> <span>{{questioncontent}}</span></div>
@@ -58,8 +58,8 @@
     <section class="content pad padb pad10">
         <div style="display:block;text-align:center;">{{questionnairexq.qnairetitle}}</div>
         {{#each questionnairexq.questionlist}}
-            <div style="display:block;text-align:center; margin-top:20px;" >
-                <div style="diaplay:block;"> <span>{{questioncontent}}</span></div>
+            <div class="qnfeedbackxz">
+                <div class="title"> <span>{{questioncontent}}</span></div>
                 <ul>
                     {{#each answerlist}}
                         {{#if checked}}
