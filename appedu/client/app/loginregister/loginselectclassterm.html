@@ -1,33 +1,57 @@
 ﻿<template name="loginselectclassterm">
-
-<header id="header">
-<span class="category_h_title">选择自己的班级</span>
-   </header>
-<section class="content pad padb">
-<div class="product-list">
-    <div class="product-viewport huandong">
-      <ol class="product-style-list" style="width: 1424px;">
-        <li class="product-style-item"> <a href="#" id="btncreateclassterm"><span style="font-size:24px; margin-top:26px">+</span></a> </li>
-        {{#each classtermlist}}
-        <li class="product-style-item"> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
-        {{/each}}
-      </ol>
-    </div>
-
-    <div class="form_mod form_select">
-      <label for="">班级列表</label>
-        <select class="select" id="selchild" data-tmp="">
-          {{#each classtermlist}}
-            <option value="{{childid}}">{{name}}/{{schoolname}}</option>
-          {{/each}}
-        </select>
-    </div>
-  </div>
- <div class="feed_back">
-  <div class="fb_m" style="margin-left:25px; margin-right:25px">
-            <span style=" line-height:32px; display:block"><label for="" style="float:left; margin-top:5px"><input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px"></label>设为默认</span>
-            <span style=" line-height:32px; display:block; clear:both"><label for="" style="float:left;margin-top:5px"><input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px"></label>自动登录</span>
-        </div></div>
-<section class="gift_btn" style="margin-left:20px; margin-right:20px"> <a href="#" id="btnenter">进入</a> </section>
-</section>
+	<header id="header"> <span class="category_h_title">选择自己的班级<a href="#" id="btncreateclassterm" class="topnavlnk-right addchild">添加</a></span> </header>
+	<section class="content pad padb">
+		<div>
+			<ul class="jcd_btnselectchild">
+				{{#each classtermlist}}
+				<li class='selchild_{{childid}}'> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
+				{{/each}}
+			</ul>
+			<input type="hidden" name="schoolid" id="selschoolid" value="" />
+		</div>
+		<div class="feed_back">
+			<div class="fb_m" style="margin-left:25px; margin-right:25px">
+				<span style=" line-height:32px; display:block">
+				<label for="" style="float:left;margin-top:5px">
+					<input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px">
+				</label>
+				下次跳过该页面
+				</span>
+			</div>
+		</div>
+		<section class="gift_btn" style="margin-left:15px; margin-right:15px"> <a href="#" id="btnenter">进入</a> </section>
+	</section>
 </template>
+
+
+<!--
+<template name="loginselectchild">
+	<header id="header">
+		<span class="category_h_title">选择自己的孩子<a href="/newchild/loginselectchild" class="topnavlnk-right addchild">添加</a></span>
+	</header>
+	<section class="content pad padb">
+		<div>
+			<ul class="jcd_btnselectchild">
+				{{#each mychildlist}}
+				{{#if iscurchild}}
+				<li class='selchild_{{childid}} sel'><span>{{childname}}</span><span>{{classtermname}}</span><span>{{schoolname}}</span> </li>
+				{{else}}
+				<li class='selchild_{{childid}}'><span>{{childname}}</span><span>{{classtermname}}</span><span>{{schoolname}}</span> </li>
+				{{/if}}
+				{{/each}}
+			</ul>
+			<input type="hidden" value="" id="childId" />
+		</div>
+		<div class="feed_back chickbox-aggree">
+			<div class="fb_m" style="margin-left:15px;">
+				<label for="">
+					<input name="" type="checkbox" value="" class="c_checkbox_1" style="border-radius:5px">
+					<span style="line-height:24px;">自动登录</span> </label>
+			</div>
+		</div>
+		<div><br/>
+		</div>
+		<section class="gift_btn" style="margin-left:15px; margin-right:15px;clear:both"> <a href="#" style="color:#FFF" id="btnenter">进入</a> </section>
+	</section>
+</template>
+-->

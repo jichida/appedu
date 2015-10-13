@@ -309,7 +309,7 @@ html{font-size:0.8em;width:100%;height:100%;}
 
 }
 #caseBlanche7 #load img{ width:100%}
-.pad10{ padding-left:10px; padding-right:10px}
+.pad10{ padding:60px 10px 10px 10px}
 
 /*家长圈*/
 .jzq{height:auto; overflow:hidden}
@@ -439,7 +439,7 @@ input,select, textarea {
 .cumm_t .time1 .p{position:relative;}
 .cumm_t .time1 .p span{font-size:100%;}
 .cumm_t .c_txt{font-size:100%; color:#666; float:left; margin-left:10px; line-height:200%;}
-.cumm_t .c_txt h2{font-weight:normal; font-size:120%; color:#333;}
+.cumm_t .c_txt h2{font-weight:normal; font-size:120%; color:#333; line-height:30px;}
 .cumm_t .c_img{float:right; margin-right:20px; text-align:center}
 .cumm_t .c_img img{height:40px;}
 .cumm_t .c_img span{ display:block; font-size:12px}
@@ -598,7 +598,7 @@ flex: 1;
 
 .address_mod .bd {
   min-height: 50px;
-  padding: 10px 10px 10px 80px;
+  padding: 10px 10px 10px 100px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px
 }
@@ -607,7 +607,7 @@ flex: 1;
   color: #424242
 }
 .address_mod .name {
-  margin-right: 10px; width:14%; position:absolute;  left:5px;height:32px;background-color:#76b722; margin-top:0px; padding:0px 5px; line-height:32px; text-align:center; color:#fff; border-radius:0px 10px 10px 0px
+  margin-right: 10px; width:70px; position:absolute;  left:5px;height:32px;background-color:#76b722; margin-top:0px; padding:0px 5px; line-height:32px; text-align:center; color:#fff; border-radius:0px 10px 10px 0px
 }
 .address_mod .bd div .shengri{ float:right; display:inline-block;background-image:url(sr.png); background-repeat:no-repeat; background-position:left center; background-size:14px; padding-left:15px; color:#666}
 .address_mod .bd p {
@@ -666,7 +666,8 @@ vertical-align: middle;
 .feed_back .fb_con {
   background-color: #fff;
   border: 1px solid #d1d1d1;
-  border-radius: 3px
+  border-radius: 3px;
+  margin-bottom:15px;
 }
 .feed_back .fb_con textarea, .feed_back .fb_con input {
   border: 0;
@@ -690,10 +691,14 @@ vertical-align: middle;
   vertical-align: middle
 }
 .feed_back .fb_con .fb_m >label {
-  border-right: 1px solid #d1d1d1;
+	display:block;
+	border-bottom:1px solid #EEE;
+	margin-bottom:3px;
+	padding-bottom:5px;
   color: #727272;
   padding-right: 4px; font-size:14px; padding-top:5px
 }
+.feed_back .fb_con .fb_m >label span {color:#999;font-weight:normal}
 .feed_back .fb_con .fb_m .fb_mobile {
   display: inline-block;
   padding-left: 4px;
@@ -724,16 +729,16 @@ display: -webkit-box;}
 
 .hhb{ margin:10px 0px; height:auto; overflow:hidden}
 .hhb ul li{ border:1px solid #ddd; padding:10px;height:auto; overflow:hidden; margin:10px 0px}
-.hhb ul li span{ padding:5px 0px; color:#999}
-.hhb ul li span.time i{ width:18px; height:18px; background-image:url(cio.png); background-repeat:no-repeat; background-size:18px; float:left; margin-right:5px}
+.hhb ul li span{ color:#999}
+.hhb ul li span.time i{ width:18px; height:18px; background-image:url(/images/cio.png); background-repeat:no-repeat; background-size:18px; float:left; margin-right:5px}
 .hhb ul li span.laoshi i{ width:18px; height:18px; background-image:url(user_icon.png); background-repeat:no-repeat; background-size:18px; float:left; margin-right:5px}
 .hhb ul li .neirong{ width:100%; float:left; margin-top:5px; border-top:1px solid #ddd; padding-top:5px; height:auto; overflow:hidden}
-.hhb ul li .neirong i{width:18px; height:18px; background-image:url(honghua.png); background-repeat:no-repeat; background-size:18px; float:left; margin-right:5px; margin-top:6px}
-.hhb ul li .neirong span{ width:92%; float:left; color:#666}
+.hhb ul li .neirong i{width:18px; height:18px; background-image:url(/images/honghua.png); background-repeat:no-repeat; background-size:18px; float:left; margin-right:5px; margin-top:6px;}
+.hhb ul li .neirong span{ float:left; color:#666;line-height:30px;}
 
-.hhb_1{ height:60px; margin:15px 0px 15px}
-.hhb_1 img{ width:60px; height:60px; border-radius:100px; background-color:#41bc87; padding:5px;}
-.hhb_1 span{font-size:16px;color:#fff;line-height:70px; margin-left:-5px;background-color:#41bc87; padding:10px 20px 10px 15px; border-radius:0px 20px 20px 0px}
+.hhb_1{ height:60px; margin:15px 0px 15px;position:relative}
+.hhb_1 img{ width:60px; height:60px; border-radius:100px; background-color:#41bc87; padding:5px;z-index:2;position:relative;float:left}
+.hhb_1 span{font-size:16px;color:#fff;margin-left:-10px;background-color:#41bc87; padding:10px 20px 10px 15px; border-radius:0px 20px 20px 0px;z-index:1;position:relative;margin-top:10px;float:left;height:40px;}
 .hhb_1 span em{ border-left:1px solid #f6f6f6; padding-right:5px;margin-left:10px;background-image:url(honghua_1.png); background-repeat:no-repeat; background-position:6px center; background-size:18px; padding-left:26px}
 
 
@@ -1845,3 +1850,12 @@ input,select, textarea {
 .chickbox-aggree span,.chickbox-aggree input{float:left;overflow:hidden;margin-right:5px;font-weight:normal}
 .jcd_btnselectchild li.sel{border:1px solid #0C6;background:url(/images/jcd_chickbox.png) no-repeat 95% 10px;background-size:20px 100px;}
 .jcd_selsex {}
+
+
+select{font-size:16px;}
+
+.qnfeedbackxz{padding-left:15px;padding-right:15px;}
+.qnfeedbackxz .title{text-align:left;font-size:18px;font-weight:bold;border:none;border-bottom:1px solid #EEE;margin-bottom:5px;padding:10px 0;}
+.qnfeedbackxz .qnfeedbackxz_list{padding:5px 0;margin-bottom:10px;}
+.qnfeedbackxz .qnfeedbackxz_list .title2{font-size:16px;font-weight:bold;margin-bottom:10px;}
+.qnfeedbackxz .qnfeedbackxz_list li{overflow:hidden;line-height:30px;border-bottom:1px dashed #CCCCCC}
