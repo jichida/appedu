@@ -35,8 +35,9 @@ Template.sendletter.helpers({
 	'imagefile':function(){
     var imgsz = _imgsz.get();
     var imgurlsz = _.map(imgsz,function(imgid){
-      var imgurl = globalgetimgurl(imgid);
-    //var imgurl = Images.findOne(imgid);
+    var imgurl = globalgetimgurl(imgid);
+    //
+    var imgurl = Images.findOne(imgid);
       return {imgurl:imgurl};
     });
     console.log("imgurlsz:"+EJSON.stringify(imgurlsz));

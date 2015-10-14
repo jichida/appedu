@@ -14,7 +14,7 @@ Template.questionnairexz.events({
         }else{
             $(event.target).removeClass('noempty');
         }
-		
+
     },
     'click #qnconfirmbtn':function(event){
         event.preventDefault();

@@ -4,10 +4,13 @@
 		<div>
 			<ul class="jcd_btnselectchild">
 				{{#each classtermlist}}
-				<li class='selchild_{{childid}}'> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
+				{{#if iscurclassterm}}
+				<li class='selchild_{{classtermid}} sel'> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
+				{{else}}
+				<li class='selchild_{{classtermid}}'> <a href="#"><span>{{name}}</span><em>{{schoolname}}</em></a> </li>
+				{{/if}}
 				{{/each}}
 			</ul>
-			<input type="hidden" name="schoolid" id="selschoolid" value="" />
 		</div>
 		<div class="feed_back">
 			<div class="fb_m" style="margin-left:25px; margin-right:25px">
