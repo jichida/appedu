@@ -1,4 +1,4 @@
-Template.home.events({
+﻿Template.home.events({
   'click .over_layer':function(){
     $(".category_h_nav").click();
   },
@@ -39,7 +39,6 @@ Template.home.events({
 
       },
   });
-
   Template.home.helpers({
     'isparent':function(){
       return  Roles.userIsInRole(Meteor.user(), ['parent']);
@@ -48,9 +47,14 @@ Template.home.events({
       return  Roles.userIsInRole(Meteor.user(), ['headerteacher']);
     },
     'newrecvcount':function(){
-      return dbparentslettersrecv.find({
+		var n = dbparentslettersrecv.find({
         recvuserid:Meteor.userId(),
         isreaded:false
       }).count();
+		if(parseInt(n)>0){
+			return n;
+		}else{
+			return false;
+		}
     }
   });

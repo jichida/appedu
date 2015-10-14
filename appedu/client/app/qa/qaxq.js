@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by Luforn on 2015/9/16.
  */
 
@@ -8,19 +8,18 @@ Template.qaxq.helpers({
     }
 });
 
-
 Template.qaxq.events({
     'click #add_reply':function(event,template){
         event.preventDefault();
         template.$('#reply_zone').show();
         template.$('#add_reply').hide();
     },
-    'click #submit_reply':function(event,template){
+    'click .jcd_submit_reply':function(event,template){
         event.preventDefault();
         var replycontent = template.$('#qreply').val();
         var reply = {
             'replyuserid':Meteor.userId(),
-            'replyusername':Meteor.user().username,
+            'replyusername': Meteor.user().profile.truename,
             'replycontent':replycontent,
             'replytime':moment().format('YYYY-MM-DD HH:mm:ss')
         };

@@ -1,10 +1,7 @@
 ﻿Meteor.methods({
-  'settruename':function(truename){
-    Meteor.users.update(Meteor.userId(), { $set:
-      {
-        'profile.truename':truename,
-      }} );
-
+	'settruename':function(userinf){
+		//console.log("userinf:" + EJSON.stringify(userinf));
+		Meteor.users.update(Meteor.userId(),{$set:{'profile.truename':userinf.truename, 'profile.avatar':userinf.avatar}});
   },
   'setSelChildid':function(selchildid,user){
       console.log("setSelChildid:" + selchildid);

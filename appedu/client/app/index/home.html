@@ -1,11 +1,11 @@
-<template name="home">
+﻿<template name="home">
 <div class="common-home product-category" style="overflow: hidden; position: relative; height: auto;">
 <header id="header"><span class="category_h_title">幼儿园</span><span class="category_h_nav" data="1"><img src="images/shx.png"></span> </header>
 <section class="category_two_nav">
   <div style="width:100%;">
     <a href="/"><span><img src="/images/nav_l1.png">首页</span></a>
     <a href="/parentscommunity"><span><img src="/images/nav_l2.png">家长圈</span></a>
-    <a href="/parentsletters"><span><img src="/images/nav_l3.png">家长信<strong>{{newrecvcount}}</strong></span></a>
+    <a href="/parentsletters" class="redPoint"><span><img src="/images/nav_l3.png">家长信{{#if newrecvcount}}<b>{{newrecvcount}}</b>{{/if}}</span></a>
   <a href="/studentslist"><span><img src="/images/nav_l4.png">花名册</span></a>
   <a href="/redflowerslist"><span><img src="/images/nav_l5.png">红花榜</span></a>
   <a href="/foods"><span><img src="/images/nav_l6.png">食谱</span></a>

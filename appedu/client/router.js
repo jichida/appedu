@@ -479,7 +479,7 @@ Router.route('/question',function(){
 Router.route('/qaxq/:id',function(){
     console.log("qa.html");
     this.layout('mainlayout');
-    this.render('navbar', {to: 'navbar'});
+    //this.render('navbar', {to: 'navbar'});
     var data = {
         'qaid':this.params.id
     };
